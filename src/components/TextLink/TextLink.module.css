@@ -1,0 +1,12 @@
+.TextLink {
+  font-weight: bolder;
+  color: currentColor;
+
+  &:hover {
+    color: var(--color-interact);
+  }
+
+  &:active {
+    color: var(--color-interact-dark);
+  }
+}

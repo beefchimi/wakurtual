@@ -1,0 +1,8 @@
+.Footer {
+  text-align: center;
+}
+
+.Text {
+  font-size: 1.2rem;
+  font-weight: var(--font-weight-semibold);
+}

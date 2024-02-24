@@ -1,0 +1,91 @@
+/* --- App --- */
+
+html {
+  background-color: var(--color-secondary);
+}
+
+body {
+  font-family: var(--font-stack);
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+::selection {
+  color: var(--color-secondary);
+  background-color: var(--color-primary);
+}
+
+#WakuApp {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: var(--app-padding);
+  margin-left: auto;
+  margin-right: auto;
+  padding: var(--app-padding) var(--app-padding);
+  max-width: var(--app-max-width);
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* --- Typography --- */
+
+. .text-box-trim {
+  /* A rough approximation of the future `text-box-trim` property. */
+  &::before {
+    content: '';
+    display: block;
+    height: 0;
+    width: 0;
+    margin-top: -0.14em;
+  }
+}
+
+/* --- Actions --- */
+
+.link-basic {
+  text-decoration: underline 0.1rem transparent;
+  transition-property: opacity, color, text-decoration-color;
+  transition-duration: var(--duration-normal);
+  transition-timing-function: var(--easing-cubic);
+
+  &:hover {
+    text-decoration-color: currentColor;
+  }
+}
+
+.button-basic {
+  outline: 0.2rem solid transparent;
+  outline-offset: 0.2rem;
+  transition-property: color, background-color, border-color, outline-color,
+    opacity;
+  transition-duration: var(--duration-normal);
+  transition-timing-function: var(--easing-cubic);
+
+  &:focus-visible {
+    outline-color: var(--color-interact);
+  }
+}
+
+/* --- Pages --- */
+
+.page {
+}
+
+.page-heading {
+  font-size: 3.2rem;
+  font-weight: var(--font-weight-bold);
+}
+
+.page-text {
+  font-size: 1.6rem;
+  font-weight: var(--font-weight-normal);
+}
+
+.page-home {
+}
+
+.page-about {
+}
+
+.page-pokemon {
+}

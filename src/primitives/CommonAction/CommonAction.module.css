@@ -1,0 +1,16 @@
+.PrimitiveLink {
+  &[data-link-disabled] {
+    pointer-events: none;
+    touch-action: none;
+    user-select: none;
+  }
+}
+
+.PrimitiveButton {
+  &:disabled,
+  &[data-button-static] {
+    pointer-events: none;
+    touch-action: none;
+    user-select: none;
+  }
+}

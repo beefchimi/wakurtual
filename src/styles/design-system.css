@@ -1,0 +1,49 @@
+:root {
+  /* --- Colors --- */
+
+  --color-primary: #000;
+  --color-secondary: #ebebeb;
+
+  --color-interact: #2400ff;
+  --color-interact-light: #3d1fff;
+  --color-interact-dark: #1e00e0;
+
+  /* --- Motion --- */
+
+  --duration-fast: 60ms;
+  --duration-normal: 120ms;
+  --duration-slow: 240ms;
+
+  --easing-cubic: cubic-bezier(0.6, 0, 0.2, 1);
+
+  /* --- Typography --- */
+
+  --font-stack: 'Outfit', Avenir, 'Avenir Next LT Pro', Montserrat, Corbel,
+    'URW Gothic', source-sans-pro, sans-serif;
+
+  --font-weight-thin: 200;
+  --font-weight-normal: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-black: 900;
+
+  /* --- Breakpoints --- */
+
+  /*
+   * Media queries cannot use CSS variables,
+   * so most of these declarations are for reference only.
+  */
+  --breakpoint-mobile-begin: 32rem;
+  --breakpoint-phablet-begin: 64rem;
+  --breakpoint-tablet-begin: 76.8rem;
+  --breakpoint-desktop-begin: 128rem;
+  --breakpoint-widescreen-begin: 144rem;
+
+  /* --- Layout --- */
+
+  --app-padding: 1.6rem;
+  --app-max-width: 84rem;
+  --app-full-width-mobile: calc(
+    var(--breakpoint-mobile-begin) - var(--app-padding) * 2
+  );
+}

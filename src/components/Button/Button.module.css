@@ -1,0 +1,19 @@
+.Button {
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem;
+  border-radius: 0.6rem;
+  color: var(--color-secondary);
+  background-color: var(--color-interact);
+
+  &:hover:not(:active) {
+    background-color: var(--color-interact-dark);
+  }
+}
+
+.Label {
+  font-size: 1.4rem;
+  font-weight: var(--font-weight-bold);
+}

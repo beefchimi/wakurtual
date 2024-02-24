@@ -1,0 +1,16 @@
+.Header {
+  display: grid;
+  gap: 1rem;
+  justify-content: center;
+  text-align: center;
+}
+
+.Title {
+  font-size: 4rem;
+  font-weight: var(--font-weight-bold);
+}
+
+.Subtitle {
+  font-size: 2rem;
+  font-weight: var(--font-weight-semibold);
+}
