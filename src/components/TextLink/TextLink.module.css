@@ -1,5 +1,4 @@
 .TextLink {
-  font-weight: bolder;
   color: currentColor;
 
   &:hover {
@@ -7,6 +6,6 @@
   }
 
   &:active {
-    color: var(--color-coral-dark);
+    color: var(--color-coral-darker);
   }
 }

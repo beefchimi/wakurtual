@@ -4,9 +4,11 @@
   --color-white: rgb(255, 255, 255, 1);
   --color-cream: #fffcf5;
 
-  --color-black: rgb(0, 0, 0, 1);
-  --color-black-90: rgb(0, 0, 0, 0.9);
+  --color-black-6: rgb(0, 0, 0, 0.06);
+  --color-black-10: rgb(0, 0, 0, 0.1);
   --color-black-60: rgb(0, 0, 0, 0.6);
+  --color-black-90: rgb(0, 0, 0, 0.9);
+  --color-black: rgb(0, 0, 0, 1);
 
   --color-coral-lighter: #ff9270;
   --color-coral-light: #ff825c;
@@ -31,12 +33,6 @@
   --font-stack: 'Outfit', Avenir, 'Avenir Next LT Pro', Montserrat, Corbel,
     'URW Gothic', source-sans-pro, sans-serif;
 
-  --font-weight-thin: 200;
-  --font-weight-normal: 400;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-  --font-weight-black: 900;
-
   /* --- Breakpoints --- */
 
   /*
@@ -51,7 +47,16 @@
 
   /* --- Layout --- */
 
+  --app-gap: 3.2rem;
+  --app-gap-desktop: 6.4rem;
+
   --app-padding: 1.6rem;
+  --app-padding-desktop: 4rem;
+
+  --app-sidebar-gap: 1rem;
+  --app-sidebar-height: 4rem;
+  --app-sidebar-width: 8rem;
+  --app-sidebar-width-open: 20rem;
 
   --main-max-width: 144rem;
   --main-full-width-mobile: calc(

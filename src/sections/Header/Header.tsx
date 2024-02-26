@@ -9,14 +9,22 @@ export interface HeaderProps {
 }
 
 export function Header({children}: HeaderProps) {
+  const childrenMarkup = children ? (
+    <div className={styles.Children}>{children}</div>
+  ) : null;
+
   return (
     <header className={styles.Header}>
-      <h1 className={classNames('text-box-trim', styles.Title)}>Wakurtual.</h1>
-      <p className={classNames('text-box-trim', styles.Subtitle)}>
-        An experiment with virtualized responsive grid items
-      </p>
+      <div className={styles.Content}>
+        <h1 className={classNames('text-box-trim', styles.Title)}>
+          Wakurtual.
+        </h1>
+        <p className={classNames('text-box-trim', styles.Subtitle)}>
+          An experiment with virtualized responsive grid items
+        </p>
+      </div>
 
-      {children}
+      {childrenMarkup}
     </header>
   );
 }

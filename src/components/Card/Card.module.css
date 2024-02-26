@@ -5,36 +5,48 @@
 
 .Link {
   &:hover:not(:active) .Interior {
-    background-color: rgb(0, 0, 0, 0.16);
+    background-color: var(--color-black-10);
+  }
+
+  &:hover .Interior::before {
+    opacity: 1;
+  }
+
+  &:active .Interior::before {
+    border-color: var(--color-coral-dark);
+  }
+
+  &:hover .Order {
+    background-color: var(--color-coral);
+  }
+
+  &:active .Order {
+    background-color: var(--color-coral-dark);
   }
 }
 
 .Interior {
+  position: relative;
   display: grid;
-  gap: 0.6rem;
-  padding: 0.6rem;
-  border-radius: 0.6rem;
-  background-color: rgb(0, 0, 0, 0.1);
+  gap: 1.6rem;
+  padding: 1rem 1rem 1.6rem 1rem;
+  border-radius: 1rem;
+  background-color: var(--color-black-6);
   transition: background-color var(--duration-normal) var(--easing-cubic);
-}
 
-.Order {
-  z-index: 3;
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: grid;
-  place-items: center;
-  place-content: center;
-  width: 1.6rem;
-  height: 1.6rem;
-  border: 0.1rem solid var(--color-black);
-}
-
-.OrderLabel {
-  font-size: 1.2rem;
-  font-weight: var(--font-weight-bold);
-  color: var(--color-black);
+  &::before {
+    content: '';
+    display: block;
+    pointer-events: none;
+    position: absolute;
+    inset: -0.1rem;
+    border-radius: 1rem;
+    border: 0.2rem solid var(--color-coral-dark);
+    opacity: 0;
+    transition-property: opacity, border-color;
+    transition-duration: var(--duration-normal);
+    transition-timing-function: var(--easing-cubic);
+  }
 }
 
 .Media {
@@ -42,7 +54,7 @@
   position: relative;
   width: 100%;
   aspect-ratio: 1 / 1;
-  border-radius: 0.6rem;
+  border-radius: 0.8rem;
   background-color: rgb(0, 0, 0, 0.1);
   overflow: hidden;
 }
@@ -66,12 +78,37 @@
 
 .Title {
   font-size: 1.6rem;
-  font-weight: var(--font-weight-bold);
+  font-weight: 700;
   color: var(--color-black);
 }
 
 .Subtitle {
   font-size: 1.4rem;
-  font-weight: var(--font-weight-semibold);
+  font-weight: 600;
   color: var(--color-black-60);
+}
+
+.Order {
+  z-index: 3;
+  position: absolute;
+  bottom: -1.1rem;
+  left: auto;
+  right: auto;
+  display: grid;
+  place-items: center;
+  place-content: center;
+  justify-self: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  min-width: 2rem;
+  height: 2rem;
+  border-radius: 2rem;
+  background-color: var(--color-black);
+  transition: background-color var(--duration-normal) var(--easing-cubic);
+}
+
+.OrderLabel {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-white);
 }

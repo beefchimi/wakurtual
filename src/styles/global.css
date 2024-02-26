@@ -70,21 +70,20 @@ body {
   width: 100%;
   min-height: 100vh;
   grid-template-rows: auto 1fr auto;
-  gap: var(--app-padding);
+  gap: var(--app-gap);
   margin-left: auto;
   margin-right: auto;
-  padding: var(--app-padding) var(--app-padding);
   max-width: var(--app-max-width);
 }
 
 .main-heading {
   font-size: 3.2rem;
-  font-weight: var(--font-weight-bold);
+  font-weight: 700;
 }
 
 .main-text {
   font-size: 1.6rem;
-  font-weight: var(--font-weight-normal);
+  font-weight: 400;
 }
 
 .main-home {

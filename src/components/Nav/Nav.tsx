@@ -1,3 +1,5 @@
+// import {useLocation} from 'waku/router/client';
+
 import {TextLink} from '../TextLink/index.js';
 // @ts-expect-error no types
 import styles from './Nav.module.css';
@@ -12,6 +14,11 @@ export interface NavProps {
 }
 
 export function Nav({items = []}: NavProps) {
+  // TODO: Using this requires `use client`...
+  // investigate if there is a better solution for "current" links.
+  // const location = useLocation();
+  // console.log('location', location);
+
   const itemsMarkup = items.map(({label, url}) => (
     <li key={`Nav-${label}`} className={styles.Item}>
       <TextLink label={label} url={url} />

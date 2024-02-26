@@ -1,16 +1,29 @@
 .Header {
   display: grid;
-  gap: 1rem;
+  gap: var(--app-gap);
+  padding-top: var(--app-gap);
+  padding-left: var(--app-padding);
+  padding-right: var(--app-padding);
   justify-content: center;
   text-align: center;
 }
 
+.Content {
+  display: grid;
+  gap: 1rem;
+}
+
 .Title {
   font-size: 4rem;
-  font-weight: var(--font-weight-bold);
+  font-weight: 700;
+  color: var(--color-black);
 }
 
 .Subtitle {
   font-size: 2rem;
-  font-weight: var(--font-weight-semibold);
+  font-weight: 600;
+  color: var(--color-black-60);
+}
+
+.Children {
 }

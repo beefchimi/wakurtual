@@ -25,7 +25,7 @@ export function Card({
 }: CardProps) {
   const orderMarkup = order ? (
     <div className={styles.Order}>
-      <p className={classNames('text-box-trim', styles.OrderLabel)}>{order}</p>
+      <p className={classNames('text-box-trim', styles.OrderLabel)}>#{order}</p>
     </div>
   ) : null;
 
@@ -35,8 +35,6 @@ export function Card({
 
   const interiorMarkup = (
     <div className={styles.Interior}>
-      {orderMarkup}
-
       <div className={styles.Media}>
         <img
           className={classNames(styles.Image, {
@@ -51,6 +49,8 @@ export function Card({
         <p className={classNames('text-box-trim', styles.Title)}>{title}</p>
         {subtitleMarkup}
       </div>
+
+      {orderMarkup}
     </div>
   );
 

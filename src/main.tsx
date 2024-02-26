@@ -8,7 +8,9 @@ import {getErrorMessage} from './utilities/index.js';
 const rootElement = (
   <StrictMode>
     <ErrorBoundarySingleton
-      fallback={(error) => <h1>{getErrorMessage(error)}</h1>}
+      fallback={(error) => (
+        <h1 className="main-heading">{getErrorMessage(error)}</h1>
+      )}
     >
       <Router />
     </ErrorBoundarySingleton>

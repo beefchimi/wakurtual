@@ -24,7 +24,7 @@ export async function HomePage() {
           imgSrc={getPokemonImage(id)}
           imgAlt={slug}
           url={getPokemonRoute(slug)}
-          order={index}
+          order={index + 1}
           pixelated
         />
       </CardList.Item>
@@ -38,11 +38,9 @@ export async function HomePage() {
   return (
     <div className="main-home">
       <title>{data.htmlTitle}</title>
-      <h2 className="main-heading">{data.pageTitle}</h2>
-
-      <Counter />
 
       <CardList>{itemsMarkup}</CardList>
+      <Counter />
     </div>
   );
 }
