@@ -13,7 +13,7 @@ export interface NavProps {
 
 export function Nav({items = []}: NavProps) {
   const itemsMarkup = items.map(({label, url}) => (
-    <li className={styles.Item}>
+    <li key={`Nav-${label}`} className={styles.Item}>
       <TextLink label={label} url={url} />
     </li>
   ));

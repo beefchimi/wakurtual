@@ -3,7 +3,9 @@ import {createPages} from 'waku';
 import {getPokemonSlugs} from './data.js';
 import {
   AboutPage,
+  ErrorPage,
   HomePage,
+  PokedexPage,
   PokemonPage,
   RootLayout,
 } from './templates/index.js';
@@ -33,8 +35,21 @@ export default createPages(async ({createPage, createLayout}) => {
 
   createPage({
     render: 'static',
-    path: '/[slug]',
+    path: '/pokedex',
+    component: PokedexPage,
+  });
+
+  createPage({
+    render: 'static',
+    path: '/pokedex/[slug]',
     component: PokemonPage,
     staticPaths: slugs,
+  });
+
+  // Not sure if this is the right way to do error pages.
+  createPage({
+    render: 'dynamic',
+    path: '/[...catchAll]',
+    component: ErrorPage,
   });
 });

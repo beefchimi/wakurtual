@@ -1,7 +1,7 @@
 /* --- App --- */
 
 html {
-  background-color: var(--color-secondary);
+  background-color: var(--color-cream);
 }
 
 body {
@@ -11,25 +11,22 @@ body {
 }
 
 ::selection {
-  color: var(--color-secondary);
-  background-color: var(--color-primary);
+  color: var(--color-white);
+  background-color: var(--color-coral);
 }
 
 #WakuApp {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  gap: var(--app-padding);
-  margin-left: auto;
-  margin-right: auto;
-  padding: var(--app-padding) var(--app-padding);
-  max-width: var(--app-max-width);
-  width: 100%;
-  min-height: 100vh;
 }
 
 /* --- Typography --- */
 
-. .text-box-trim {
+.typography {
+}
+
+.text-callout {
+}
+
+.text-box-trim {
   /* A rough approximation of the future `text-box-trim` property. */
   &::before {
     content: '';
@@ -62,30 +59,45 @@ body {
   transition-timing-function: var(--easing-cubic);
 
   &:focus-visible {
-    outline-color: var(--color-interact);
+    outline-color: var(--color-coral);
   }
 }
 
 /* --- Pages --- */
 
 .page {
+  display: grid;
+  width: 100%;
+  min-height: 100vh;
+  grid-template-rows: auto 1fr auto;
+  gap: var(--app-padding);
+  margin-left: auto;
+  margin-right: auto;
+  padding: var(--app-padding) var(--app-padding);
+  max-width: var(--app-max-width);
 }
 
-.page-heading {
+.main-heading {
   font-size: 3.2rem;
   font-weight: var(--font-weight-bold);
 }
 
-.page-text {
+.main-text {
   font-size: 1.6rem;
   font-weight: var(--font-weight-normal);
 }
 
-.page-home {
+.main-home {
 }
 
-.page-about {
+.main-about {
 }
 
-.page-pokemon {
+.main-pokedex {
+}
+
+.main-pokemon {
+}
+
+.main-error {
 }

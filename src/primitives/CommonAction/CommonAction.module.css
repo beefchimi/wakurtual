@@ -1,4 +1,6 @@
 .PrimitiveLink {
+  display: inline-block;
+
   &[data-link-disabled] {
     pointer-events: none;
     touch-action: none;

@@ -48,6 +48,10 @@ export function getPokemonImage(id: Pokemon['id'] = 0) {
   return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
 }
 
+export function getPokemonRoute(slug: Pokemon['slug'] = '404') {
+  return `/pokedex/${slug}`;
+}
+
 export async function getPokemonSlugs() {
   return pokemonDataRaw.map((poke: Pokemon) => poke.slug);
 }

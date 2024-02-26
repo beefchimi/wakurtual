@@ -13,3 +13,5 @@ export {
   getErrorMessage,
   GENERIC_ERROR_MESSAGE,
 } from './error.js';
+
+export {supportDom, supportMatchMedia} from './support.js';

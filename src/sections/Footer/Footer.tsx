@@ -9,6 +9,8 @@ export function Footer() {
   return (
     <footer className={styles.Footer}>
       <p className={classNames('text-box-trim', styles.Text)}>
+        Made by{' '}
+        <TextLink label="Curtis Dulmage" url="https://dulmage.me/" external />.
         Built using <TextLink label="Waku" url="https://waku.gg/" external />{' '}
         and{' '}
         <TextLink
@@ -16,7 +18,7 @@ export function Footer() {
           url="https://tanstack.com/virtual/latest"
           external
         />
-        .
+        … among other awesome tools.
       </p>
     </footer>
   );

@@ -1,5 +1,3 @@
-import classNames from 'classnames';
-
 import {TextLink} from '../components/index.js';
 import {getPokemonBySlug, getPokemonImage, type Pokemon} from '../data.js';
 
@@ -13,6 +11,8 @@ export const PokemonPage = async ({slug}: PokemonPageProps) => {
   // TODO: Render empty state
   if (!pokemon) return null;
 
+  const titleValue = `${pokemon.name.english} | Wakurtual`;
+
   const stats = Object.entries(pokemon.base);
 
   const typesMarkup = pokemon.type.map((type) => (
@@ -22,27 +22,25 @@ export const PokemonPage = async ({slug}: PokemonPageProps) => {
   ));
 
   return (
-    <>
-      <title>{pokemon.name.english}</title>
+    <div className="page-pokemon">
+      <title>{titleValue}</title>
 
-      <div className={classNames('page', 'page-pokemon')}>
-        {typesMarkup}
+      <h2 className="main-heading">{pokemon.name.english}</h2>
+      <p className="sub-subheading">{pokemon.name.japanese}</p>
 
-        <img src={getPokemonImage(pokemon.id)} alt={pokemon.slug} />
+      {typesMarkup}
 
-        <p>{pokemon.name.english}</p>
-        <p>{pokemon.name.japanese}</p>
+      <img src={getPokemonImage(pokemon.id)} alt={pokemon.slug} />
 
-        <ul>
-          {stats.map(([stat, value]) => (
-            <li key={`Pokemon-Stats-${stat}`}>
-              {stat}: {value}
-            </li>
-          ))}
-        </ul>
+      <ul>
+        {stats.map(([stat, value]) => (
+          <li key={`Pokemon-Stats-${stat}`}>
+            {stat}: {value}
+          </li>
+        ))}
+      </ul>
 
-        <TextLink label="Go back" url="/" />
-      </div>
-    </>
+      <TextLink label="Go back" url="/" />
+    </div>
   );
 };

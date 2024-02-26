@@ -4,7 +4,7 @@ import '../styles/reset.css';
 import '../styles/design-system.css';
 import '../styles/global.css';
 
-import {Footer, Header, Main} from '../sections/index.js';
+import {Footer, Header, Main, Sidebar} from '../sections/index.js';
 import {Nav, type NavProps} from '../components/index.js';
 
 interface RootLayoutProps {
@@ -12,9 +12,9 @@ interface RootLayoutProps {
 }
 
 const NAV_LINKS: NavProps['items'] = [
-  {label: 'Home', url: '/'},
+  {label: 'Trending', url: '/'},
+  {label: 'Pokedex', url: '/pokedex'},
   {label: 'About', url: '/about'},
-  // {label: 'Random', url: '/random'},
 ];
 
 async function getData() {
@@ -42,12 +42,17 @@ export async function RootLayout({children}: RootLayoutProps) {
       />
 
       <div id="WakuApp">
-        <Header>
-          <Nav items={NAV_LINKS} />
-        </Header>
+        <div className="page">
+          <Header>
+            <Nav items={NAV_LINKS} />
+          </Header>
 
-        <Main>{children}</Main>
-        <Footer />
+          <Main>{children}</Main>
+
+          <Footer />
+        </div>
+
+        <Sidebar />
       </div>
     </>
   );

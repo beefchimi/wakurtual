@@ -3,10 +3,10 @@
   color: currentColor;
 
   &:hover {
-    color: var(--color-interact);
+    color: var(--color-coral);
   }
 
   &:active {
-    color: var(--color-interact-dark);
+    color: var(--color-coral-dark);
   }
 }

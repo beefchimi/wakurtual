@@ -1,12 +1,22 @@
 :root {
   /* --- Colors --- */
 
-  --color-primary: #000;
-  --color-secondary: #ebebeb;
+  --color-white: rgb(255, 255, 255, 1);
+  --color-cream: #fffcf5;
 
-  --color-interact: #2400ff;
-  --color-interact-light: #3d1fff;
-  --color-interact-dark: #1e00e0;
+  --color-black: rgb(0, 0, 0, 1);
+  --color-black-90: rgb(0, 0, 0, 0.9);
+  --color-black-60: rgb(0, 0, 0, 0.6);
+
+  --color-coral-lighter: #ff9270;
+  --color-coral-light: #ff825c;
+  --color-coral: #ff6f42;
+  --color-coral-dark: #ff6333;
+  --color-coral-darker: #ff531f;
+
+  --color-green: #60d286;
+  --color-blue: #38adee;
+  --color-yellow: #fcd05e;
 
   /* --- Motion --- */
 
@@ -42,8 +52,9 @@
   /* --- Layout --- */
 
   --app-padding: 1.6rem;
-  --app-max-width: 84rem;
-  --app-full-width-mobile: calc(
+
+  --main-max-width: 144rem;
+  --main-full-width-mobile: calc(
     var(--breakpoint-mobile-begin) - var(--app-padding) * 2
   );
 }

@@ -11,9 +11,9 @@ export interface HeaderProps {
 export function Header({children}: HeaderProps) {
   return (
     <header className={styles.Header}>
-      <h1 className={classNames('text-box-trim', styles.Title)}>Wakurtual</h1>
+      <h1 className={classNames('text-box-trim', styles.Title)}>Wakurtual.</h1>
       <p className={classNames('text-box-trim', styles.Subtitle)}>
-        An experiment with virtualized responsive grid items.
+        An experiment with virtualized responsive grid items
       </p>
 
       {children}

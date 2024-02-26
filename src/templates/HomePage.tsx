@@ -1,8 +1,6 @@
-import classNames from 'classnames';
-
 import {Card, CardList, Counter} from '../components/index.js';
 
-import {getPokemonData, getPokemonImage} from '../data.js';
+import {getPokemonData, getPokemonImage, getPokemonRoute} from '../data.js';
 
 async function getData() {
   const data = {
@@ -25,7 +23,7 @@ export async function HomePage() {
           subtitle={name.japanese}
           imgSrc={getPokemonImage(id)}
           imgAlt={slug}
-          url={`/${slug}`}
+          url={getPokemonRoute(slug)}
           order={index}
           pixelated
         />
@@ -38,16 +36,13 @@ export async function HomePage() {
   );
 
   return (
-    <>
+    <div className="main-home">
       <title>{data.htmlTitle}</title>
+      <h2 className="main-heading">{data.pageTitle}</h2>
 
-      <div className={classNames('page', 'page-home')}>
-        <h2 className="page-heading">{data.pageTitle}</h2>
+      <Counter />
 
-        <Counter />
-
-        <CardList>{itemsMarkup}</CardList>
-      </div>
-    </>
+      <CardList>{itemsMarkup}</CardList>
+    </div>
   );
 }
