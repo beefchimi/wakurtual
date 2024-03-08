@@ -1,0 +1,4 @@
+{
+  "something": "Hello {{ subject }}. This is some basic content written by {{ author }}.",
+  "nav-empty": "Nowhere to go…"
+}

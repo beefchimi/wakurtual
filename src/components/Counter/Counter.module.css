@@ -1,8 +1,8 @@
 .Counter {
-  border: 0.1rem solid green;
 }
 
 .Label {
   font-size: 1.4rem;
   font-weight: 700;
+  color: var(--color-white);
 }

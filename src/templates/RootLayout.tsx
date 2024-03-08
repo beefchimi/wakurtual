@@ -4,6 +4,7 @@ import '../styles/reset.css';
 import '../styles/design-system.css';
 import '../styles/global.css';
 
+// import {ContentProvider} from '../packages/index.js';
 import {Footer, Header, Main, Sidebar} from '../sections/index.js';
 import {Nav, type NavProps} from '../components/index.js';
 
@@ -28,6 +29,10 @@ async function getData() {
 
 export async function RootLayout({children}: RootLayoutProps) {
   const data = await getData();
+
+  // TODO: If we can figure out how to get this `Provider` to be
+  // server compatible, we can wrap this entire Layout with it.
+  // <ContentProvider path="./src/content/app.json"></ContentProvider>
 
   return (
     <>

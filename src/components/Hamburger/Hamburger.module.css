@@ -1,0 +1,74 @@
+.Hamburger {
+  --hamburger-size: 2rem;
+  --hamburger-line-size: 0.2rem;
+  --hamburger-gap: calc(var(--hamburger-size) - var(--hamburger-line-size) * 3);
+  --hamburger-line-top: 0;
+  --hamburger-line-middle: calc(
+    var(--hamburger-line-size) + var(--hamburger-gap) / 2
+  );
+  --hamburger-line-bottom: calc(
+    var(--hamburger-size) - var(--hamburger-line-size)
+  );
+
+  position: relative;
+  width: var(--hamburger-size);
+  height: var(--hamburger-size);
+  transition: rotate var(--duration-normal) var(--easing-cubic);
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    width: var(--hamburger-size);
+    height: var(--hamburger-line-size);
+    border-radius: var(--hamburger-line-size);
+    background-color: var(--color-white);
+    transition-property: height, translate, rotate;
+    transition-duration: var(--duration-normal);
+    transition-timing-function: var(--easing-cubic);
+  }
+
+  &::before {
+    translate: 0 var(--hamburger-line-top);
+  }
+
+  &::after {
+    translate: 0 var(--hamburger-line-bottom);
+  }
+}
+
+.active {
+  --hamburger-line-size: 0.3rem;
+  rotate: -90deg;
+
+  &::before {
+    translate: 0 var(--hamburger-line-middle);
+    rotate: 45deg;
+  }
+
+  &::after {
+    translate: 0 var(--hamburger-line-middle);
+    rotate: -45deg;
+  }
+
+  > .Line {
+    scale: 0;
+  }
+}
+
+.large {
+  --hamburger-size: 3.2rem;
+  --hamburger-line-size: 0.4rem;
+}
+
+.Line {
+  position: absolute;
+  top: var(--hamburger-line-middle);
+  width: var(--hamburger-size);
+  height: var(--hamburger-line-size);
+  border-radius: var(--hamburger-line-size);
+  background-color: var(--color-white);
+  transition: scale var(--duration-normal) var(--easing-cubic);
+}

@@ -3,7 +3,7 @@ import {createRoot, hydrateRoot} from 'react-dom/client';
 import {Router} from 'waku/router/client';
 
 import {ErrorBoundarySingleton} from './classes/index.js';
-import {getErrorMessage} from './utilities/index.js';
+import {getErrorMessage} from './packages/utilities/index.js';
 
 const rootElement = (
   <StrictMode>

@@ -1,6 +1,7 @@
 import type {ReactNode} from 'react';
-import classNames from 'classnames';
 
+import {useDumbContent} from '../../packages/contentious/index.js';
+import {cx} from '../../packages/utilities/index.js';
 // @ts-expect-error no types
 import styles from './Header.module.css';
 
@@ -9,6 +10,8 @@ export interface HeaderProps {
 }
 
 export function Header({children}: HeaderProps) {
+  const getContent = useDumbContent();
+
   const childrenMarkup = children ? (
     <div className={styles.Children}>{children}</div>
   ) : null;
@@ -16,11 +19,11 @@ export function Header({children}: HeaderProps) {
   return (
     <header className={styles.Header}>
       <div className={styles.Content}>
-        <h1 className={classNames('text-box-trim', styles.Title)}>
-          Wakurtual.
+        <h1 className={cx('text-box-trim', styles.Title)}>
+          {getContent('header-title')}
         </h1>
-        <p className={classNames('text-box-trim', styles.Subtitle)}>
-          An experiment with virtualized responsive grid items
+        <p className={cx('text-box-trim', styles.Subtitle)}>
+          {getContent('header-subtitle')}
         </p>
       </div>
 

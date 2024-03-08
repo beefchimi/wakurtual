@@ -1,4 +1,4 @@
-import {Card, CardList, Counter} from '../components/index.js';
+import {Card, CardList} from '../components/index.js';
 
 import {getPokemonData, getPokemonImage, getPokemonRoute} from '../data.js';
 
@@ -40,7 +40,6 @@ export async function HomePage() {
       <title>{data.htmlTitle}</title>
 
       <CardList>{itemsMarkup}</CardList>
-      <Counter />
     </div>
   );
 }

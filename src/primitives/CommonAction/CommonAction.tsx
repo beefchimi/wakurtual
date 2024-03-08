@@ -9,8 +9,7 @@ import {
 } from 'react';
 import {Link} from 'waku';
 
-import classNames from 'classnames';
-
+import {cx} from '../../packages/utilities/index.js';
 // @ts-expect-error no types
 import styles from './CommonAction.module.css';
 
@@ -96,7 +95,7 @@ function CommonActionComponent(
     const sharedLinkProps = {
       id,
       ref: ref as ForwardedRef<HTMLAnchorElement>,
-      className: classNames(styles.PrimitiveLink, className),
+      className: cx(styles.PrimitiveLink, className),
       'data-link-disabled': isDisabled,
       'data-link-pressed': isPressed,
     };
@@ -130,7 +129,7 @@ function CommonActionComponent(
       ref={ref as ForwardedRef<HTMLButtonElement>}
       id={id}
       type={type}
-      className={classNames(styles.PrimitiveButton, className)}
+      className={cx(styles.PrimitiveButton, className)}
       disabled={isDisabled}
       aria-label={ariaLabel}
       aria-pressed={isPressed}

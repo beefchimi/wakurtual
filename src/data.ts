@@ -1,7 +1,10 @@
-// @ts-expect-error no types
-import fs from 'node:fs';
+// import fs from 'node:fs';
 
-import {arrayPaginate, arrayShuffle} from './utilities/index.js';
+// TODO: Switch back to `node:js` when ready.
+// Will need to remove `resolveJsonModule` once we do that.
+import pokemonDataRaw from './private/pokemon.json';
+
+import {arrayPaginate, arrayShuffle} from './packages/utilities/index.js';
 
 interface PokemonName {
   english: string;
@@ -25,9 +28,11 @@ export interface Pokemon {
   base: PokemonStats;
 }
 
-export const pokemonDataRaw: Pokemon[] = JSON.parse(
+/*
+const pokemonDataRaw: Pokemon[] = JSON.parse(
   fs.readFileSync('./private/pokemon.json', 'utf8')
 );
+*/
 
 export const pokemonDataPaged = arrayPaginate(pokemonDataRaw);
 

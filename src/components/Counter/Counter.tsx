@@ -17,7 +17,7 @@ export function Counter() {
   return (
     <section className={styles.Counter}>
       <p className={styles.Label}>Count: {count}</p>
-      <Button label="Increment" onClick={handleIncrement} />
+      <Button label="Tick" onClick={handleIncrement} />
     </section>
   );
 }

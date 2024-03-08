@@ -1,5 +1,4 @@
-import classNames from 'classnames';
-
+import {cx} from '../../packages/utilities/index.js';
 import {TextLink} from '../../components/index.js';
 
 // @ts-expect-error no types
@@ -8,7 +7,7 @@ import styles from './Footer.module.css';
 export function Footer() {
   return (
     <footer className={styles.Footer}>
-      <p className={classNames('text-box-trim', styles.Text)}>
+      <p className={cx('text-box-trim', styles.Text)}>
         Made by{' '}
         <TextLink label="Curtis Dulmage" url="https://dulmage.me/" external />.
         Built using <TextLink label="Waku" url="https://waku.gg/" external />{' '}

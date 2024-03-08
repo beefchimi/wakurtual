@@ -16,6 +16,11 @@ body {
 }
 
 #WakuApp {
+  @media (min-width: 1440px) {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: 'sidebar page';
+  }
 }
 
 /* --- Typography --- */
@@ -67,13 +72,23 @@ body {
 
 .page {
   display: grid;
-  width: 100%;
-  min-height: 100vh;
   grid-template-rows: auto 1fr auto;
+  justify-items: center;
   gap: var(--app-gap);
   margin-left: auto;
   margin-right: auto;
+  width: 100%;
   max-width: var(--app-max-width);
+  min-height: 100vh;
+
+  @media (min-width: 768px) {
+    padding-left: calc(var(--sidebar-width) + var(--sidebar-gap));
+  }
+
+  @media (min-width: 1440px) {
+    grid-area: page;
+    padding-left: 0;
+  }
 }
 
 .main-heading {

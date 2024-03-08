@@ -1,0 +1,5 @@
+{
+  "header-title": "Wakurtual.",
+  "header-subtitle": "An experiment with virtualized responsive grid items",
+  "footer": "Made by <0>{{ author }}</0>. Built using <1>{{ framework }} and <2>{{ tool }}</2>… among other awesome tools."
+}

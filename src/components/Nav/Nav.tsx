@@ -1,5 +1,6 @@
 // import {useLocation} from 'waku/router/client';
 
+import {useDumbContent} from '../../packages/contentious/index.js';
 import {TextLink} from '../TextLink/index.js';
 // @ts-expect-error no types
 import styles from './Nav.module.css';
@@ -19,6 +20,8 @@ export function Nav({items = []}: NavProps) {
   // const location = useLocation();
   // console.log('location', location);
 
+  const getContent = useDumbContent();
+
   const itemsMarkup = items.map(({label, url}) => (
     <li key={`Nav-${label}`} className={styles.Item}>
       <TextLink label={label} url={url} />
@@ -29,7 +32,7 @@ export function Nav({items = []}: NavProps) {
     itemsMarkup
   ) : (
     <li className={styles.Item}>
-      <p className={styles.EmptyState}>Nowhere to go…</p>
+      <p className={styles.EmptyState}>{getContent('nav-empty')}</p>
     </li>
   );
 

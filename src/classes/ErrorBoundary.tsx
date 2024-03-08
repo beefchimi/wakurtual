@@ -1,5 +1,4 @@
-import {Component} from 'react';
-import type {ReactNode, FunctionComponent} from 'react';
+import {Component, type ReactNode, type FunctionComponent} from 'react';
 
 export interface ErrorBoundaryProps {
   fallback: (error: unknown) => ReactNode;

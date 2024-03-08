@@ -47,19 +47,32 @@
 
   /* --- Layout --- */
 
+  --app-index-bottom: 1;
+  --app-index-middle: 100;
+  --app-index-top: 200;
+
   --app-gap: 3.2rem;
   --app-gap-desktop: 6.4rem;
 
   --app-padding: 1.6rem;
   --app-padding-desktop: 4rem;
 
-  --app-sidebar-gap: 1rem;
-  --app-sidebar-height: 4rem;
-  --app-sidebar-width: 8rem;
-  --app-sidebar-width-open: 20rem;
+  --app-radius-tight: 0.6rem;
+  --app-radius: 1rem;
 
   --main-max-width: 144rem;
   --main-full-width-mobile: calc(
     var(--breakpoint-mobile-begin) - var(--app-padding) * 2
   );
+
+  /* --- Components --- */
+
+  --sidebar-gap: 1rem;
+  --sidebar-height: 4.8rem;
+  --sidebar-width: 8rem;
+  --sidebar-width-open: 32rem;
+
+  @media (min-width: 1280px) {
+    --sidebar-gap: 4rem;
+  }
 }

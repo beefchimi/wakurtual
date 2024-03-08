@@ -5,7 +5,7 @@ interface PokemonPageProps {
   slug: Pokemon['slug'];
 }
 
-export const PokemonPage = async ({slug}: PokemonPageProps) => {
+export async function PokemonPage({slug}: PokemonPageProps) {
   const pokemon = await getPokemonBySlug(slug);
 
   // TODO: Render empty state
@@ -43,4 +43,4 @@ export const PokemonPage = async ({slug}: PokemonPageProps) => {
       <TextLink label="Go back" url="/" />
     </div>
   );
-};
+}

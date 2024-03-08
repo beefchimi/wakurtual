@@ -1,3 +1,186 @@
 .Sidebar {
-  background-color: black;
+  z-index: var(--app-index-top);
+  position: fixed;
+  left: var(--sidebar-gap);
+  right: var(--sidebar-gap);
+  bottom: var(--sidebar-gap);
+  display: grid;
+  align-items: center;
+  height: var(--sidebar-height);
+  border-radius: var(--app-radius);
+  overflow: hidden;
+  background-color: var(--color-black-90);
+  backdrop-filter: blur(4px);
+  transition: height var(--duration-slow) var(--easing-cubic);
+
+  @media (min-width: 768px) {
+    grid-auto-flow: column;
+    top: var(--sidebar-gap);
+    right: unset;
+    width: var(--sidebar-width);
+    height: auto;
+    box-shadow: 0 0 0 transparent;
+    transition-property: width, box-shadow;
+  }
+
+  @media (min-width: 1440px) {
+    grid-area: sidebar;
+    position: sticky;
+    top: var(--sidebar-gap);
+    bottom: unset;
+    right: unset;
+    left: unset;
+    margin-left: var(--sidebar-gap);
+    height: calc(100dvh - var(--sidebar-gap) * 2);
+  }
+}
+
+.open {
+  @media (max-width: 767px) {
+    height: calc(100dvh - var(--sidebar-gap) * 2);
+  }
+
+  @media (min-width: 768px) {
+    width: var(--sidebar-width-open);
+    box-shadow: 0.4rem 0 1rem rgba(0, 0, 0, 0.6);
+  }
+}
+
+/* --- Primary --- */
+
+.Primary {
+  z-index: 2;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: var(--sidebar-gap);
+  padding-left: var(--sidebar-gap);
+  padding-right: var(--sidebar-gap);
+  height: var(--sidebar-height);
+
+  @media (min-width: 768px) {
+    position: relative;
+    grid-template-columns: unset;
+    grid-template-rows: auto 1fr;
+    align-items: unset;
+    justify-items: center;
+    padding: var(--app-padding) 0;
+    width: var(--sidebar-width);
+    height: 100%;
+  }
+}
+
+.MenuAction {
+  display: grid;
+  place-items: center;
+  place-content: center;
+  padding: 0.6rem;
+  border-radius: 0.4rem;
+  background-color: transparent;
+
+  &:hover {
+    background-color: rgb(255, 255, 255, 0.1);
+  }
+
+  &:active {
+    background-color: rgb(255, 255, 255, 0.06);
+  }
+
+  &[aria-pressed] {
+  }
+}
+
+.Metrics {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-around;
+  gap: 1rem;
+
+  @media (min-width: 768px) {
+    grid-auto-flow: row;
+    align-content: space-around;
+    justify-content: unset;
+    text-align: center;
+  }
+}
+
+.DataPoint {
+  --value-color: var(--color-white);
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  gap: 1rem;
+
+  &:nth-child(1) {
+    --value-color: var(--color-green);
+  }
+
+  &:nth-child(2) {
+    --value-color: var(--color-blue);
+  }
+
+  &:nth-child(3) {
+    --value-color: var(--color-yellow);
+  }
+
+  @media (min-width: 768px) {
+    grid-auto-flow: row;
+    align-items: unset;
+  }
+}
+
+.DataTitle {
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-white);
+
+  @media (min-width: 768px) {
+    font-size: 1.2rem;
+  }
+}
+
+.DataValue {
+  font-size: 2.4rem;
+  font-weight: 400;
+  color: var(--value-color);
+
+  @media (min-width: 768px) {
+    font-size: 3.2rem;
+  }
+}
+
+/* --- Secondary --- */
+
+.Secondary {
+  z-index: 1;
+  position: relative;
+  display: grid;
+  align-items: center;
+  text-align: center;
+  opacity: 1;
+  visibility: visible;
+  transition-property: opacity, visibility;
+  transition-duration: var(--duration-slow);
+  transition-timing-function: var(--easing-cubic);
+
+  &[hidden] {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  @media (min-width: 768px) {
+    width: calc(var(--sidebar-width-open) - var(--sidebar-width));
+  }
+}
+
+.SecondaryContent {
+  padding: var(--sidebar-gap);
+  line-height: 1.2;
+  color: var(--color-white);
 }

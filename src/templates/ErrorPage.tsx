@@ -9,6 +9,7 @@ async function getData() {
   return data;
 }
 
+// TODO: This might not be the right way to handle error pages in Waku.
 export async function ErrorPage() {
   const data = await getData();
 

@@ -9,6 +9,7 @@
     "noUncheckedIndexedAccess": true,
     "types": ["react/experimental"],
     "jsx": "react-jsx",
+    "resolveJsonModule": true,
     "paths": {
       "~/*": ["./src/*"]
     }

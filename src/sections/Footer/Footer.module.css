@@ -1,5 +1,5 @@
 .Footer {
-  padding-bottom: var(--app-gap);
+  padding-bottom: calc(var(--app-gap) + var(--sidebar-height));
   padding-left: var(--app-padding);
   padding-right: var(--app-padding);
   text-align: center;
@@ -8,6 +8,7 @@
 .Text {
   font-size: 1.2rem;
   font-weight: 400;
+  line-height: 1.2;
 
   > a {
     font-weight: 600;

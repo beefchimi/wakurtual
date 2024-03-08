@@ -1,5 +1,4 @@
-import classNames from 'classnames';
-
+import {cx} from '../../packages/utilities/index.js';
 import {
   CommonAction,
   type CommonActionLinkProps,
@@ -17,7 +16,7 @@ export interface TextLinkProps {
 export function TextLink({label, url, external = false}: TextLinkProps) {
   return (
     <CommonAction
-      className={classNames('text-box-trim', 'link-basic', styles.TextLink)}
+      className={cx('text-box-trim', 'link-basic', styles.TextLink)}
       url={url}
       external={external}
     >

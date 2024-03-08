@@ -1,5 +1,4 @@
-import classNames from 'classnames';
-
+import {cx} from '../../packages/utilities/index.js';
 import {
   CommonAction,
   type CommonActionBaseProps,
@@ -25,12 +24,12 @@ export function Button({
 }: ButtonProps) {
   return (
     <CommonAction
-      className={classNames('button-basic', styles.Button)}
+      className={cx('button-basic', styles.Button)}
       disabled={disabled}
       pressed={pressed}
       onClick={onClick}
     >
-      <span className={classNames('text-box-trim', styles.Label)}>{label}</span>
+      <span className={cx('text-box-trim', styles.Label)}>{label}</span>
     </CommonAction>
   );
 }

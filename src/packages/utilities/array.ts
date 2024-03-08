@@ -1,4 +1,4 @@
-import type {Primitive} from '../types.js';
+import type {Primitive} from '../types/index.js';
 
 export function arrayDedupe<T extends unknown[]>(...arrays: T[]) {
   // Not recursive (will not dedupe nested arrays).

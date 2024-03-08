@@ -18,32 +18,30 @@ export default createPages(async ({createPage, createLayout}) => {
   });
 
   createPage({
-    // TODO: What is the distinction between `static / dynamic`?
-    // render: 'static',
     render: 'dynamic',
     path: '/',
     component: HomePage,
   });
 
   createPage({
-    render: 'static',
+    render: 'dynamic',
     path: '/about',
     component: AboutPage,
   });
 
-  const slugs = await getPokemonSlugs();
-
   createPage({
-    render: 'static',
+    render: 'dynamic',
     path: '/pokedex',
     component: PokedexPage,
   });
+
+  const pokemonSlugs = await getPokemonSlugs();
 
   createPage({
     render: 'static',
     path: '/pokedex/[slug]',
     component: PokemonPage,
-    staticPaths: slugs,
+    staticPaths: pokemonSlugs,
   });
 
   // Not sure if this is the right way to do error pages.
