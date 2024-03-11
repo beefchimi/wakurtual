@@ -1,6 +1,18 @@
 .TextLink {
   color: currentColor;
 
+  &[data-link-pressed] {
+    color: var(--color-coral);
+    text-decoration-color: currentColor;
+
+    /* .interaction-disable */
+    /*
+      pointer-events: none;
+      touch-action: none;
+      user-select: none;
+    */
+  }
+
   &:hover {
     color: var(--color-coral);
   }

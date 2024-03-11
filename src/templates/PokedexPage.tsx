@@ -1,3 +1,6 @@
+import {PokemonResults} from '../sections/index.js';
+import {getPokemonData} from '../data.js';
+
 async function getData() {
   const data = {
     htmlTitle: 'Pokedex | Wakurtual',
@@ -9,13 +12,12 @@ async function getData() {
 
 export async function PokedexPage() {
   const data = await getData();
+  const {rows} = await getPokemonData();
 
   return (
-    <div className="main-pokedex typography">
+    <div className="main-pokedex">
       <title>{data.htmlTitle}</title>
-      <h2 className="main-heading">{data.pageTitle}</h2>
-
-      <p>Pokedex...</p>
+      <PokemonResults pokemon={rows} />
     </div>
   );
 }

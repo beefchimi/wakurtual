@@ -26,9 +26,95 @@ body {
 /* --- Typography --- */
 
 .typography {
-}
+  --typography-text-size: 1.6rem;
+  --typography-quote-size: 2rem;
 
-.text-callout {
+  > * + * {
+    margin-top: 1em;
+  }
+
+  & li {
+    margin-top: 0.4em;
+
+    > p {
+      margin-top: 0.2em;
+    }
+  }
+
+  > p,
+  > * p {
+    line-height: 1.2;
+
+    & strong {
+      font-weight: 700;
+    }
+
+    & code {
+      border-radius: 0.2em;
+      background-color: rgb(0, 0, 0, 0.04);
+    }
+  }
+
+  & p,
+  & ol,
+  & ul,
+  & li {
+    font-size: var(--typography-text-size);
+    font-weight: 400;
+  }
+
+  & ol,
+  & ul {
+    padding-left: 1em;
+  }
+
+  & ol {
+    list-style: counter;
+  }
+
+  & ul {
+    list-style: disc;
+  }
+
+  > blockquote {
+    position: relative;
+    padding: 0.6em;
+    padding-left: 0.8em;
+    font-size: var(--typography-quote-size);
+    border-radius: 0.4em;
+    background-color: rgb(0, 0, 0, 0.04);
+    overflow: hidden;
+
+    > p {
+      font-size: inherit;
+      font-weight: 300;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 0.2em;
+      background-color: var(--color-coral);
+    }
+  }
+
+  @media (min-width: 768px) {
+    --typography-text-size: 2rem;
+    --typography-quote-size: 2.4rem;
+  }
+
+  @media (min-width: 1280px) {
+    --typography-text-size: 2.4rem;
+    --typography-quote-size: 2.8rem;
+  }
+
+  @media (min-width: 1440px) {
+    --typography-text-size: 2.8rem;
+    --typography-quote-size: 3.2rem;
+  }
 }
 
 .text-box-trim {
@@ -43,6 +129,12 @@ body {
 }
 
 /* --- Actions --- */
+
+.interaction-disable {
+  pointer-events: none;
+  touch-action: none;
+  user-select: none;
+}
 
 .link-basic {
   text-decoration: underline 0.1rem transparent;
@@ -72,9 +164,8 @@ body {
 
 .page {
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto auto 1fr auto;
   justify-items: center;
-  gap: var(--app-gap);
   margin-left: auto;
   margin-right: auto;
   width: 100%;
@@ -105,6 +196,9 @@ body {
 }
 
 .main-about {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 128rem;
 }
 
 .main-pokedex {

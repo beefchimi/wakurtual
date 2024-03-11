@@ -26,6 +26,7 @@ export function Sidebar() {
 
   const counterMarkup = desktop ? (
     <li className={styles.DataPoint}>
+      <p className={cx('text-box-trim', styles.DataTitle)}>Counter</p>
       <Counter />
     </li>
   ) : null;

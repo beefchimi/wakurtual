@@ -5,8 +5,14 @@ import '../styles/design-system.css';
 import '../styles/global.css';
 
 // import {ContentProvider} from '../packages/index.js';
-import {Footer, Header, Main, Sidebar} from '../sections/index.js';
-import {Nav, type NavProps} from '../components/index.js';
+import {
+  Footer,
+  Header,
+  Main,
+  Nav,
+  type NavProps,
+  Sidebar,
+} from '../sections/index.js';
 
 interface RootLayoutProps {
   children: ReactNode;
@@ -48,12 +54,9 @@ export async function RootLayout({children}: RootLayoutProps) {
 
       <div id="WakuApp">
         <div className="page">
-          <Header>
-            <Nav items={NAV_LINKS} />
-          </Header>
-
+          <Header />
+          <Nav items={NAV_LINKS} />
           <Main>{children}</Main>
-
           <Footer />
         </div>
 

@@ -1,6 +1,7 @@
 import {cx} from '../../packages/utilities/index.js';
 import {
   CommonAction,
+  type CommonActionBaseProps,
   type CommonActionLinkProps,
 } from '../../primitives/index.js';
 
@@ -11,14 +12,21 @@ export interface TextLinkProps {
   label: string;
   url?: CommonActionLinkProps['url'];
   external?: CommonActionLinkProps['external'];
+  pressed?: CommonActionBaseProps['pressed'];
 }
 
-export function TextLink({label, url, external = false}: TextLinkProps) {
+export function TextLink({
+  label,
+  url,
+  external = false,
+  pressed = false,
+}: TextLinkProps) {
   return (
     <CommonAction
-      className={cx('text-box-trim', 'link-basic', styles.TextLink)}
+      className={cx('link-basic', styles.TextLink)}
       url={url}
       external={external}
+      pressed={pressed}
     >
       {label}
     </CommonAction>

@@ -1,6 +1,5 @@
-import {Card, CardList} from '../components/index.js';
-
-import {getPokemonData, getPokemonImage, getPokemonRoute} from '../data.js';
+import {PokemonResults} from '../sections/index.js';
+import {getPokemonData} from '../data.js';
 
 async function getData() {
   const data = {
@@ -13,33 +12,12 @@ async function getData() {
 
 export async function HomePage() {
   const data = await getData();
-  const {rows} = await getPokemonData();
-
-  const itemsMarkup = rows.length ? (
-    rows.map(({id, slug, name}, index) => (
-      <CardList.Item key={`Pokemon-${id}`}>
-        <Card
-          title={name.english}
-          subtitle={name.japanese}
-          imgSrc={getPokemonImage(id)}
-          imgAlt={slug}
-          url={getPokemonRoute(slug)}
-          order={index + 1}
-          pixelated
-        />
-      </CardList.Item>
-    ))
-  ) : (
-    <CardList.Item key="Pokemon-Empty">
-      <Card title="No data…" subtitle="There appears to have been an error" />
-    </CardList.Item>
-  );
+  const {rows} = await getPokemonData(10, true);
 
   return (
     <div className="main-home">
       <title>{data.htmlTitle}</title>
-
-      <CardList>{itemsMarkup}</CardList>
+      <PokemonResults pokemon={rows} />
     </div>
   );
 }

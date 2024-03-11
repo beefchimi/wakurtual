@@ -2,6 +2,7 @@
   display: inline-block;
 
   &[data-link-disabled] {
+    /* .interaction-disable */
     pointer-events: none;
     touch-action: none;
     user-select: none;
@@ -11,6 +12,7 @@
 .PrimitiveButton {
   &:disabled,
   &[data-button-static] {
+    /* .interaction-disable */
     pointer-events: none;
     touch-action: none;
     user-select: none;

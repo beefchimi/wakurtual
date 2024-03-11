@@ -12,7 +12,6 @@ export async function PokemonPage({slug}: PokemonPageProps) {
   if (!pokemon) return null;
 
   const titleValue = `${pokemon.name.english} | Wakurtual`;
-
   const stats = Object.entries(pokemon.base);
 
   const typesMarkup = pokemon.type.map((type) => (

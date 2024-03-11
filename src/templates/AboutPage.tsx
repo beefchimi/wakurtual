@@ -15,12 +15,13 @@ export async function AboutPage() {
   return (
     <div className="main-about typography">
       <title>{data.htmlTitle}</title>
-      <h2 className="main-heading">{data.pageTitle}</h2>
 
-      <p className="text-callout">
-        The primary purpose of this project is to find the ideal virtualization
-        pattern for a dynamic grid of items.
-      </p>
+      <blockquote>
+        <p>
+          The primary purpose of this project is to find the ideal
+          virtualization pattern for a dynamic grid of items.
+        </p>
+      </blockquote>
 
       <p>
         The virtualization tool chosen is{' '}

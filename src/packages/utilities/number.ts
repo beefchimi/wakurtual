@@ -55,8 +55,14 @@ export function trimDecimals(value = 0, decimals = 2) {
 
   if (parts.length <= 1) return value;
 
-  const trimmedDecimals = parts[1].slice(0, decimals);
-  const joined = [parts[0], trimmedDecimals].join('.');
+  // TODO: `first/last` are only necessary because TypeScript
+  // cannot determine that the `parts.length` condition guards
+  // against each segment being `undefined`.
+  const first = parts[0] ?? '';
+  const last = parts[1] ?? '';
+
+  const trimmedDecimals = last.slice(0, decimals);
+  const joined = [first, trimmedDecimals].join('.');
 
   return parseFloat(joined);
 }

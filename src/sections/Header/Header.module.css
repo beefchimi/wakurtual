@@ -6,23 +6,66 @@
   padding-right: var(--app-padding);
   justify-content: center;
   text-align: center;
+
+  @media (min-width: 1280px) {
+    gap: var(--app-gap-desktop);
+    padding-top: var(--app-gap-desktop);
+    padding-left: var(--app-padding-desktop);
+    padding-right: var(--app-padding-desktop);
+  }
 }
 
 .Content {
   display: grid;
   gap: 1rem;
+
+  @media (min-width: 768px) {
+    gap: 1.2rem;
+  }
+
+  @media (min-width: 1280px) {
+    gap: 1.6rem;
+  }
+
+  @media (min-width: 1440px) {
+    gap: 2rem;
+  }
 }
 
 .Title {
   font-size: 4rem;
   font-weight: 700;
   color: var(--color-black);
+
+  @media (min-width: 768px) {
+    font-size: 4.8rem;
+  }
+
+  @media (min-width: 1280px) {
+    font-size: 6.4rem;
+  }
+
+  @media (min-width: 1440px) {
+    font-size: 12rem;
+  }
 }
 
 .Subtitle {
   font-size: 2rem;
   font-weight: 600;
   color: var(--color-black-60);
+
+  @media (min-width: 768px) {
+    font-size: 2.8rem;
+  }
+
+  @media (min-width: 1280px) {
+    font-size: 3.2rem;
+  }
+
+  @media (min-width: 1440px) {
+    font-size: 4rem;
+  }
 }
 
 .Children {

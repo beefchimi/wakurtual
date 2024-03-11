@@ -2,8 +2,15 @@
   display: grid;
   align-content: start;
   gap: var(--app-padding);
+  margin-top: var(--app-gap);
+  margin-bottom: calc(var(--app-gap) * 2);
   padding-left: var(--app-padding);
   padding-right: var(--app-padding);
   width: 100%;
   max-width: 160rem;
+
+  @media (min-width: 1280px) {
+    margin-top: var(--app-gap-desktop);
+    margin-bottom: calc(var(--app-gap-desktop) * 2);
+  }
 }

@@ -13,4 +13,8 @@
   > a {
     font-weight: 600;
   }
+
+  @media (min-width: 1280px) {
+    font-size: 1.6rem;
+  }
 }

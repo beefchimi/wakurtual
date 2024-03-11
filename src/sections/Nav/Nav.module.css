@@ -1,0 +1,58 @@
+.Nav {
+  --nav-gap: 0.6rem;
+  --nav-font-size: 1.6rem;
+  --nav-bg: transparent;
+
+  display: grid;
+  justify-items: center;
+  z-index: var(--app-index-middle);
+  position: sticky;
+  top: 0;
+  padding-top: var(--app-gap);
+
+  @media (min-width: 1280px) {
+    --nav-gap: 1rem;
+    --nav-font-size: 2.4rem;
+  }
+}
+
+.sticky {
+  --nav-bg: var(--color-black-90);
+
+  & .Item {
+    color: var(--color-cream);
+  }
+}
+
+.List {
+  display: grid;
+  grid-auto-flow: column;
+  gap: var(--nav-gap);
+  justify-content: center;
+  padding: var(--app-padding) var(--app-gap);
+  border-radius: 999rem;
+  backdrop-filter: blur(4px);
+  background-color: var(--nav-bg);
+  transition: background-color var(--duration-normal) var(--easing-cubic);
+}
+
+.Item {
+  display: grid;
+  grid-auto-flow: column;
+  gap: var(--nav-gap);
+  font-size: var(--nav-font-size);
+  font-weight: 700;
+
+  &::before {
+    display: block;
+  }
+
+  & + &::before {
+    content: '\2022';
+  }
+}
+
+.EmptyState {
+  font-size: var(--nav-font-size);
+  font-weight: 700;
+}

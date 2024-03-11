@@ -9,7 +9,7 @@ import {
 import styles from './Button.module.css';
 
 export interface ButtonProps {
-  label: string;
+  label: string | number;
   ariaLabel?: CommonActionButtonProps['ariaLabel'];
   disabled?: CommonActionBaseProps['disabled'];
   pressed?: CommonActionBaseProps['pressed'];

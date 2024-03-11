@@ -1,9 +1,11 @@
-// import fs from 'node:fs';
-
 // TODO: Switch back to `node:js` when ready.
 // Will need to remove `resolveJsonModule` once we do that.
-import pokemonDataRaw from './private/pokemon.json';
+// import fs from 'node:fs';
 
+// TODO: Alternatively, we should use an actual API:
+// https://pokeapi.co/
+// https://www.reddit.com/r/reactjs/comments/z5omi6/should_i_hardcode_the_info_for_800_pokemon_in_my/
+import pokemonDataRaw from './private/pokemon.json';
 import {arrayPaginate, arrayShuffle} from './packages/utilities/index.js';
 
 interface PokemonName {
@@ -36,13 +38,11 @@ const pokemonDataRaw: Pokemon[] = JSON.parse(
 
 export const pokemonDataPaged = arrayPaginate(pokemonDataRaw);
 
-export async function getPokemonData(amount = 10) {
-  const safeAmount = Math.max(0, amount);
-  const shuffledPokemon = arrayShuffle(pokemonDataRaw).slice(0, safeAmount);
+export async function getPokemonData(limit = 0, shuffle = false) {
+  const data = shuffle ? arrayShuffle(pokemonDataRaw) : pokemonDataRaw;
+  const rows = limit ? data.slice(0, Math.max(0, limit)) : data;
 
-  return {
-    rows: shuffledPokemon,
-  };
+  return {rows};
 }
 
 export async function getPokemonBySlug(slug: Pokemon['slug']) {
