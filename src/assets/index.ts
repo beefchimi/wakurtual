@@ -1,1 +1,2 @@
-// There are currently no exports from this folder.
+// We may not want to export anything from this folder.
+export * from './images/index.js';

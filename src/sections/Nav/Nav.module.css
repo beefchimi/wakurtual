@@ -33,7 +33,7 @@
   border-radius: 999rem;
   backdrop-filter: blur(4px);
   background-color: var(--nav-bg);
-  transition: background-color var(--duration-normal) var(--easing-cubic);
+  transition: background-color var(--duration-slow) var(--easing-cubic);
 }
 
 .Item {

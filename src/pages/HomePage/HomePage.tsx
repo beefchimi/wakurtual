@@ -1,5 +1,5 @@
-import {PokemonResults} from '../sections/index.js';
-import {getPokemonData} from '../data.js';
+import {PokemonResults} from '../../sections/index.js';
+import {getPokemonData} from '../../data.js';
 
 async function getData() {
   const data = {
@@ -15,7 +15,7 @@ export async function HomePage() {
   const {rows} = await getPokemonData(10, true);
 
   return (
-    <div className="main-home">
+    <div className="HomePage">
       <title>{data.htmlTitle}</title>
       <PokemonResults pokemon={rows} />
     </div>

@@ -1,5 +1,5 @@
-import {PokemonResults} from '../sections/index.js';
-import {getPokemonData} from '../data.js';
+import {PokemonResults} from '../../sections/index.js';
+import {getPokemonData} from '../../data.js';
 
 async function getData() {
   const data = {
@@ -15,7 +15,7 @@ export async function PokedexPage() {
   const {rows} = await getPokemonData();
 
   return (
-    <div className="main-pokedex">
+    <div className="PokedexPage">
       <title>{data.htmlTitle}</title>
       <PokemonResults pokemon={rows} />
     </div>

@@ -1,14 +1,14 @@
 import {createPages} from 'waku';
 
 import {getPokemonSlugs} from './data.js';
+import {RootLayout} from './layouts/index.js';
 import {
   AboutPage,
   ErrorPage,
   HomePage,
   PokedexPage,
   PokemonPage,
-  RootLayout,
-} from './templates/index.js';
+} from './pages/index.js';
 
 export default createPages(async ({createPage, createLayout}) => {
   createLayout({

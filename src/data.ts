@@ -8,12 +8,12 @@
 import pokemonDataRaw from './private/pokemon.json';
 import {arrayPaginate, arrayShuffle} from './packages/utilities/index.js';
 
-interface PokemonName {
+export interface PokemonName {
   english: string;
   japanese: string;
 }
 
-interface PokemonStats {
+export interface PokemonStats {
   HP: number;
   Attack: number;
   Defense: number;
@@ -29,6 +29,15 @@ export interface Pokemon {
   type: string[];
   base: PokemonStats;
 }
+
+const STAT_ORDER: Array<keyof PokemonStats> = [
+  'HP',
+  'Attack',
+  'Defense',
+  'Speed',
+  'Sp. Attack',
+  'Sp. Defense',
+];
 
 /*
 const pokemonDataRaw: Pokemon[] = JSON.parse(
@@ -49,6 +58,10 @@ export async function getPokemonBySlug(slug: Pokemon['slug']) {
   return pokemonDataRaw.find((poke) => poke.slug === slug) ?? null;
 }
 
+export async function getPokemonSlugs() {
+  return pokemonDataRaw.map((poke: Pokemon) => poke.slug);
+}
+
 export function getPokemonImage(id: Pokemon['id'] = 0) {
   return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
 }
@@ -57,6 +70,10 @@ export function getPokemonRoute(slug: Pokemon['slug'] = '404') {
   return `/pokedex/${slug}`;
 }
 
-export async function getPokemonSlugs() {
-  return pokemonDataRaw.map((poke: Pokemon) => poke.slug);
+export function parsePokemonStats(stats: PokemonStats) {
+  const parsed = Object.entries(stats) as [keyof PokemonStats, number][];
+
+  return parsed.sort(
+    ([key1], [key2]) => STAT_ORDER.indexOf(key1) - STAT_ORDER.indexOf(key2)
+  );
 }

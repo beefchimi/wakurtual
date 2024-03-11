@@ -49,7 +49,7 @@ export async function RootLayout({children}: RootLayoutProps) {
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
       <link
         rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
       />
 
       <div id="WakuApp">
