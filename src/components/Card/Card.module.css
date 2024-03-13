@@ -1,36 +1,53 @@
 .Card {
+  --card-interior-gap: 1.6rem;
+  --card-interior-padding: 1rem;
+  --card-order-height: 2rem;
+
   z-index: 1;
   position: relative;
+
+  @media (min-width: 1280px) {
+    --card-interior-gap: 2.2rem;
+    --card-interior-padding: 1.2rem;
+    --card-order-height: 3.2rem;
+  }
 }
 
 .Link {
-  &:hover:not(:active) .Interior {
-    background-color: var(--color-black-10);
+  &:hover {
+    &:not(:active) {
+      & .Interior {
+        background-color: var(--color-black-10);
+      }
+    }
+
+    & .Interior::before {
+      opacity: 1;
+    }
+
+    & .Order {
+      background-color: var(--color-coral);
+    }
   }
 
-  &:hover .Interior::before {
-    opacity: 1;
-  }
+  &:active {
+    & .Interior::before {
+      border-color: var(--color-coral-dark);
+    }
 
-  &:active .Interior::before {
-    border-color: var(--color-coral-dark);
-  }
-
-  &:hover .Order {
-    background-color: var(--color-coral);
-  }
-
-  &:active .Order {
-    background-color: var(--color-coral-dark);
+    & .Order {
+      background-color: var(--color-coral-dark);
+    }
   }
 }
 
 .Interior {
   position: relative;
   display: grid;
-  gap: 1.6rem;
-  padding: 1rem 1rem 1.6rem 1rem;
-  border-radius: 1rem;
+  gap: var(--card-interior-gap);
+  padding: var(--card-interior-padding) var(--card-interior-padding)
+    var(--card-interior-gap) var(--card-interior-padding);
+  border-radius: var(--card-interior-padding);
   background-color: var(--color-black-6);
   transition: background-color var(--duration-normal) var(--easing-cubic);
 
@@ -40,7 +57,7 @@
     pointer-events: none;
     position: absolute;
     inset: -0.1rem;
-    border-radius: 1rem;
+    border-radius: var(--card-interior-padding);
     border: 0.2rem solid var(--color-coral-dark);
     opacity: 0;
     transition-property: opacity, border-color;
@@ -59,17 +76,6 @@
   overflow: hidden;
 }
 
-.Image {
-  margin: auto;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-
-  &.pixelated {
-    image-rendering: pixelated;
-  }
-}
-
 .Details {
   display: grid;
   gap: 0.6rem;
@@ -80,29 +86,37 @@
   font-size: 1.6rem;
   font-weight: 700;
   color: var(--color-black);
+
+  @media (min-width: 1280px) {
+    font-size: 2.2rem;
+  }
 }
 
 .Subtitle {
   font-size: 1.4rem;
   font-weight: 600;
   color: var(--color-black-60);
+
+  @media (min-width: 1280px) {
+    font-size: 1.8rem;
+  }
 }
 
 .Order {
   z-index: 3;
   position: absolute;
-  bottom: -1.1rem;
+  bottom: calc(var(--card-order-height) / 2 * -1);
   left: auto;
   right: auto;
   display: grid;
   place-items: center;
   place-content: center;
   justify-self: center;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  min-width: 2rem;
-  height: 2rem;
-  border-radius: 2rem;
+  padding-left: calc(var(--card-order-height) / 2);
+  padding-right: calc(var(--card-order-height) / 2);
+  min-width: var(--card-order-height);
+  height: var(--card-order-height);
+  border-radius: var(--card-order-height);
   background-color: var(--color-black);
   transition: background-color var(--duration-normal) var(--easing-cubic);
 }
@@ -111,4 +125,8 @@
   font-size: 1.2rem;
   font-weight: 700;
   color: var(--color-white);
+
+  @media (min-width: 1280px) {
+    font-size: 1.6rem;
+  }
 }

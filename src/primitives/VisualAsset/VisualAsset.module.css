@@ -1,0 +1,45 @@
+.VisualAsset {
+  /* --visual-asset-clip-path: undefined; */
+  --visual-asset-object-fit: cover;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.bgPoster {
+  /*
+   * Background styles are necessary for Safari,
+   * as it will not render a `poster` for Audio files.
+   * https://codesandbox.io/s/audio-via-video-hdqyhb
+  */
+  background-position: center;
+  background-size: var(--visual-asset-object-fit);
+}
+
+.contain {
+  /* Allows switching between `object-fit` modes. */
+  --visual-asset-object-fit: contain;
+}
+
+.hideAsset {
+  /*
+   * Some browsers will show a "flash of broken image icon".
+   * Use `.hideAsset` during `error || loading` to suppress that.
+  */
+  --visual-asset-clip-path: polygon(0 0, 1px 0, 1px 1px, 0 1px);
+}
+
+.pixelated {
+  /* Required to maintain fidelity of pixel art */
+  image-rendering: pixelated;
+}
+
+.Media {
+  display: block;
+  position: absolute;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  clip-path: var(--visual-asset-clip-path);
+  object-fit: var(--visual-asset-object-fit);
+}

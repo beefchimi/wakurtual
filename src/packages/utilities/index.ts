@@ -29,4 +29,8 @@ export {
 
 export {objFilterNullish} from './object.js';
 
-export {supportDom, supportMatchMedia} from './support.js';
+export {supportDom, supportMatchMedia, supportSafari} from './support.js';
+
+export {timeMeasurement, msToSec, secToMs} from './time.js';
+
+export {debounce, sleep} from './wait.js';

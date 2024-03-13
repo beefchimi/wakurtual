@@ -1,0 +1,134 @@
+@keyframes shimmerMotion {
+  0%,
+  20% {
+    opacity: 0;
+    scale: 1 1;
+    translate: -100%;
+  }
+
+  50% {
+    opacity: 0.1;
+    scale: 2 1;
+  }
+
+  80%,
+  100% {
+    opacity: 0;
+    scale: 1 1;
+    translate: 100%;
+  }
+}
+
+@keyframes shineMotion {
+  to {
+    opacity: 0.2;
+  }
+
+  from {
+    opacity: 0.26;
+  }
+}
+
+/* requires motion */
+.Loader {
+  display: grid;
+  place-items: center;
+  place-content: center;
+  z-index: 1;
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-black-6);
+  pointer-events: none;
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    inset: 0;
+    opacity: var(--visual-asset-loader-failed-opacity, 0);
+    transition: opacity var(--duration-normal) var(--easing-cubic);
+    pointer-events: none;
+  }
+
+  /* Failed image background */
+  &::before {
+    z-index: 2;
+    background: linear-gradient(
+      134deg,
+      rgb(0, 0, 0, 0.1) 14%,
+      rgb(0, 0, 0, 0.02) 90%
+    );
+  }
+
+  /* Failed image shine overlay */
+  &::after {
+    z-index: 5;
+    background: linear-gradient(
+      45deg,
+      rgb(240, 220, 250, 0),
+      rgb(240, 220, 250, 0.8),
+      rgb(240, 220, 250, 0)
+    );
+    mix-blend-mode: overlay;
+  }
+
+  &.failed {
+    --visual-asset-loader-failed-opacity: 1;
+  }
+}
+
+/* requires motion */
+.SkeletonWrapper {
+  z-index: 3;
+  position: absolute;
+  inset: 0;
+}
+
+.Skeleton {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(134deg, transparent, black);
+  opacity: 0.4;
+  overflow: hidden;
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    inset: 0;
+  }
+
+  &::before {
+    background: linear-gradient(90deg, transparent, white, transparent);
+    animation: shimmerMotion 2000ms ease-in-out infinite both;
+  }
+
+  &::after {
+    background-color: white;
+    animation: shineMotion 1000ms ease-in-out alternate infinite both;
+  }
+}
+
+.SkullWrapper {
+  z-index: 6;
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 100%;
+  height: 100%;
+  color: rgb(255, 255, 255, 0.4);
+}
+
+.Skull {
+  display: block;
+  margin: auto;
+  max-width: 60%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: pixelated;
+}

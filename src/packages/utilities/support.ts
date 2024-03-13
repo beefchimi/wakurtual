@@ -7,3 +7,7 @@ export function supportMatchMedia() {
     window && 'matchMedia' in window && typeof window.matchMedia === 'function'
   );
 }
+
+export function supportSafari() {
+  return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+}

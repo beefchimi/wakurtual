@@ -7,7 +7,7 @@
   padding-left: var(--app-padding);
   padding-right: var(--app-padding);
   width: 100%;
-  max-width: 160rem;
+  max-width: 180rem;
 
   @media (min-width: 1280px) {
     margin-top: var(--app-gap-desktop);

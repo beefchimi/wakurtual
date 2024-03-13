@@ -1,6 +1,8 @@
 import {Link} from 'waku';
 
 import {cx} from '../../packages/utilities/index.js';
+
+import {Thumbnail} from '../Thumbnail/index.js';
 // @ts-expect-error no types
 import styles from './Card.module.css';
 
@@ -36,13 +38,7 @@ export function Card({
   const interiorMarkup = (
     <div className={styles.Interior}>
       <div className={styles.Media}>
-        <img
-          className={cx(styles.Image, {
-            [styles.pixelated]: pixelated,
-          })}
-          src={imgSrc}
-          alt={imgAlt}
-        />
+        <Thumbnail imageUrl={imgSrc} title={imgAlt} pixelated={pixelated} />
       </div>
 
       <div className={styles.Details}>

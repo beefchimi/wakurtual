@@ -7,19 +7,19 @@ export type TimeoutCallback = (timestamp: number) => void;
 
 export interface TimeoutHookOptions {
   duration?: number;
-  playing?: boolean;
+  disabled?: boolean;
 }
 
 const DEFAULT_OPTIONS: Required<TimeoutHookOptions> = {
   duration: 0,
-  playing: true,
+  disabled: false,
 };
 
 export function useTimeout(
   callback: TimeoutCallback,
   options?: TimeoutHookOptions
 ): void {
-  const {duration, playing} = {
+  const {duration, disabled} = {
     ...DEFAULT_OPTIONS,
     ...objFilterNullish(options ?? {}),
   };
@@ -36,10 +36,10 @@ export function useTimeout(
   }, [callback]);
 
   useEffect(() => {
-    if (playing) {
+    if (!disabled) {
       timeoutRef.current = setTimeout(handleCallback, duration);
     }
 
     return () => clearTimeout(timeoutRef.current);
-  }, [duration, playing]);
+  }, [duration, disabled]);
 }

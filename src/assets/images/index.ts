@@ -1,21 +1,24 @@
 // @ts-expect-error no types
-import PixelAttack from './pixel-attack.png';
+import imgPixelAttack from './pixel-attack.png';
 // @ts-expect-error no types
-import PixelDefense from './pixel-defense.png';
+import imgPixelDefense from './pixel-defense.png';
 // @ts-expect-error no types
-import PixelHp from './pixel-hp.png';
+import imgPixelHp from './pixel-hp.png';
 // @ts-expect-error no types
-import PixelSpAttack from './pixel-sp-attack.png';
+import imgPixelSpAttack from './pixel-sp-attack.png';
 // @ts-expect-error no types
-import PixelSpDefense from './pixel-sp-defense.png';
+import imgPixelSpDefense from './pixel-sp-defense.png';
 // @ts-expect-error no types
-import PixelSpeed from './pixel-speed.png';
+import imgPixelSpeed from './pixel-speed.png';
+// @ts-expect-error no types
+import imgSkull from './skull.webp';
 
 export {
-  PixelAttack,
-  PixelDefense,
-  PixelHp,
-  PixelSpAttack,
-  PixelSpDefense,
-  PixelSpeed,
+  imgPixelAttack,
+  imgPixelDefense,
+  imgPixelHp,
+  imgPixelSpAttack,
+  imgPixelSpDefense,
+  imgPixelSpeed,
+  imgSkull,
 };

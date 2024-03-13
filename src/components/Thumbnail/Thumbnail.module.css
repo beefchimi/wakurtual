@@ -1,0 +1,16 @@
+.Thumbnail {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.overflowFix {
+  /*
+   * The `z-index` value is required in order to force the nested
+   * <Thumbnail /> styles to be masked by the radius + overflow.
+  */
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  border-radius: var(--thumbnail-radius);
+}

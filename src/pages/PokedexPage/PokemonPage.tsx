@@ -7,12 +7,12 @@ import {
   type PokemonStats,
 } from '../../data.js';
 import {
-  PixelAttack,
-  PixelDefense,
-  PixelHp,
-  PixelSpAttack,
-  PixelSpDefense,
-  PixelSpeed,
+  imgPixelAttack,
+  imgPixelDefense,
+  imgPixelHp,
+  imgPixelSpAttack,
+  imgPixelSpDefense,
+  imgPixelSpeed,
 } from '../../assets/index.js';
 import {CommonAction} from '../../primitives/index.js';
 
@@ -26,12 +26,12 @@ interface PokemonPageProps {
 type StatAssets = Record<keyof PokemonStats, string>;
 
 const statAssetPath: StatAssets = {
-  HP: PixelHp,
-  Attack: PixelAttack,
-  Defense: PixelDefense,
-  Speed: PixelSpeed,
-  'Sp. Attack': PixelSpAttack,
-  'Sp. Defense': PixelSpDefense,
+  HP: imgPixelHp,
+  Attack: imgPixelAttack,
+  Defense: imgPixelDefense,
+  Speed: imgPixelSpeed,
+  'Sp. Attack': imgPixelSpAttack,
+  'Sp. Defense': imgPixelSpDefense,
 };
 
 function getStatImage(stat = '') {
