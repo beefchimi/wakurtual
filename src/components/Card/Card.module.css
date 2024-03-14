@@ -78,8 +78,9 @@
 
 .Details {
   display: grid;
-  gap: 0.6rem;
+  justify-items: center;
   text-align: center;
+  gap: 0.6rem;
 }
 
 .Title {
@@ -129,4 +130,25 @@
   @media (min-width: 1280px) {
     font-size: 1.6rem;
   }
+}
+
+/* --- Skeleton --- */
+
+.textSkeleton {
+  height: 0.8em;
+  border-radius: 999rem;
+  background-color: rgb(66, 66, 66);
+
+  &:first-child {
+    width: 75%;
+  }
+
+  &:last-child {
+    width: 50%;
+  }
+}
+
+.orderSkeleton {
+  width: calc(var(--card-order-height) * 2);
+  background-color: rgb(44, 44, 44);
 }

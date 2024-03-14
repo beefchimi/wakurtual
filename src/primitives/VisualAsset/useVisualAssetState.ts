@@ -14,7 +14,7 @@ import {
   mediaTypeFromEventTarget,
   refIsImage,
   refIsVideo,
-} from './VisualAsset.utilities.js';
+} from './VisualAsset.utils.js';
 
 export interface VisualAssetStateOptions {
   videoUrl?: string | null;

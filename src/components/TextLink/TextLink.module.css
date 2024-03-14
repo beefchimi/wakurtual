@@ -4,13 +4,7 @@
   &[data-link-pressed] {
     color: var(--color-coral);
     text-decoration-color: currentColor;
-
-    /* .interaction-disable */
-    /*
-      pointer-events: none;
-      touch-action: none;
-      user-select: none;
-    */
+    /* consider mixin: .interaction-disable */
   }
 
   &:hover {

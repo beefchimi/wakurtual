@@ -1,7 +1,9 @@
-import {PokemonResults} from '../../sections/index.js';
-import {getPokemonData} from '../../data.js';
+import {Suspense} from 'react';
 
-async function getData() {
+import {PokemonResults, PokemonResultsSkeleton} from '../../sections/index.js';
+import {fetchPokedex} from '../../data.js';
+
+async function getPageData() {
   const data = {
     htmlTitle: 'Home | Wakurtual',
     pageTitle: 'Home page',
@@ -11,13 +13,17 @@ async function getData() {
 }
 
 export async function HomePage() {
-  const data = await getData();
-  const {rows} = await getPokemonData(10, true);
+  const pageData = await getPageData();
+  const pokemonPromise = fetchPokedex(10, true);
 
+  // TODO: Add `ErrorBoundary` and `Suspense`.
   return (
     <div className="HomePage">
-      <title>{data.htmlTitle}</title>
-      <PokemonResults pokemon={rows} />
+      <title>{pageData.htmlTitle}</title>
+
+      <Suspense fallback={<PokemonResultsSkeleton />}>
+        <PokemonResults pokemon={pokemonPromise} />
+      </Suspense>
     </div>
   );
 }

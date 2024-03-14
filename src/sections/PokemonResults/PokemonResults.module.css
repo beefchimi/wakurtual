@@ -1,0 +1,8 @@
+.PokemonResults {
+}
+
+.LoadMoreWrapper {
+  display: grid;
+  justify-items: center;
+  padding-top: var(--app-gap);
+}

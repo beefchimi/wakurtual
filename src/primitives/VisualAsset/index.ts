@@ -8,7 +8,7 @@ export {
   mediaTypeFromEventTarget,
   refIsVideo,
   refIsImage,
-} from './VisualAsset.utilities.js';
+} from './VisualAsset.utils.js';
 export type {
   VisualAssetType,
   VisualAssetEvent,

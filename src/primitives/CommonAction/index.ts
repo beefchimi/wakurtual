@@ -1,7 +1,7 @@
 export {
   CommonAction,
+  type CommonActionProps,
+  type CommonActionBaseProps,
   type CommonActionButtonProps,
   type CommonActionLinkProps,
-  type CommonActionBaseProps,
-  type CommonActionProps,
 } from './CommonAction.js';

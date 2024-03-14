@@ -1,0 +1,23 @@
+@keyframes spinMotion {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* requires motion */
+.SimpleSpinner {
+  font-size: 1.6rem;
+}
+
+.Spinner {
+  width: 1em;
+  height: 1em;
+  border: 0.125em solid rgb(255, 255, 255, 0.2);
+  border-top: 0.125em solid currentColor;
+  border-radius: 50%;
+  animation: spinMotion var(--duration-slow) var(--easing-cubic) infinite both;
+}

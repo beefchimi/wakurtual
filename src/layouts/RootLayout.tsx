@@ -3,6 +3,7 @@ import type {ReactNode} from 'react';
 import '../styles/reset.css';
 import '../styles/design-system.css';
 import '../styles/global.css';
+import '../styles/utility.css';
 
 // import {ContentProvider} from '../packages/index.js';
 import {
@@ -24,7 +25,7 @@ const NAV_LINKS: NavProps['items'] = [
   {label: 'About', url: '/about'},
 ];
 
-async function getData() {
+async function getPageData() {
   const data = {
     description: 'Experimenting with Waku and React Virtual.',
     icon: '/images/favicon.png',
@@ -34,7 +35,7 @@ async function getData() {
 }
 
 export async function RootLayout({children}: RootLayoutProps) {
-  const data = await getData();
+  const pageData = await getPageData();
 
   // TODO: If we can figure out how to get this `Provider` to be
   // server compatible, we can wrap this entire Layout with it.
@@ -42,8 +43,8 @@ export async function RootLayout({children}: RootLayoutProps) {
 
   return (
     <>
-      <meta property="description" content={data.description} />
-      <link rel="icon" type="image/png" href={data.icon} />
+      <meta property="description" content={pageData.description} />
+      <link rel="icon" type="image/png" href={pageData.icon} />
 
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />

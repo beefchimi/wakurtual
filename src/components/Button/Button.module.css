@@ -8,12 +8,27 @@
   color: var(--color-cream);
   background-color: var(--color-coral);
 
+  &:focus-visible {
+    outline-color: var(--color-coral);
+  }
+
   &:hover:not(:active) {
     background-color: var(--color-coral-dark);
+  }
+}
+
+.loading {
+  > .Label {
+    opacity: 0;
   }
 }
 
 .Label {
   font-size: 1.4rem;
   font-weight: 700;
+  transition: opacity var(--duration-normal) var(--easing-cubic);
+}
+
+.LoadingWrapper {
+  transition: opacity var(--duration-normal) var(--easing-cubic);
 }

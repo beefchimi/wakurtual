@@ -11,9 +11,9 @@ import styles from './VisualAsset.module.css';
 
 export interface VisualAssetProps {
   id?: string;
-  title?: string;
   videoUrl?: string | null;
   imageUrl?: string | null;
+  mediaAltText?: string;
   autoPlay?: boolean;
   controls?: boolean;
   contain?: boolean;
@@ -30,9 +30,9 @@ const IS_SAFARI = supportSafari();
 function VisualAssetComponent(
   {
     id,
-    title,
     videoUrl,
     imageUrl,
+    mediaAltText,
     autoPlay = false,
     controls = false,
     contain = false,
@@ -75,7 +75,7 @@ function VisualAssetComponent(
       className={styles.Media}
       src={safeVideo}
       poster={safeImage}
-      title={title}
+      title={mediaAltText}
       autoPlay={autoPlay}
       controls={controls}
       onError={onError}
@@ -93,7 +93,7 @@ function VisualAssetComponent(
       id={id}
       className={styles.Media}
       src={safeImage}
-      alt={title}
+      alt={mediaAltText}
       onError={onError}
       onLoad={onLoad}
     />

@@ -13,57 +13,43 @@ import {cx} from '../../packages/utilities/index.js';
 // @ts-expect-error no types
 import styles from './CommonAction.module.css';
 
+type EitherElement = HTMLAnchorElement | HTMLButtonElement;
+type EitherPointer = PointerEventHandler<EitherElement>;
 type ButtonFocus = FocusEventHandler<HTMLButtonElement>;
 type ButtonClick = MouseEventHandler<HTMLButtonElement>;
-type ButtonPointer = PointerEventHandler<HTMLButtonElement>;
 
-export type CommonActionButtonProps = {
-  type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
-  ariaLabel?: string;
-  onBlur?: ButtonFocus;
-  onFocus?: ButtonFocus;
-  onClick?: ButtonClick;
-  onPointerEnter?: ButtonPointer;
-  onPointerLeave?: ButtonPointer;
-  onPointerDown?: ButtonPointer;
-  onPointerUp?: ButtonPointer;
-  // Denied link props.
-  url?: never;
-  external?: never;
-};
-
-export type CommonActionLinkProps = {
-  // Consider supporting `LinkProps['to']`.
-  url?: string;
-  external?: boolean;
-  // Denied button props.
-  type?: never;
-  ariaLabel?: never;
-  onBlur?: never;
-  onFocus?: never;
-  onClick?: never;
-  // TODO: We should allow pointer events on links.
-  onPointerEnter?: never;
-  onPointerLeave?: never;
-  onPointerDown?: never;
-  onPointerUp?: never;
-};
-
-export type CommonActionBaseProps = {
+export interface CommonActionBaseProps {
   children: ReactNode;
   id?: string;
   className?: string;
   disabled?: boolean;
   pressed?: boolean;
-  // Required to prevent `styled-components` from accepting.
-  'aria-label'?: never;
-  'aria-pressed'?: never;
-};
+  onPointerEnter?: EitherPointer;
+  onPointerLeave?: EitherPointer;
+  onPointerDown?: EitherPointer;
+  onPointerUp?: EitherPointer;
+}
 
-// We don't really need to use conditional props...
-// we can allow everything if we find usage to be confusing.
+export interface CommonActionLinkProps {
+  // Consider supporting `LinkProps['to']`.
+  url?: string;
+  external?: boolean;
+}
+
+export interface CommonActionButtonProps {
+  type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
+  ariaLabel?: string;
+  onBlur?: ButtonFocus;
+  onFocus?: ButtonFocus;
+  onClick?: ButtonClick;
+}
+
+// It is important to understand the prop heirarchy for this component.
+// Link props take precedence and will lead to `<a href />` markup.
+// Button specific props will not be shared with the `<a />` tag.
 export type CommonActionProps = CommonActionBaseProps &
-  (CommonActionButtonProps | CommonActionLinkProps);
+  CommonActionLinkProps &
+  CommonActionButtonProps;
 
 function CommonActionComponent(
   {
@@ -72,6 +58,10 @@ function CommonActionComponent(
     className = '',
     disabled = false,
     pressed = false,
+    onPointerEnter,
+    onPointerLeave,
+    onPointerDown,
+    onPointerUp,
     // Link props
     url,
     external = false,
@@ -81,19 +71,23 @@ function CommonActionComponent(
     onBlur,
     onFocus,
     onClick,
-    onPointerEnter,
-    onPointerLeave,
-    onPointerDown,
-    onPointerUp,
   }: CommonActionProps,
-  ref: ForwardedRef<HTMLAnchorElement | HTMLButtonElement>
+  ref: ForwardedRef<EitherElement>
 ) {
   const isDisabled = disabled ? true : undefined;
   const isPressed = pressed ? true : undefined;
 
+  const globalProps = {
+    id,
+    onPointerEnter,
+    onPointerLeave,
+    onPointerDown,
+    onPointerUp,
+  };
+
   if (url?.length) {
     const sharedLinkProps = {
-      id,
+      ...globalProps,
       ref: ref as ForwardedRef<HTMLAnchorElement>,
       className: cx(styles.PrimitiveLink, className),
       'data-link-disabled': isDisabled,
@@ -126,21 +120,17 @@ function CommonActionComponent(
 
   return (
     <button
+      {...globalProps}
       ref={ref as ForwardedRef<HTMLButtonElement>}
-      id={id}
       type={type}
       className={cx(styles.PrimitiveButton, className)}
       disabled={isDisabled}
       aria-label={ariaLabel}
       aria-pressed={isPressed}
+      data-button-static={hasInteraction ? undefined : true}
       onBlur={onBlur}
       onFocus={onFocus}
       onClick={onClick}
-      onPointerEnter={onPointerEnter}
-      onPointerLeave={onPointerLeave}
-      onPointerDown={onPointerDown}
-      onPointerUp={onPointerUp}
-      data-button-static={hasInteraction ? undefined : true}
     >
       {children}
     </button>

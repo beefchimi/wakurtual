@@ -2,28 +2,27 @@ import {Link} from 'waku';
 
 import {cx} from '../../packages/utilities/index.js';
 
-import {Thumbnail} from '../Thumbnail/index.js';
+import {Thumbnail, type ThumbnailProps} from '../Thumbnail/index.js';
 // @ts-expect-error no types
 import styles from './Card.module.css';
 
-export interface CardProps {
+export interface CardProps
+  extends Pick<
+    ThumbnailProps,
+    'videoUrl' | 'imageUrl' | 'mediaAltText' | 'pixelated'
+  > {
   title?: string;
   subtitle?: string;
-  imgSrc?: string;
-  imgAlt?: string;
   url?: string;
   order?: number;
-  pixelated?: boolean;
 }
 
 export function Card({
   title = 'Missing title…',
   subtitle = '',
-  imgSrc = '',
-  imgAlt = '',
   url = '',
   order = 0,
-  pixelated = false,
+  ...thumbnailProps
 }: CardProps) {
   const orderMarkup = order ? (
     <div className={styles.Order}>
@@ -38,7 +37,7 @@ export function Card({
   const interiorMarkup = (
     <div className={styles.Interior}>
       <div className={styles.Media}>
-        <Thumbnail imageUrl={imgSrc} title={imgAlt} pixelated={pixelated} />
+        <Thumbnail {...thumbnailProps} />
       </div>
 
       <div className={styles.Details}>

@@ -121,34 +121,7 @@ body {
   }
 }
 
-.text-box-trim {
-  /* A rough approximation of the future `text-box-trim` property. */
-  &::before {
-    content: '';
-    display: block;
-    height: 0;
-    width: 0;
-    margin-top: -0.14em;
-  }
-}
-
-/* --- Media --- */
-
-.image-pixel {
-  margin: auto;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  image-rendering: pixelated;
-}
-
 /* --- Actions --- */
-
-.interaction-disable {
-  pointer-events: none;
-  touch-action: none;
-  user-select: none;
-}
 
 .link-basic {
   text-decoration: underline 0.1rem transparent;
@@ -170,7 +143,7 @@ body {
   transition-timing-function: var(--easing-cubic);
 
   &:focus-visible {
-    outline-color: var(--color-coral);
+    outline-color: currentColor;
   }
 }
 
@@ -203,4 +176,75 @@ body {
 .main-text {
   font-size: 1.6rem;
   font-weight: 400;
+}
+
+/* --- Skeleton --- */
+
+@keyframes animSkeletonShimmer {
+  0%,
+  20% {
+    opacity: 0;
+    scale: 1 1;
+    translate: -100%;
+  }
+
+  50% {
+    opacity: 0.1;
+    scale: 2 1;
+  }
+
+  80%,
+  100% {
+    opacity: 0;
+    scale: 1 1;
+    translate: 100%;
+  }
+}
+
+@keyframes animSkeletonShine {
+  to {
+    opacity: 0.16;
+  }
+
+  from {
+    opacity: 0.26;
+  }
+}
+
+.skeleton-base {
+  position: relative;
+  flex: 1 1 auto;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    134deg,
+    var(--color-black-10),
+    transparent,
+    var(--color-black-60)
+  );
+  opacity: 0.4;
+  overflow: hidden;
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    inset: 0;
+  }
+
+  &::before {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--color-white),
+      transparent
+    );
+    animation: animSkeletonShimmer 1200ms ease-in-out infinite both;
+  }
+
+  &::after {
+    background-color: var(--color-white);
+    animation: animSkeletonShine 600ms ease-in-out alternate infinite both;
+  }
 }

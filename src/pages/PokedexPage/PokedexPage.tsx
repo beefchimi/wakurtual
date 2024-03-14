@@ -1,7 +1,9 @@
-import {PokemonResults} from '../../sections/index.js';
-import {getPokemonData} from '../../data.js';
+import {Suspense} from 'react';
 
-async function getData() {
+import {PokemonResults, PokemonResultsSkeleton} from '../../sections/index.js';
+import {fetchPokedexFlatPaged} from '../../data.js';
+
+async function getPageData() {
   const data = {
     htmlTitle: 'Pokedex | Wakurtual',
     pageTitle: 'Pokedex page',
@@ -11,13 +13,18 @@ async function getData() {
 }
 
 export async function PokedexPage() {
-  const data = await getData();
-  const {rows} = await getPokemonData();
+  const pageData = await getPageData();
+  // TODO: Needs to accept an incremented argument.
+  const pokemonPromise = fetchPokedexFlatPaged(99);
 
+  // TODO: Add `ErrorBoundary` and `Suspense`.
   return (
     <div className="PokedexPage">
-      <title>{data.htmlTitle}</title>
-      <PokemonResults pokemon={rows} />
+      <title>{pageData.htmlTitle}</title>
+
+      <Suspense fallback={<PokemonResultsSkeleton count={8} />}>
+        <PokemonResults pokemon={pokemonPromise} />
+      </Suspense>
     </div>
   );
 }

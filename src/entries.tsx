@@ -1,6 +1,6 @@
 import {createPages} from 'waku';
 
-import {getPokemonSlugs} from './data.js';
+import {fetchPokedexSlugs} from './data.js';
 import {RootLayout} from './layouts/index.js';
 import {
   AboutPage,
@@ -35,7 +35,9 @@ export default createPages(async ({createPage, createLayout}) => {
     component: PokedexPage,
   });
 
-  const pokemonSlugs = await getPokemonSlugs();
+  // TODO: We might want to use `getPokedexSlugs()` instead
+  // and avoid the artificial wait time.
+  const pokemonSlugs = await fetchPokedexSlugs();
 
   createPage({
     render: 'static',

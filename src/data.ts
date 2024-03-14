@@ -5,8 +5,15 @@
 // TODO: Alternatively, we should use an actual API:
 // https://pokeapi.co/
 // https://www.reddit.com/r/reactjs/comments/z5omi6/should_i_hardcode_the_info_for_800_pokemon_in_my/
-import pokemonDataRaw from './private/pokemon.json';
-import {arrayPaginate, arrayShuffle} from './packages/utilities/index.js';
+import POKEDEX from './private/pokedex.json';
+
+import {
+  arrayOfLength,
+  arrayPaginate,
+  arrayShuffle,
+  clamp,
+  sleep,
+} from './packages/utilities/index.js';
 
 export interface PokemonName {
   english: string;
@@ -30,6 +37,14 @@ export interface Pokemon {
   base: PokemonStats;
 }
 
+/*
+const POKEDEX: Pokemon[] = JSON.parse(
+  fs.readFileSync('./private/pokedex.json', 'utf8')
+);
+*/
+
+export const POKEDEX_PAGED = arrayPaginate(POKEDEX);
+
 const STAT_ORDER: Array<keyof PokemonStats> = [
   'HP',
   'Attack',
@@ -39,36 +54,12 @@ const STAT_ORDER: Array<keyof PokemonStats> = [
   'Sp. Defense',
 ];
 
-/*
-const pokemonDataRaw: Pokemon[] = JSON.parse(
-  fs.readFileSync('./private/pokemon.json', 'utf8')
-);
-*/
-
-export const pokemonDataPaged = arrayPaginate(pokemonDataRaw);
-
-export async function getPokemonData(limit = 0, shuffle = false) {
-  const data = shuffle ? arrayShuffle(pokemonDataRaw) : pokemonDataRaw;
-  const rows = limit ? data.slice(0, Math.max(0, limit)) : data;
-
-  return {rows};
+export function assertPokemon(data?: Pokemon | null): data is Pokemon {
+  return Boolean(data && data.id && data.slug.length);
 }
 
-export async function getPokemonBySlug(slug: Pokemon['slug']) {
-  return pokemonDataRaw.find((poke) => poke.slug === slug) ?? null;
-}
-
-export async function getPokemonSlugs() {
-  return pokemonDataRaw.map((poke: Pokemon) => poke.slug);
-}
-
-export function getPokemonImage(id: Pokemon['id'] = 0) {
-  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
-}
-
-export function getPokemonRoute(slug: Pokemon['slug'] = '404') {
-  return `/pokedex/${slug}`;
-}
+///
+/// Data parsing
 
 export function parsePokemonStats(stats: PokemonStats) {
   const parsed = Object.entries(stats) as [keyof PokemonStats, number][];
@@ -76,4 +67,100 @@ export function parsePokemonStats(stats: PokemonStats) {
   return parsed.sort(
     ([key1], [key2]) => STAT_ORDER.indexOf(key1) - STAT_ORDER.indexOf(key2)
   );
+}
+
+///
+/// Data getters
+
+export function getPokedex(limit = 0, shuffle = false) {
+  const data = shuffle ? arrayShuffle(POKEDEX) : POKEDEX;
+  return limit ? data.slice(0, Math.max(0, limit)) : data;
+}
+
+export function getPokedexPage(page = 0) {
+  const lastPageIndex = POKEDEX_PAGED.length - 1;
+
+  if (page < 0 || page > lastPageIndex) return null;
+
+  return POKEDEX_PAGED[page] ?? null;
+}
+
+export function getPokedexFlatPaged(range = 0) {
+  const maxRange = clamp(1, range, POKEDEX_PAGED.length);
+  const data = arrayOfLength(maxRange)
+    .flatMap(getPokedexPage)
+    .filter(assertPokemon);
+
+  return data;
+}
+
+export function getPokedexSlugs() {
+  return POKEDEX.map((pokemon: Pokemon) => pokemon.slug);
+}
+
+export function getPokemonBySlug(slug: Pokemon['slug']) {
+  return POKEDEX.find((pokemon) => pokemon.slug === slug) ?? null;
+}
+
+export function getPokemonPixel(id: Pokemon['id'] = 0) {
+  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+}
+
+export function getPokemonRoute(slug: Pokemon['slug'] = '404') {
+  return `/pokedex/${slug}`;
+}
+
+///
+/// Data queries
+
+export async function fetchPokedex(limit = 0, shuffle = false) {
+  const data = getPokedex(limit, shuffle);
+  await sleep(1234);
+  return data;
+}
+
+export async function fetchPokedexPage(page = 0) {
+  const data = getPokedexPage(page);
+  await sleep(1234);
+
+  if (data === null) {
+    return Promise.reject(data);
+  }
+
+  return data;
+}
+
+export async function fetchPokedexFlatPaged(range = 0) {
+  const flatData = getPokedexFlatPaged(range);
+  await sleep(1234);
+  return flatData;
+}
+
+export async function fetchPokedexSlugs() {
+  const slugs = getPokedexSlugs();
+  await sleep(1234);
+  return slugs;
+}
+
+export async function fetchPokemonBySlug(slug: Pokemon['slug']) {
+  const result = getPokemonBySlug(slug);
+  await sleep(1234);
+
+  if (result === null) {
+    return Promise.reject(result);
+  }
+
+  return result;
+}
+
+export async function fetchPokemonPixel(id: Pokemon['id'] = 0) {
+  const image = getPokemonPixel(id);
+  await sleep(1234);
+  return image;
+}
+
+export async function fetchPokemonRoute(slug: Pokemon['slug'] = '404') {
+  const route = `/pokedex/${slug}`;
+  await sleep(1234);
+  return route;
 }

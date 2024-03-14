@@ -2,7 +2,7 @@ import {TextLink} from '../../components/index.js';
 // @ts-expect-error no types
 import styles from './AboutPage.module.css';
 
-async function getData() {
+async function getPageData() {
   const data = {
     htmlTitle: 'About | Wakurtual',
     pageTitle: 'About page',
@@ -12,11 +12,11 @@ async function getData() {
 }
 
 export async function AboutPage() {
-  const data = await getData();
+  const pageData = await getPageData();
 
   return (
     <div className={styles.AboutPage}>
-      <title>{data.htmlTitle}</title>
+      <title>{pageData.htmlTitle}</title>
 
       <section className="typography">
         <blockquote>

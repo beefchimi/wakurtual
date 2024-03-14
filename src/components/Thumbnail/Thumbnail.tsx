@@ -14,9 +14,9 @@ export interface ThumbnailProps
   extends Pick<
     VisualAssetProps,
     | 'id'
-    | 'title'
     | 'videoUrl'
     | 'imageUrl'
+    | 'mediaAltText'
     | 'autoPlay'
     | 'controls'
     | 'contain'
@@ -29,7 +29,7 @@ export interface ThumbnailProps
 
 export function Thumbnail({
   id,
-  title,
+  mediaAltText,
   loadingMode = 'default',
   autoPlay = false,
   controls = false,
@@ -68,9 +68,9 @@ export function Thumbnail({
       <VisualAsset
         ref={assetRef}
         id={id}
-        title={title}
         videoUrl={videoError ? undefined : videoSrc}
         imageUrl={imageSrc}
+        mediaAltText={mediaAltText}
         autoPlay={autoPlay}
         controls={controls}
         contain={contain}

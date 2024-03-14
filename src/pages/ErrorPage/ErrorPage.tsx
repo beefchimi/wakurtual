@@ -1,6 +1,6 @@
 import {TextLink} from '../../components/index.js';
 
-async function getData() {
+async function getPageData() {
   const data = {
     htmlTitle: 'Error 404 | Wakurtual',
     pageTitle: '404 page',
@@ -11,14 +11,14 @@ async function getData() {
 
 // TODO: This might not be the right way to handle error pages in Waku.
 export async function ErrorPage() {
-  const data = await getData();
+  const pageData = await getPageData();
 
   return (
     <div className="ErrorPage">
-      <title>{data.htmlTitle}</title>
+      <title>{pageData.htmlTitle}</title>
 
       <div className="typography">
-        <h2 className="main-heading">{data.pageTitle}</h2>
+        <h2 className="main-heading">{pageData.pageTitle}</h2>
 
         <p className="text-callout">
           Oops… you ended up on a path that does not exist.
