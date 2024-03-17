@@ -1,1 +1,6 @@
-export {CardList, type CardListProps} from './CardList.js';
+export {
+  CardList,
+  type CardItemVirtualPosition,
+  type CardListProps,
+  type CardItemProps,
+} from './CardList.js';

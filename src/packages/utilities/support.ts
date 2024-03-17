@@ -4,8 +4,14 @@ export function supportDom() {
 
 export function supportMatchMedia() {
   return (
-    window && 'matchMedia' in window && typeof window.matchMedia === 'function'
+    supportDom() &&
+    'matchMedia' in window &&
+    typeof window.matchMedia === 'function'
   );
+}
+
+export function supportResizeObserver() {
+  return supportDom() && 'ResizeObserver' in window;
 }
 
 export function supportSafari() {

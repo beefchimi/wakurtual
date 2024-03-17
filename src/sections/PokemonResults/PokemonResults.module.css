@@ -1,6 +1,10 @@
 .PokemonResults {
 }
 
+.VirtualContainer {
+  /* Required for useWindowVirtualizer */
+}
+
 .LoadMoreWrapper {
   display: grid;
   justify-items: center;
