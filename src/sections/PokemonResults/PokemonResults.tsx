@@ -18,6 +18,7 @@ export interface PokemonResultsProps {
 }
 
 const LOAD_MORE = true;
+const MAX_ITEM_HEIGHT = 400;
 
 export function PokemonResults({pokemon}: PokemonResultsProps) {
   const data = use(pokemon);
@@ -42,23 +43,22 @@ export function PokemonResults({pokemon}: PokemonResultsProps) {
     [data]
   );
 
-  const {ready, listRef, listHeight, itemRef, virtualItems} =
-    useVirtualWindowGrid({
-      count: data.length,
-      minWidth: itemMinWidth,
-      gap: gapSize,
-      getItemKey,
-    });
+  const {listRef, listHeight, itemRef, virtualItems} = useVirtualWindowGrid({
+    count: data.length,
+    minWidth: itemMinWidth,
+    maxHeight: MAX_ITEM_HEIGHT,
+    gap: gapSize,
+    getItemKey,
+  });
 
-  // TODO: Not sure if we will need the `ready` state.
-  const preferVirtual = Boolean(virtualize && virtualItems.length && ready);
+  const preferVirtual = Boolean(virtualize && virtualItems.length);
 
   const itemsMarkup = preferVirtual
     ? virtualItems.map(({key, index, position}) => {
         const {id, slug, name} = data[index] ?? {};
 
-        // TODO: Find a way to prevent passing the `ref` to every item...
-        // we only actually want to capture `height` once.
+        // TODO: Avoid measuring every item if we know
+        // that all items are of equal height.
         return (
           <CardList.Item
             key={key}

@@ -2,13 +2,6 @@ import {clamp, trimDecimals} from '../../packages/utilities/index.js';
 
 type VirtualWidthTuple = [width: number, gap: number];
 
-interface VirtualContainerCalc {
-  count?: number;
-  columns?: number;
-  itemHeight?: number;
-  gap?: number;
-}
-
 interface VirtualItemCalc {
   index?: number;
   columns?: number;
@@ -36,22 +29,6 @@ export const DEFAULT_VIRTUAL_ITEM_X: VirtualItemX = {
   percent: [100, 0],
 };
 
-export function calcVirtualContainerHeight({
-  count = 0,
-  columns = 1,
-  itemHeight = 10,
-  gap = 0,
-}: VirtualContainerCalc) {
-  if (count < 1) return 0;
-  if (count <= columns) return itemHeight;
-
-  const rows = Math.ceil(count / columns);
-  // Subtract `gap` once to account for the final row.
-  const totalHeight = rows * (itemHeight + gap) - gap;
-
-  return totalHeight;
-}
-
 export function calcVirtualItemLeft({
   index = 0,
   columns = 1,
@@ -60,16 +37,6 @@ export function calcVirtualItemLeft({
 }: VirtualItemCalc) {
   const currentColumn = index % columns;
   return (width + gap) * currentColumn;
-}
-
-export function calcVirtualItemTop({
-  index = 0,
-  columns = 1,
-  height = 10,
-  gap = 0,
-}: VirtualItemCalc) {
-  const currentRow = Math.floor(index / columns);
-  return (height + gap) * currentRow;
 }
 
 export function getVirtualItemX(
@@ -120,4 +87,41 @@ export function getVirtualItemX(
     pixel: [adjustedItemPx, adjustedGapPx],
     percent: [adjustedItemPercent, adjustedGapPercent],
   };
+}
+
+///
+/// Redundant utilities
+/// Each of these values can be retrieved directly from `react-virtual`.
+
+interface VirtualContainerCalc {
+  count?: number;
+  columns?: number;
+  itemHeight?: number;
+  gap?: number;
+}
+
+export function calcVirtualContainerHeight({
+  count = 0,
+  columns = 1,
+  itemHeight = 10,
+  gap = 0,
+}: VirtualContainerCalc) {
+  if (count < 1) return 0;
+  if (count <= columns) return itemHeight;
+
+  const rows = Math.ceil(count / columns);
+  // Subtract `gap` once to account for the final row.
+  const totalHeight = rows * (itemHeight + gap) - gap;
+
+  return totalHeight;
+}
+
+export function calcVirtualItemTop({
+  index = 0,
+  columns = 1,
+  height = 10,
+  gap = 0,
+}: VirtualItemCalc) {
+  const currentRow = Math.floor(index / columns);
+  return (height + gap) * currentRow;
 }
