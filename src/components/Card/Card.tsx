@@ -26,7 +26,9 @@ export function Card({
 }: CardProps) {
   const orderMarkup = order ? (
     <div className={styles.Order}>
-      <p className={cx('text-box-trim', styles.OrderLabel)}>#{order}</p>
+      <div className={styles.OrderPill}>
+        <p className={cx('text-box-trim', styles.OrderLabel)}>#{order}</p>
+      </div>
     </div>
   ) : null;
 
@@ -35,18 +37,20 @@ export function Card({
   ) : null;
 
   const interiorMarkup = (
-    <div className={styles.Interior}>
-      <div className={styles.Media}>
-        <Thumbnail {...thumbnailProps} />
-      </div>
+    <>
+      <div className={styles.Interior}>
+        <div className={styles.Media}>
+          <Thumbnail {...thumbnailProps} />
+        </div>
 
-      <div className={styles.Details}>
-        <p className={cx('text-box-trim', styles.Title)}>{title}</p>
-        {subtitleMarkup}
+        <div className={styles.Details}>
+          <p className={cx('text-box-trim', styles.Title)}>{title}</p>
+          {subtitleMarkup}
+        </div>
       </div>
 
       {orderMarkup}
-    </div>
+    </>
   );
 
   const childrenMarkup = url.length ? (

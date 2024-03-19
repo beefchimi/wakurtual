@@ -24,11 +24,11 @@ export function CardSkeleton() {
             )}
           />
         </div>
-
-        <div
-          className={cx(styles.Order, 'skeleton-base', styles.orderSkeleton)}
-        />
       </div>
+
+      <div
+        className={cx(styles.Order, 'skeleton-base', styles.orderSkeleton)}
+      />
     </article>
   );
 }

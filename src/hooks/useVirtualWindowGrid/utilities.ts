@@ -2,18 +2,32 @@ import {clamp, trimDecimals} from '../../packages/utilities/index.js';
 
 type VirtualWidthTuple = [width: number, gap: number];
 
-export interface VirtualItemX {
-  columns: number;
-  pixel: VirtualWidthTuple;
-  percent: VirtualWidthTuple;
+interface VirtualContainerCalc {
+  count?: number;
+  columns?: number;
+  itemHeight?: number;
+  gap?: number;
 }
 
-interface VirtualItemPositionOptions {
+interface VirtualItemCalc {
   index?: number;
   columns?: number;
   width?: number;
   height?: number;
   gap?: number;
+}
+
+export interface VirtualItemPosition {
+  top?: string | number;
+  left?: string | number;
+  width?: string | number;
+  height?: string | number;
+}
+
+export interface VirtualItemX {
+  columns: number;
+  pixel: VirtualWidthTuple;
+  percent: VirtualWidthTuple;
 }
 
 export const DEFAULT_VIRTUAL_ITEM_X: VirtualItemX = {
@@ -22,14 +36,50 @@ export const DEFAULT_VIRTUAL_ITEM_X: VirtualItemX = {
   percent: [100, 0],
 };
 
+export function calcVirtualContainerHeight({
+  count = 0,
+  columns = 1,
+  itemHeight = 10,
+  gap = 0,
+}: VirtualContainerCalc) {
+  if (count < 1) return 0;
+  if (count <= columns) return itemHeight;
+
+  const rows = Math.ceil(count / columns);
+  // Subtract `gap` once to account for the final row.
+  const totalHeight = rows * (itemHeight + gap) - gap;
+
+  return totalHeight;
+}
+
+export function calcVirtualItemLeft({
+  index = 0,
+  columns = 1,
+  width = 10,
+  gap = 0,
+}: VirtualItemCalc) {
+  const currentColumn = index % columns;
+  return (width + gap) * currentColumn;
+}
+
+export function calcVirtualItemTop({
+  index = 0,
+  columns = 1,
+  height = 10,
+  gap = 0,
+}: VirtualItemCalc) {
+  const currentRow = Math.floor(index / columns);
+  return (height + gap) * currentRow;
+}
+
 export function getVirtualItemX(
-  containerPx = 100,
-  minItemPx = 10,
-  gapPx = 0
+  container = 100,
+  minWidth = 10,
+  gap = 0
 ): VirtualItemX {
-  const safeContainer = clamp(100, containerPx, 9999);
-  const safeItem = clamp(10, minItemPx, 999);
-  const safeGap = clamp(0, gapPx, 99);
+  const safeContainer = clamp(100, container, 9999);
+  const safeItem = clamp(10, minWidth, 999);
+  const safeGap = clamp(0, gap, 99);
 
   if (safeItem >= safeContainer) {
     return {
@@ -70,24 +120,4 @@ export function getVirtualItemX(
     pixel: [adjustedItemPx, adjustedGapPx],
     percent: [adjustedItemPercent, adjustedGapPercent],
   };
-}
-
-export function calcVirtualItemLeft({
-  index = 0,
-  columns = 1,
-  width = 10,
-  gap = 0,
-}: VirtualItemPositionOptions) {
-  const currentColumn = index % columns;
-  return (width + gap) * currentColumn;
-}
-
-export function calcVirtualItemTop({
-  index = 0,
-  columns = 1,
-  height = 10,
-  gap = 0,
-}: VirtualItemPositionOptions) {
-  const currentRow = Math.floor(index / columns);
-  return (height + gap) * currentRow;
 }

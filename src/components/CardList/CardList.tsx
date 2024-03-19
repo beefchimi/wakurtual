@@ -6,15 +6,9 @@ import {
 } from 'react';
 
 import {cx} from '../../packages/utilities/index.js';
+import type {VirtualItemPosition} from '../../hooks/index.js';
 // @ts-expect-error no types
 import styles from './CardList.module.css';
-
-export interface CardItemVirtualPosition {
-  top?: string | number;
-  left?: string | number;
-  width?: string | number;
-  height?: string | number;
-}
 
 export interface CardListProps {
   children: ReactNode;
@@ -24,16 +18,20 @@ export interface CardListProps {
 export interface CardItemProps {
   children: ReactNode;
   debugIndex?: number;
-  virtualPosition?: CardItemVirtualPosition;
+  virtualPosition?: VirtualItemPosition;
 }
 
-export function CardList({children, virtualHeight = 0}: CardListProps) {
+function ListComponent(
+  {children, virtualHeight = 0}: CardListProps,
+  ref: ForwardedRef<HTMLUListElement>
+) {
   const virtualStyle: CSSProperties | undefined = virtualHeight
     ? {height: `${virtualHeight}px`}
     : undefined;
 
   return (
     <ul
+      ref={ref}
       className={cx(styles.CardList, {
         [styles.virtualList]: Boolean(virtualStyle),
       })}
@@ -66,6 +64,7 @@ function ItemComponent(
   );
 }
 
-const Item = forwardRef(ItemComponent);
+const ListForward = forwardRef(ListComponent);
+const ItemForward = forwardRef(ItemComponent);
 
-CardList.Item = Item;
+export const CardList = Object.assign(ListForward, {Item: ItemForward});

@@ -9,6 +9,8 @@ interface Size {
   height: number;
 }
 
+// TODO: Consider a `round?: boolean;` option that would help
+// restrict the resizes to whole numbers.
 export interface ResizeObserverHookOptions<
   T extends HTMLElement = HTMLElement
 > {

@@ -25,7 +25,7 @@
       opacity: 1;
     }
 
-    & .Order {
+    & .OrderPill {
       background-color: var(--color-coral);
     }
   }
@@ -35,7 +35,7 @@
       border-color: var(--color-coral-dark);
     }
 
-    & .Order {
+    & .OrderPill {
       background-color: var(--color-coral-dark);
     }
   }
@@ -105,10 +105,12 @@
 
 .Order {
   z-index: 3;
-  position: absolute;
-  bottom: calc(var(--card-order-height) / 2 * -1);
-  left: auto;
-  right: auto;
+  position: relative;
+  display: grid;
+  margin-top: calc(var(--card-order-height) / 2 * -1);
+}
+
+.OrderPill {
   display: grid;
   place-items: center;
   place-content: center;
@@ -149,6 +151,10 @@
 }
 
 .orderSkeleton {
+  margin-left: auto;
+  margin-right: auto;
   width: calc(var(--card-order-height) * 2);
+  height: var(--card-order-height);
+  border-radius: var(--card-order-height);
   background-color: rgb(44, 44, 44);
 }

@@ -1,12 +1,23 @@
 .PokemonResults {
-}
-
-.VirtualContainer {
-  /* Required for useWindowVirtualizer */
+  /*
+   * This wrapper - or any other parent of <CardList /> - cannot be
+   * positioned (have a stacking context) or else offsetTop cannot
+   * be captured within useVirtualWindowGrid().
+  */
 }
 
 .LoadMoreWrapper {
   display: grid;
   justify-items: center;
   padding-top: var(--app-gap);
+}
+
+.TempActionWrapper {
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: grid;
+  justify-items: center;
 }
