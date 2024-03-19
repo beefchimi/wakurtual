@@ -18,7 +18,6 @@ export interface PokemonResultsProps {
 }
 
 const LOAD_MORE = true;
-const MAX_ITEM_HEIGHT = 400;
 
 export function PokemonResults({pokemon}: PokemonResultsProps) {
   const data = use(pokemon);
@@ -43,13 +42,13 @@ export function PokemonResults({pokemon}: PokemonResultsProps) {
     [data]
   );
 
-  const {listRef, listHeight, itemRef, virtualItems} = useVirtualWindowGrid({
-    count: data.length,
-    minWidth: itemMinWidth,
-    maxHeight: MAX_ITEM_HEIGHT,
-    gap: gapSize,
-    getItemKey,
-  });
+  const {listRef, listHeight, itemRef, virtualItems, remeasure} =
+    useVirtualWindowGrid({
+      count: data.length,
+      minWidth: itemMinWidth,
+      gap: gapSize,
+      getItemKey,
+    });
 
   const preferVirtual = Boolean(virtualize && virtualItems.length);
 
@@ -119,6 +118,8 @@ export function PokemonResults({pokemon}: PokemonResultsProps) {
           pressed={virtualize}
           onClick={handleVirtualizeToggle}
         />
+
+        <Button label="Re-measure" disabled={!virtualize} onClick={remeasure} />
       </div>
 
       <CardList

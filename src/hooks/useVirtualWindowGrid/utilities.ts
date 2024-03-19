@@ -2,12 +2,10 @@ import {clamp, trimDecimals} from '../../packages/utilities/index.js';
 
 type VirtualWidthTuple = [width: number, gap: number];
 
-interface VirtualItemCalc {
-  index?: number;
-  columns?: number;
-  width?: number;
-  height?: number;
-  gap?: number;
+interface VirtualItemX {
+  columns: number;
+  pixel: VirtualWidthTuple;
+  percent: VirtualWidthTuple;
 }
 
 export interface VirtualItemPosition {
@@ -17,27 +15,11 @@ export interface VirtualItemPosition {
   height?: string | number;
 }
 
-export interface VirtualItemX {
-  columns: number;
-  pixel: VirtualWidthTuple;
-  percent: VirtualWidthTuple;
-}
-
 export const DEFAULT_VIRTUAL_ITEM_X: VirtualItemX = {
   columns: 1,
   pixel: [100, 0],
   percent: [100, 0],
 };
-
-export function calcVirtualItemLeft({
-  index = 0,
-  columns = 1,
-  width = 10,
-  gap = 0,
-}: VirtualItemCalc) {
-  const currentColumn = index % columns;
-  return (width + gap) * currentColumn;
-}
 
 export function getVirtualItemX(
   container = 100,
@@ -100,7 +82,15 @@ interface VirtualContainerCalc {
   gap?: number;
 }
 
-export function calcVirtualContainerHeight({
+interface VirtualItemCalc {
+  index?: number;
+  columns?: number;
+  width?: number;
+  height?: number;
+  gap?: number;
+}
+
+function calcVirtualContainerHeight({
   count = 0,
   columns = 1,
   itemHeight = 10,
@@ -116,7 +106,7 @@ export function calcVirtualContainerHeight({
   return totalHeight;
 }
 
-export function calcVirtualItemTop({
+function calcVirtualItemTop({
   index = 0,
   columns = 1,
   height = 10,
@@ -124,4 +114,14 @@ export function calcVirtualItemTop({
 }: VirtualItemCalc) {
   const currentRow = Math.floor(index / columns);
   return (height + gap) * currentRow;
+}
+
+function calcVirtualItemLeft({
+  index = 0,
+  columns = 1,
+  width = 10,
+  gap = 0,
+}: VirtualItemCalc) {
+  const currentColumn = index % columns;
+  return (width + gap) * currentColumn;
 }
