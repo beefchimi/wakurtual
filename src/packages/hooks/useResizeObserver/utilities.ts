@@ -13,7 +13,7 @@ export function convertKebabToCamel(size?: ResizeKebabBox): ResizeCamelBox {
 
 export function extractSize(
   entry?: ResizeObserverEntry,
-  box: ResizeCamelBox = 'contentBoxSize',
+  box: ResizeCamelBox = 'borderBoxSize',
   sizeType: keyof ResizeObserverSize = 'inlineSize'
 ) {
   let size = 0;

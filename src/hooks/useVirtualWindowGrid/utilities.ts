@@ -1,19 +1,5 @@
 import {clamp, trimDecimals} from '../../packages/utilities/index.js';
-
-type VirtualWidthTuple = [width: number, gap: number];
-
-interface VirtualItemX {
-  columns: number;
-  pixel: VirtualWidthTuple;
-  percent: VirtualWidthTuple;
-}
-
-export interface VirtualItemPosition {
-  top?: string | number;
-  left?: string | number;
-  width?: string | number;
-  height?: string | number;
-}
+import type {VirtualItemX} from './types.js';
 
 export const DEFAULT_VIRTUAL_ITEM_X: VirtualItemX = {
   columns: 1,

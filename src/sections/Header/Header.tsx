@@ -2,6 +2,9 @@ import type {ReactNode} from 'react';
 
 import {useDumbContent} from '../../packages/contentious/index.js';
 import {cx} from '../../packages/utilities/index.js';
+
+import {TestWindowHooks} from '../TestWindowHooks/TestWindowHooks.js';
+
 // @ts-expect-error no types
 import styles from './Header.module.css';
 
@@ -28,6 +31,8 @@ export function Header({children}: HeaderProps) {
       </div>
 
       {childrenMarkup}
+
+      <TestWindowHooks />
     </header>
   );
 }

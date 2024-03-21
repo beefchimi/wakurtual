@@ -2,6 +2,7 @@ import {useEffect, useRef, useState, type RefObject} from 'react';
 
 import {supportResizeObserver} from '../../utilities/index.js';
 import {useMounted} from '../useMounted.js';
+import type {ResizeKebabBox} from './types.js';
 import {convertKebabToCamel, extractSize} from './utilities.js';
 
 interface Size {
@@ -15,7 +16,7 @@ export interface ResizeObserverHookOptions<
   T extends HTMLElement = HTMLElement
 > {
   ref: RefObject<T>;
-  box?: 'border-box' | 'content-box' | 'device-pixel-content-box';
+  box?: ResizeKebabBox;
   onResize?: (size: Size) => void;
 }
 
@@ -33,7 +34,7 @@ const initialSize: Size = {
 // the `onResize` callback. This helps avoid double re-renders.
 export function useResizeObserver<T extends HTMLElement = HTMLElement>({
   ref,
-  box = 'content-box',
+  box = 'border-box',
   onResize,
 }: ResizeObserverHookOptions<T>): Size {
   const [{width, height}, setSize] = useState<Size>(initialSize);

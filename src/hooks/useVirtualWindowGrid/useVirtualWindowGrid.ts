@@ -1,19 +1,15 @@
 'use client';
 
 import {useEffect, useRef, useState} from 'react';
-import {
-  useWindowVirtualizer,
-  type VirtualizerOptions,
-} from '@tanstack/react-virtual';
+import {useWindowVirtualizer} from '@tanstack/react-virtual';
 
 import {useResizeObserver} from '../../packages/hooks/index.js';
-import {getVirtualItemX, type VirtualItemPosition} from './utilities.js';
-
-export type VirtualListElement = HTMLOListElement | HTMLUListElement;
-
-export type GetItemKeyFn = NonNullable<
-  VirtualizerOptions<Window, Element>['getItemKey']
->;
+import type {
+  GetItemKeyFn,
+  VirtualListElement,
+  VirtualItemPosition,
+} from './types.js';
+import {getVirtualItemX} from './utilities.js';
 
 export interface VirtualWindowGridHookOptions {
   count?: number;
@@ -45,7 +41,6 @@ export function useVirtualWindowGrid({
   // and instead need to watch and record `listWidth` independently.
   useResizeObserver<VirtualListElement>({
     ref: listRef,
-    box: 'border-box',
     onResize: ({width}) => setListWidth(width),
   });
 
