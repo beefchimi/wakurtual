@@ -11,7 +11,7 @@ export type KeyPressInput = string[];
 
 // TODO: Consider a `preferKeyCode` boolean option:
 // https://github.com/beefchimi/react-hooks/issues/24
-export interface KeyPressHookOptions {
+export interface KeyPressOptions {
   eventType?: KeyPressEventType;
   target?: GlobalEventTarget;
   disabled?: boolean;
@@ -20,7 +20,7 @@ export interface KeyPressHookOptions {
 export function useKeyPress(
   keys: KeyPressInput,
   callback: KeyPressCallback,
-  options: KeyPressHookOptions = {}
+  options: KeyPressOptions = {}
 ) {
   const {eventType = 'keydown', target = document, disabled = false} = options;
 

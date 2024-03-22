@@ -1,6 +1,6 @@
 export {
   useVirtualWindowGrid,
-  type VirtualWindowGridHookOptions,
+  type VirtualWindowGridOptions,
 } from './useVirtualWindowGrid.js';
 
 export type {

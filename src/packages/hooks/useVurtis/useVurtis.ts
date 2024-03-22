@@ -16,7 +16,7 @@ import type {
 import {getItemX} from './utilities.js';
 
 // Consider an option for `px` vs `%` units.
-export interface VurtisHookOptions {
+export interface VurtisOptions {
   count?: number;
   minWidth?: number;
   gap?: number;
@@ -38,7 +38,7 @@ export function useVurtis({
   count = 0,
   minWidth = MIN_ITEM_SIZE,
   gap = 0,
-}: VurtisHookOptions) {
+}: VurtisOptions) {
   const listRef = useRef<VurtisListElement>(null);
 
   const [columns, setColumns] = useState(1);

@@ -1,4 +1,4 @@
 export {
   useResizeObserver,
-  type ResizeObserverHookOptions,
+  type ResizeObserverOptions,
 } from './useResizeObserver.js';

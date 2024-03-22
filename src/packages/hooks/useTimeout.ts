@@ -3,14 +3,14 @@ import type {TimeoutId} from '../types/index.js';
 
 export type TimeoutCallback = (timestamp: number) => void;
 
-export interface TimeoutHookOptions {
+export interface TimeoutOptions {
   duration?: number;
   disabled?: boolean;
 }
 
 export function useTimeout(
   callback: TimeoutCallback,
-  options: TimeoutHookOptions = {}
+  options: TimeoutOptions = {}
 ): void {
   const {duration = 0, disabled = false} = options;
 

@@ -6,7 +6,7 @@ export {
   useClickOutside,
   type ClickOutsideCallback,
   type ClickOutsideExclusion,
-  type ClickOutsideHookOptions,
+  type ClickOutsideOptions,
 } from './useClickOutside.js';
 
 export {
@@ -22,17 +22,17 @@ export {
   type KeyPressEventType,
   type KeyPressCallback,
   type KeyPressInput,
-  type KeyPressHookOptions,
+  type KeyPressOptions,
 } from './useKeyPress.js';
 
-export {useMediaQuery, type MediaQueryHookOptions} from './useMediaQuery.js';
+export {useMediaQuery, type MediaQueryOptions} from './useMediaQuery.js';
 
 export {useMounted} from './useMounted.js';
 
 export {
   useTimeout,
   type TimeoutCallback,
-  type TimeoutHookOptions,
+  type TimeoutOptions,
 } from './useTimeout.js';
 
 export {
@@ -41,10 +41,15 @@ export {
   type WindowEventFn,
 } from './useWindowEvent.js';
 
-export {useWindowScroll, type WindowScroll} from './useWindowScroll.js';
+export {
+  useWindowScroll,
+  measureScroll,
+  type WindowScrollOptions,
+  type WindowScrollData,
+} from './useWindowScroll.js';
 
 export {
   useWindowSize,
   measureWindow,
-  type WindowSize,
+  type WindowSizeData,
 } from './useWindowSize.js';

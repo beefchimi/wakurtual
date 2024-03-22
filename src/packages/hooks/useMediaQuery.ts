@@ -3,7 +3,7 @@ import {useState} from 'react';
 import {supportDom, supportMatchMedia} from '../utilities/index.js';
 import {useIsoEffect} from './useIsoEffect.js';
 
-export interface MediaQueryHookOptions {
+export interface MediaQueryOptions {
   // The default value to return if the hook is being
   // run on the server (default is `false`).
   defaultValue?: boolean;
@@ -15,7 +15,7 @@ export interface MediaQueryHookOptions {
 
 const IS_CLIENT = supportDom() && supportMatchMedia();
 
-export function useMediaQuery(query = '', options?: MediaQueryHookOptions) {
+export function useMediaQuery(query = '', options?: MediaQueryOptions) {
   const defaultValue = options?.defaultValue ?? false;
   const initializeWithValue = options?.initializeWithValue ?? true;
 

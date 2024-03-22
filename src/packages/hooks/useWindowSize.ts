@@ -6,7 +6,7 @@ import {useWindowEvent} from './useWindowEvent.js';
 
 type WindowResizeFn = (event: Event) => void;
 
-export interface WindowSize {
+export interface WindowSizeData {
   scrollWidth: number;
   minViewWidth: number;
   maxViewWidth: number;
@@ -21,7 +21,7 @@ export interface WindowSize {
   scrollbarSizeY: number;
 }
 
-const DEFAULT_SIZE: WindowSize = {
+const DEFAULT_SIZE: WindowSizeData = {
   scrollWidth: 0,
   minViewWidth: 0,
   maxViewWidth: 0,
@@ -61,8 +61,6 @@ export function measureWindow() {
   // In the future, we might consider a "before/after" amount.
   const offscreenWidth = scrollWidth - minViewWidth;
   const offscreenHeight = scrollHeight - minViewHeight;
-
-  console.log('useWindowSize > measureWindow > scrollHeight', scrollHeight);
 
   return {
     scrollWidth,

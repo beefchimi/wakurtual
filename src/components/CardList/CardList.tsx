@@ -17,6 +17,7 @@ export interface CardListProps {
 
 export interface CardItemProps {
   children: ReactNode;
+  id?: string;
   debugIndex?: number;
   virtualPosition?: VirtualItemPosition;
 }
@@ -43,7 +44,7 @@ function ListComponent(
 }
 
 function ItemComponent(
-  {children, debugIndex, virtualPosition}: CardItemProps,
+  {children, id, debugIndex, virtualPosition}: CardItemProps,
   ref: ForwardedRef<HTMLLIElement>
 ) {
   const virtualStyle: CSSProperties | undefined = virtualPosition
@@ -53,6 +54,7 @@ function ItemComponent(
   return (
     <li
       ref={ref}
+      id={id}
       data-index={debugIndex}
       className={cx(styles.CardItem, {
         [styles.virtualItem]: Boolean(virtualStyle),

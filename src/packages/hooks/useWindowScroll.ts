@@ -6,13 +6,13 @@ import {useWindowEvent} from './useWindowEvent.js';
 import {
   useWindowSize,
   measureWindow,
-  type WindowSize,
+  type WindowSizeData,
 } from './useWindowSize.js';
 
 type WindowScrollFn = (event: Event) => void;
 
 type WindowSizeSubset = Pick<
-  WindowSize,
+  WindowSizeData,
   | 'scrollWidth'
   | 'scrollHeight'
   | 'offscreenWidth'
@@ -22,7 +22,7 @@ type WindowSizeSubset = Pick<
 >;
 
 // Consider `boolean` values for `overscroll top/bottom/left/right`.
-export interface WindowScroll {
+export interface WindowScrollData {
   scrollX: number;
   scrollY: number;
   scrollWidth: number;
@@ -39,7 +39,13 @@ export interface WindowScroll {
   atEndY: boolean;
 }
 
-const DEFAULT_SCROLL: WindowScroll = {
+export interface WindowScrollOptions {
+  // TODO: Accept a `debounceMs = 0` argument.
+  updateStrategy?: 'lazy' | 'aggressive';
+  onScroll?: WindowScrollFn;
+}
+
+const DEFAULT_SCROLL: WindowScrollData = {
   scrollX: 0,
   scrollY: 0,
   scrollWidth: 0,
@@ -58,7 +64,7 @@ const DEFAULT_SCROLL: WindowScroll = {
 
 const IS_CLIENT = supportDom();
 
-export function measureScroll(windowSize?: WindowSizeSubset): WindowScroll {
+export function measureScroll(windowSize?: WindowSizeSubset): WindowScrollData {
   // We might prefer to return the last "client measurement" instead.
   if (!IS_CLIENT) return DEFAULT_SCROLL;
 
@@ -97,8 +103,9 @@ export function measureScroll(windowSize?: WindowSizeSubset): WindowScroll {
   };
 }
 
-// TODO: Accept a `debounceMs = 0` argument.
-export function useWindowScroll(onScroll?: WindowScrollFn) {
+export function useWindowScroll(options: WindowScrollOptions = {}) {
+  const {updateStrategy = 'lazy', onScroll} = options;
+
   // TODO: We might prefer to initialize with `measureScroll` instead.
   const [scroll, setScroll] = useState(DEFAULT_SCROLL);
 
@@ -136,6 +143,19 @@ export function useWindowScroll(onScroll?: WindowScrollFn) {
   // TODO: Is setting `scroll` at the first client-side load necessary?
   // Would we achieve the same thing by calling `measureScroll` in `useState()`?
   useIsoEffect(remeasure, []);
+
+  // Without `aggressive`, updated window measurements will not
+  // take effect until the next "scroll event" is triggered.
+  useIsoEffect(() => {
+    if (updateStrategy === 'aggressive') remeasure();
+  }, [
+    scrollWidth,
+    offscreenWidth,
+    scrollHeight,
+    offscreenHeight,
+    scrollbarSizeX,
+    scrollbarSizeY,
+  ]);
 
   // Consumer's can call `remeasure()` manually when they know
   // the DOM has changed / elements have resized / etc.

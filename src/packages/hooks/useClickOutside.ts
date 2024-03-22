@@ -4,7 +4,7 @@ import {useIsoEffect} from './useIsoEffect.js';
 export type ClickOutsideCallback = (event: PointerEvent) => void;
 export type ClickOutsideExclusion = (HTMLElement | null | undefined)[];
 
-export interface ClickOutsideHookOptions {
+export interface ClickOutsideOptions {
   disabled?: boolean;
   exclude?: ClickOutsideExclusion;
 }
@@ -12,7 +12,7 @@ export interface ClickOutsideHookOptions {
 export function useClickOutside(
   element: HTMLElement | null | undefined,
   callback: ClickOutsideCallback,
-  options: ClickOutsideHookOptions = {}
+  options: ClickOutsideOptions = {}
 ) {
   const {disabled = false, exclude = []} = options;
 

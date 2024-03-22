@@ -62,6 +62,7 @@ export function PokemonResults({pokemon}: PokemonResultsProps) {
           <CardList.Item
             key={key}
             ref={itemRef}
+            id={`Pokemon-${id}`}
             debugIndex={index}
             virtualPosition={position}
           >
@@ -78,7 +79,11 @@ export function PokemonResults({pokemon}: PokemonResultsProps) {
         );
       })
     : data.map(({id, slug, name}, index) => (
-        <CardList.Item key={`Pokemon-${id}`} debugIndex={index}>
+        <CardList.Item
+          key={`Pokemon-${id}`}
+          id={`Pokemon-${id}`}
+          debugIndex={index}
+        >
           <Card
             title={name?.english}
             subtitle={name?.japanese}

@@ -12,9 +12,7 @@ interface Size {
 
 // TODO: Consider a `round?: boolean;` option that would help
 // restrict the resizes to whole numbers.
-export interface ResizeObserverHookOptions<
-  T extends HTMLElement = HTMLElement
-> {
+export interface ResizeObserverOptions<T extends HTMLElement = HTMLElement> {
   ref: RefObject<T>;
   box?: ResizeKebabBox;
   onResize?: (size: Size) => void;
@@ -36,7 +34,7 @@ export function useResizeObserver<T extends HTMLElement = HTMLElement>({
   ref,
   box = 'border-box',
   onResize,
-}: ResizeObserverHookOptions<T>): Size {
+}: ResizeObserverOptions<T>): Size {
   const [{width, height}, setSize] = useState<Size>(initialSize);
 
   const previousSize = useRef<Size>({...initialSize});

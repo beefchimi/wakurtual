@@ -1,10 +1,22 @@
-'use client';
+import {TestScroll, type TestScrollProps} from './TestScroll.js';
+import {TestSize} from './TestSize.js';
 
-import {useWindowScroll} from '../../packages/hooks/index.js';
+// @ts-expect-error no types
+import styles from './TestWindowHooks.module.css';
 
-export function TestWindowHooks() {
-  const {remeasure: notUsed, ...scrollData} = useWindowScroll();
-  console.log('useWindowScroll', scrollData);
+export interface TestWindowHooksProps {
+  aggressiveScroll?: boolean;
+  onScroll?: TestScrollProps['onScroll'];
+}
 
-  return <p>Testing window hooks...</p>;
+export function TestWindowHooks({
+  aggressiveScroll = false,
+  onScroll,
+}: TestWindowHooksProps) {
+  return (
+    <div className={styles.TestWindowHooks}>
+      <TestScroll aggressive={aggressiveScroll} onScroll={onScroll} />
+      <TestSize />
+    </div>
+  );
 }

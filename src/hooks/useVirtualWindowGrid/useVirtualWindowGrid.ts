@@ -11,7 +11,7 @@ import type {
 } from './types.js';
 import {getVirtualItemX} from './utilities.js';
 
-export interface VirtualWindowGridHookOptions {
+export interface VirtualWindowGridOptions {
   count?: number;
   minWidth?: number;
   gap?: number;
@@ -23,7 +23,7 @@ export function useVirtualWindowGrid({
   minWidth = 10,
   gap = 0,
   getItemKey,
-}: VirtualWindowGridHookOptions) {
+}: VirtualWindowGridOptions) {
   const listRef = useRef<VirtualListElement>(null);
 
   const [listWidth, setListWidth] = useState(320);
