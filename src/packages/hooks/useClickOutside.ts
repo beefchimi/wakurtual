@@ -1,6 +1,4 @@
 import {useCallback, useRef} from 'react';
-
-import {objFilterNullish} from '../utilities/index.js';
 import {useIsoEffect} from './useIsoEffect.js';
 
 export type ClickOutsideCallback = (event: PointerEvent) => void;
@@ -11,20 +9,12 @@ export interface ClickOutsideHookOptions {
   exclude?: ClickOutsideExclusion;
 }
 
-const DEFAULT_OPTIONS: Required<ClickOutsideHookOptions> = {
-  disabled: false,
-  exclude: [],
-};
-
 export function useClickOutside(
   element: HTMLElement | null | undefined,
   callback: ClickOutsideCallback,
-  options?: ClickOutsideHookOptions
+  options: ClickOutsideHookOptions = {}
 ) {
-  const {disabled, exclude} = {
-    ...DEFAULT_OPTIONS,
-    ...objFilterNullish(options ?? {}),
-  };
+  const {disabled = false, exclude = []} = options;
 
   const elementRef = useRef(element);
   const callbackRef = useRef(callback);

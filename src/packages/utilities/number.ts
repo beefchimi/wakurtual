@@ -1,5 +1,3 @@
-import {objFilterNullish} from './object.js';
-
 interface CalcProgressOptions {
   min?: number;
   max?: number;
@@ -20,12 +18,8 @@ export function assertFloat(value?: unknown): value is number {
   return assertNumber(value) && !Number.isInteger(value);
 }
 
-export function calcProgress(value = 0, options?: CalcProgressOptions) {
-  const defaultOptions = {min: 0, max: 100, round: false};
-  const {min, max, round} = {
-    ...defaultOptions,
-    ...objFilterNullish(options),
-  };
+export function calcProgress(value = 0, options: CalcProgressOptions = {}) {
+  const {min = 0, max = 100, round = false} = options;
 
   const range = max - min;
   const adjustedValue = value - min;

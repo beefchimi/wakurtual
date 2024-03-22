@@ -1,8 +1,6 @@
 import {useCallback, useRef} from 'react';
 
 import type {GlobalEventTarget} from '../types/types.js';
-
-import {objFilterNullish} from '../utilities/index.js';
 import {useIsoEffect} from './useIsoEffect.js';
 
 // TODO: Could consider using an array of event types:
@@ -19,21 +17,12 @@ export interface KeyPressHookOptions {
   disabled?: boolean;
 }
 
-const DEFAULT_OPTIONS: Required<KeyPressHookOptions> = {
-  eventType: 'keydown',
-  target: document,
-  disabled: false,
-};
-
 export function useKeyPress(
   keys: KeyPressInput,
   callback: KeyPressCallback,
-  options?: KeyPressHookOptions
+  options: KeyPressHookOptions = {}
 ) {
-  const {eventType, target, disabled} = {
-    ...DEFAULT_OPTIONS,
-    ...objFilterNullish(options ?? {}),
-  };
+  const {eventType = 'keydown', target = document, disabled = false} = options;
 
   const callbackRef = useRef(callback);
 

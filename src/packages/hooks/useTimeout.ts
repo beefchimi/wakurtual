@@ -1,6 +1,4 @@
 import {useEffect, useRef} from 'react';
-
-import {objFilterNullish} from '../utilities/index.js';
 import type {TimeoutId} from '../types/index.js';
 
 export type TimeoutCallback = (timestamp: number) => void;
@@ -10,19 +8,11 @@ export interface TimeoutHookOptions {
   disabled?: boolean;
 }
 
-const DEFAULT_OPTIONS: Required<TimeoutHookOptions> = {
-  duration: 0,
-  disabled: false,
-};
-
 export function useTimeout(
   callback: TimeoutCallback,
-  options?: TimeoutHookOptions
+  options: TimeoutHookOptions = {}
 ): void {
-  const {duration, disabled} = {
-    ...DEFAULT_OPTIONS,
-    ...objFilterNullish(options ?? {}),
-  };
+  const {duration = 0, disabled = false} = options;
 
   const callbackRef = useRef<TimeoutCallback>();
   const timeoutRef = useRef<TimeoutId>();
