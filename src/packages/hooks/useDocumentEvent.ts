@@ -9,20 +9,20 @@ export type DocumentEventFn = (
 
 export function useDocumentEvent(
   eventName: DocumentEventName,
-  handler: DocumentEventFn,
+  callback: DocumentEventFn,
   options?: boolean | AddEventListenerOptions
 ) {
-  const savedHandler = useRef(handler);
+  const callbackRef = useRef(callback);
 
   useIsoEffect(() => {
-    savedHandler.current = handler;
-  }, [handler]);
+    callbackRef.current = callback;
+  }, [callback]);
 
   useEffect(() => {
     if (!document?.addEventListener) return;
 
     const listener: DocumentEventFn = (event) => {
-      savedHandler.current(event);
+      callbackRef.current(event);
     };
 
     document.addEventListener(eventName, listener, options);

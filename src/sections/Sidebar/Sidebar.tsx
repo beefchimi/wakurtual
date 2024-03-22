@@ -6,12 +6,15 @@ import {cx} from '../../packages/utilities/index.js';
 import {useBreakpoint} from '../../hooks/index.js';
 import {Counter, Hamburger} from '../../components/index.js';
 import {CommonAction} from '../../primitives/index.js';
+
+import {TestWindowHooks} from '../TestWindowHooks/index.js';
 // @ts-expect-error no types
 import styles from './Sidebar.module.css';
 
 export function Sidebar() {
   const {tablet, desktop} = useBreakpoint();
 
+  // TODO: `open` state should update search params.
   const [menuOpen, setMenuOpen] = useState(false);
 
   function toggleMenu() {
@@ -67,6 +70,8 @@ export function Sidebar() {
           This is just temporary content for now. Eventually, this area will be
           populated with relevant UI.
         </p>
+
+        <TestWindowHooks aggressiveScroll />
       </div>
     </aside>
   );

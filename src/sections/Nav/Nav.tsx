@@ -1,12 +1,14 @@
 'use client';
 
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import {useInView} from 'react-intersection-observer';
 import {useLocation} from 'waku/router/client';
 
-import {assertNumber, cx} from '../../packages/utilities/index.js';
 import {useDumbContent} from '../../packages/contentious/index.js';
+import {useIsoEffect} from '../../packages/hooks/index.js';
+import {assertNumber, cx} from '../../packages/utilities/index.js';
 import {TextLink} from '../../components/index.js';
+
 // @ts-expect-error no types
 import styles from './Nav.module.css';
 
@@ -40,7 +42,7 @@ export function Nav({items = []}: NavProps) {
   const shouldBeSticky =
     assertNumber(entry?.intersectionRatio) && entry.intersectionRatio < 1;
 
-  useEffect(() => setSticky(shouldBeSticky), [shouldBeSticky]);
+  useIsoEffect(() => setSticky(shouldBeSticky), [shouldBeSticky]);
 
   const itemsMarkup = items.map(({label, url}) => (
     <li key={`Nav-${label}`} className={styles.Item}>

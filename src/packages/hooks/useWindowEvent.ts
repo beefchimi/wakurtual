@@ -6,20 +6,20 @@ export type WindowEventFn = (event: WindowEventMap[WindowEventName]) => void;
 
 export function useWindowEvent(
   eventName: WindowEventName,
-  handler: WindowEventFn,
+  callback: WindowEventFn,
   options?: boolean | AddEventListenerOptions
 ) {
-  const savedHandler = useRef(handler);
+  const callbackRef = useRef(callback);
 
   useIsoEffect(() => {
-    savedHandler.current = handler;
-  }, [handler]);
+    callbackRef.current = callback;
+  }, [callback]);
 
   useEffect(() => {
     if (!window?.addEventListener) return;
 
     const listener: WindowEventFn = (event) => {
-      savedHandler.current(event);
+      callbackRef.current(event);
     };
 
     window.addEventListener(eventName, listener, options);

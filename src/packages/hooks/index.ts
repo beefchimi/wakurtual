@@ -51,5 +51,6 @@ export {
 export {
   useWindowSize,
   measureWindow,
+  type WindowSizeOptions,
   type WindowSizeData,
 } from './useWindowSize.js';

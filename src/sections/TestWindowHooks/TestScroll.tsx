@@ -26,5 +26,10 @@ export function TestScroll({aggressive = false, onScroll}: TestScrollProps) {
     </li>
   ));
 
-  return <ul className={styles.List}>{items}</ul>;
+  return (
+    <div className={styles.Box}>
+      <p className={styles.Title}>Aggressive: {aggressive.toString()}</p>
+      <ul className={styles.List}>{items}</ul>
+    </div>
+  );
 }

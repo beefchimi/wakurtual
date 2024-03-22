@@ -1,11 +1,22 @@
 'use client';
 
-import {useWindowSize} from '../../packages/hooks/index.js';
+import {
+  useWindowSize,
+  type WindowSizeOptions,
+} from '../../packages/hooks/index.js';
 // @ts-expect-error no types
 import styles from './TestWindowHooks.module.css';
 
-export function TestSize() {
-  const {remeasure: notUsed, ...scrollData} = useWindowSize();
+export interface TestSizeProps {
+  aggressive?: boolean;
+  onResize?: WindowSizeOptions['onResize'];
+}
+
+export function TestSize({aggressive = false, onResize}: TestSizeProps) {
+  const {remeasure: notUsed, ...scrollData} = useWindowSize({
+    updateStrategy: aggressive ? 'aggressive' : 'lazy',
+    onResize,
+  });
 
   const items = Object.entries(scrollData).map(([key, value]) => (
     <li key={`TestSize-${key}`} className={styles.Item}>
@@ -15,5 +26,10 @@ export function TestSize() {
     </li>
   ));
 
-  return <ul className={styles.List}>{items}</ul>;
+  return (
+    <div className={styles.Box}>
+      <p className={styles.Title}>Aggressive: {aggressive.toString()}</p>
+      <ul className={styles.List}>{items}</ul>
+    </div>
+  );
 }

@@ -19,7 +19,7 @@ export function LoadMore({disabled = false, onLoad}: LoadMoreProps) {
   const shouldBeSticky =
     assertNumber(entry?.intersectionRatio) && entry.intersectionRatio < 1;
 
-  useEffect(() => setSticky(shouldBeSticky), [shouldBeSticky]);
+  useIsoEffect(() => setSticky(shouldBeSticky), [shouldBeSticky]);
   */
 
   return (

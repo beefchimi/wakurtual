@@ -116,7 +116,7 @@ export function useWindowScroll(options: WindowScrollOptions = {}) {
     offscreenHeight,
     scrollbarSizeX,
     scrollbarSizeY,
-  } = useWindowSize();
+  } = useWindowSize({updateStrategy});
 
   function remeasure() {
     if (IS_CLIENT) {

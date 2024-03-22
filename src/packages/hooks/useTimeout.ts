@@ -1,5 +1,7 @@
 import {useEffect, useRef} from 'react';
+
 import type {TimeoutId} from '../types/index.js';
+import {useIsoEffect} from './useIsoEffect.js';
 
 export type TimeoutCallback = (timestamp: number) => void;
 
@@ -17,17 +19,16 @@ export function useTimeout(
   const callbackRef = useRef<TimeoutCallback>();
   const timeoutRef = useRef<TimeoutId>();
 
-  function handleCallback() {
-    callbackRef.current?.(Date.now());
-  }
-
-  useEffect(() => {
+  useIsoEffect(() => {
     callbackRef.current = callback;
   }, [callback]);
 
   useEffect(() => {
     if (!disabled) {
-      timeoutRef.current = setTimeout(handleCallback, duration);
+      timeoutRef.current = setTimeout(
+        () => callbackRef.current?.(Date.now()),
+        duration
+      );
     }
 
     return () => clearTimeout(timeoutRef.current);
