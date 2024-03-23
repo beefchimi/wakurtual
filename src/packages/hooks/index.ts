@@ -15,12 +15,6 @@ export {
   type DocumentEventFn,
 } from './useDocumentEvent.js';
 
-export {
-  useDocumentSize,
-  type DocumentSizeData,
-  type DocumentSizeChange,
-} from './useDocumentSize.js';
-
 export {useIsoEffect} from './useIsoEffect.js';
 
 export {

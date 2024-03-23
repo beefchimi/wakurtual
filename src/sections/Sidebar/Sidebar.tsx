@@ -7,7 +7,7 @@ import {useBreakpoint} from '../../hooks/index.js';
 import {Counter, Hamburger} from '../../components/index.js';
 import {CommonAction} from '../../primitives/index.js';
 
-import {TestWindowHooks} from '../TestWindowHooks/index.js';
+import {TestMeasureHooks} from '../TestMeasureHooks/index.js';
 // @ts-expect-error no types
 import styles from './Sidebar.module.css';
 
@@ -71,7 +71,7 @@ export function Sidebar() {
           populated with relevant UI.
         </p>
 
-        <TestWindowHooks aggressiveScroll />
+        <TestMeasureHooks />
       </div>
     </aside>
   );

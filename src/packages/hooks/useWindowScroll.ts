@@ -25,8 +25,8 @@ type WindowSizeSubset = Pick<
 export interface WindowScrollData {
   scrollX: number;
   scrollY: number;
-  scrollWidth: number;
-  scrollHeight: number;
+  scrollWidth: WindowSizeData['scrollWidth'];
+  scrollHeight: WindowSizeData['scrollHeight'];
   scrollableDistanceX: number;
   scrollableDistanceY: number;
   scrollableX: boolean;
@@ -62,6 +62,7 @@ const DEFAULT_SCROLL: WindowScrollData = {
   atEndY: true,
 };
 
+// Does it make sense to cache this here?
 const IS_CLIENT = supportDom();
 
 export function measureScroll(windowSize?: WindowSizeSubset): WindowScrollData {
@@ -82,22 +83,16 @@ export function measureScroll(windowSize?: WindowSizeSubset): WindowScrollData {
   return {
     scrollX,
     scrollY,
-
     scrollWidth,
     scrollHeight,
-
     scrollableDistanceX: offscreenWidth,
     scrollableDistanceY: offscreenHeight,
-
     scrollableX: Boolean(offscreenWidth),
     scrollableY: Boolean(offscreenHeight),
-
     scrollbarVisibleX: Boolean(scrollbarSizeX),
     scrollbarVisibleY: Boolean(scrollbarSizeY),
-
     atStartX: scrollX <= 0,
     atEndX: scrollX >= offscreenWidth,
-
     atStartY: scrollY <= 0,
     atEndY: scrollY >= offscreenHeight,
   };
@@ -119,18 +114,20 @@ export function useWindowScroll(options: WindowScrollOptions = {}) {
   } = useWindowSize({updateStrategy});
 
   function remeasure() {
-    if (IS_CLIENT) {
-      setScroll(
-        measureScroll({
-          scrollWidth,
-          scrollHeight,
-          offscreenWidth,
-          offscreenHeight,
-          scrollbarSizeX,
-          scrollbarSizeY,
-        })
-      );
-    }
+    if (!IS_CLIENT) return scroll;
+
+    const newScroll = measureScroll({
+      scrollWidth,
+      scrollHeight,
+      offscreenWidth,
+      offscreenHeight,
+      scrollbarSizeX,
+      scrollbarSizeY,
+    });
+
+    setScroll(newScroll);
+
+    return newScroll;
   }
 
   function handleScroll(event: Event) {
@@ -138,11 +135,14 @@ export function useWindowScroll(options: WindowScrollOptions = {}) {
     onScroll?.(event);
   }
 
+  // Would performance improve with a `intersectionObserver`?
   useWindowEvent('scroll', handleScroll);
 
   // TODO: Is setting `scroll` at the first client-side load necessary?
   // Would we achieve the same thing by calling `measureScroll` in `useState()`?
-  useIsoEffect(remeasure, []);
+  useIsoEffect(() => {
+    remeasure();
+  }, []);
 
   // Without `aggressive`, updated window measurements will not
   // take effect until the next "scroll event" is triggered.
@@ -157,8 +157,9 @@ export function useWindowScroll(options: WindowScrollOptions = {}) {
     scrollbarSizeY,
   ]);
 
-  // Consumer's can call `remeasure()` manually when they know
-  // the DOM has changed / elements have resized / etc.
+  // Consumer's can call `remeasure()` manually when they
+  // suspect the changed has occured that would otherwise
+  // not be reported by the window scroll event.
   return {
     ...scroll,
     remeasure,

@@ -1,21 +1,23 @@
 'use client';
 
-import {
-  useWindowScroll,
-  type WindowScrollOptions,
-} from '../../packages/hooks/index.js';
+import {useState} from 'react';
+
+import {useWindowScroll} from '../../packages/hooks/index.js';
+import {Button} from '../../components/index.js';
+
 // @ts-expect-error no types
-import styles from './TestWindowHooks.module.css';
+import styles from './TestMeasureHooks.module.css';
 
-export interface TestScrollProps {
-  aggressive?: boolean;
-  onScroll?: WindowScrollOptions['onScroll'];
-}
+export function TestScroll() {
+  const [aggressive, setAggressive] = useState(true);
 
-export function TestScroll({aggressive = false, onScroll}: TestScrollProps) {
+  function handleAggressiveToggle() {
+    setAggressive((current) => !current);
+  }
+
   const {remeasure: notUsed, ...scrollData} = useWindowScroll({
     updateStrategy: aggressive ? 'aggressive' : 'lazy',
-    onScroll,
+    // onScroll: (event) => console.log('Scroll', event),
   });
 
   const items = Object.entries(scrollData).map(([key, value]) => (
@@ -28,7 +30,11 @@ export function TestScroll({aggressive = false, onScroll}: TestScrollProps) {
 
   return (
     <div className={styles.Box}>
-      <p className={styles.Title}>Aggressive: {aggressive.toString()}</p>
+      <Button
+        label={`Aggressive: ${aggressive.toString()}`}
+        onClick={handleAggressiveToggle}
+      />
+
       <ul className={styles.List}>{items}</ul>
     </div>
   );

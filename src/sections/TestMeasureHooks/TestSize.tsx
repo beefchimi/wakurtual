@@ -1,24 +1,26 @@
 'use client';
 
-import {
-  useWindowSize,
-  type WindowSizeOptions,
-} from '../../packages/hooks/index.js';
+import {useState} from 'react';
+
+import {useWindowSize} from '../../packages/hooks/index.js';
+import {Button} from '../../components/index.js';
+
 // @ts-expect-error no types
-import styles from './TestWindowHooks.module.css';
+import styles from './TestMeasureHooks.module.css';
 
-export interface TestSizeProps {
-  aggressive?: boolean;
-  onResize?: WindowSizeOptions['onResize'];
-}
+export function TestSize() {
+  const [aggressive, setAggressive] = useState(false);
 
-export function TestSize({aggressive = false, onResize}: TestSizeProps) {
-  const {remeasure: notUsed, ...scrollData} = useWindowSize({
+  function handleAggressiveToggle() {
+    setAggressive((current) => !current);
+  }
+
+  const {remeasure: notUsed, ...sizeData} = useWindowSize({
     updateStrategy: aggressive ? 'aggressive' : 'lazy',
-    onResize,
+    // onResize: (event) => console.log('Resize', event),
   });
 
-  const items = Object.entries(scrollData).map(([key, value]) => (
+  const items = Object.entries(sizeData).map(([key, value]) => (
     <li key={`TestSize-${key}`} className={styles.Item}>
       <p className={styles.Text}>
         <strong>{key}:</strong> {value}
@@ -28,7 +30,11 @@ export function TestSize({aggressive = false, onResize}: TestSizeProps) {
 
   return (
     <div className={styles.Box}>
-      <p className={styles.Title}>Aggressive: {aggressive.toString()}</p>
+      <Button
+        label={`Aggressive: ${aggressive.toString()}`}
+        onClick={handleAggressiveToggle}
+      />
+
       <ul className={styles.List}>{items}</ul>
     </div>
   );
