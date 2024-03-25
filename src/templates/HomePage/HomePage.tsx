@@ -16,7 +16,6 @@ export async function HomePage() {
   const pageData = await getPageData();
   const pokemonPromise = fetchPokedex(10, true);
 
-  // TODO: Add `ErrorBoundary` and `Suspense`.
   return (
     <div className="HomePage">
       <title>{pageData.htmlTitle}</title>

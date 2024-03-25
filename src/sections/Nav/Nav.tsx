@@ -4,7 +4,7 @@ import {useState} from 'react';
 import {useInView} from 'react-intersection-observer';
 import {useRouter_UNSTABLE as useRouter} from 'waku';
 
-import {useDumbContent} from '../../packages/contentious/index.js';
+// import {useDumbContent} from '../../packages/contentious/index.js';
 import {useIsoEffect} from '../../packages/hooks/index.js';
 import {assertNumber, cx} from '../../packages/utilities/index.js';
 import {TextLink} from '../../components/index.js';
@@ -27,7 +27,13 @@ export function Nav({items = []}: NavProps) {
   const router = useRouter();
   const {path} = router.value;
 
-  const getContent = useDumbContent();
+  // const getContent = useDumbContent();
+  // const errorContent = getContent('nav-empty');
+
+  // TODO: Return to `useDumbContent()` once we fix:
+  // "error loading dynamically imported module"
+  const errorContent = 'Nowhere to go…';
+
   const {ref, entry} = useInView({
     rootMargin: '-1px 0px 0px 0px',
     threshold: [1],
@@ -55,7 +61,7 @@ export function Nav({items = []}: NavProps) {
     itemsMarkup
   ) : (
     <li className={styles.Item}>
-      <p className={styles.EmptyState}>{getContent('nav-empty')}</p>
+      <p className={styles.EmptyState}>{errorContent}</p>
     </li>
   );
 

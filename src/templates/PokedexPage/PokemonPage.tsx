@@ -13,7 +13,6 @@ interface PokemonPageProps {
 export async function PokemonPage({slug}: PokemonPageProps) {
   const pokemonPromise = fetchPokemonBySlug(slug);
 
-  // TODO: Add `ErrorBoundary` and `Suspense`.
   return (
     <div className={styles.PokemonPage}>
       <PokemonHero pokemon={pokemonPromise}>

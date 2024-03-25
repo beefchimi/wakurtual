@@ -17,7 +17,6 @@ export async function PokedexPage() {
   // TODO: Needs to accept an incremented argument.
   const pokemonPromise = fetchPokedexFlatPaged(99);
 
-  // TODO: Add `ErrorBoundary` and `Suspense`.
   return (
     <div className="PokedexPage">
       <title>{pageData.htmlTitle}</title>

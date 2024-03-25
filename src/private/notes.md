@@ -3,10 +3,10 @@
 ## Tasks
 
 - Move this `private` folder our of `src`.
+  - I wasted lots of time trying to figure out errors related to this... DO NOT MOVE BACK TO `~/private`.
   - We needed to nest within source until either:
     - More issues are fixed in `waku`.
     - We better understand `waku` and avoid all of the SSR issues.
-- Go back to only using the `--with-ssr` commands.
 - Remove `resolveJsonModule` from `tsconfig`.
 - Restore uses of `node:fs`.
 
