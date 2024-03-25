@@ -1,4 +1,4 @@
-import {type PokemonStats} from '../../data.js';
+import {type PokemonStats} from '../../data/index.js';
 import {
   imgPixelAttack,
   imgPixelDefense,

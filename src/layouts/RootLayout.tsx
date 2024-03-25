@@ -6,24 +6,13 @@ import '../styles/global.css';
 import '../styles/utility.css';
 
 // import {ContentProvider} from '../packages/index.js';
-import {
-  Footer,
-  Header,
-  Main,
-  Nav,
-  type NavProps,
-  Sidebar,
-} from '../sections/index.js';
+
+import {NAV_LINKS} from '../data/index.js';
+import {Footer, Header, Main, Nav, Sidebar} from '../sections/index.js';
 
 interface RootLayoutProps {
   children: ReactNode;
 }
-
-const NAV_LINKS: NavProps['items'] = [
-  {label: 'Trending', url: '/'},
-  {label: 'Pokedex', url: '/pokedex'},
-  {label: 'About', url: '/about'},
-];
 
 async function getPageData() {
   const data = {

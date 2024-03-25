@@ -1,5 +1,16 @@
 export function supportDom() {
-  return typeof window?.document?.createElement !== 'undefined';
+  // It is critical that the first `window` condition be isolated,
+  // otherwise the server will throw a `ReferenceError`.
+  return (
+    typeof window !== 'undefined' &&
+    typeof window.document?.createElement !== 'undefined'
+  );
+}
+
+export function supportNavigator() {
+  return (
+    typeof navigator !== 'undefined' && typeof navigator.userAgent === 'string'
+  );
 }
 
 export function supportMatchMedia() {
@@ -15,5 +26,8 @@ export function supportResizeObserver() {
 }
 
 export function supportSafari() {
-  return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  return (
+    supportNavigator() &&
+    /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
+  );
 }

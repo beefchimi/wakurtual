@@ -1,6 +1,6 @@
 import {createPages} from 'waku';
 
-import {fetchPokedexSlugs} from './data.js';
+import {fetchPokedexSlugs} from './data/index.js';
 import {RootLayout} from './layouts/index.js';
 import {
   AboutPage,
@@ -8,8 +8,11 @@ import {
   HomePage,
   PokedexPage,
   PokemonPage,
-} from './pages/index.js';
+} from './templates/index.js';
 
+// Waku currently supports two rendering options:
+// 1. `static` for static pre-rendering (SSG).
+// 2. `dynamic` for server-side rendering (SSR).
 export default createPages(async ({createPage, createLayout}) => {
   createLayout({
     render: 'static',

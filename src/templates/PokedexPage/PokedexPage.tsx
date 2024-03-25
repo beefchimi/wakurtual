@@ -1,7 +1,7 @@
 import {Suspense} from 'react';
 
 import {PokemonResults, PokemonResultsSkeleton} from '../../sections/index.js';
-import {fetchPokedexFlatPaged} from '../../data.js';
+import {fetchPokedexFlatPaged} from '../../data/index.js';
 
 async function getPageData() {
   const data = {

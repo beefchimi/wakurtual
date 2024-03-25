@@ -8,7 +8,11 @@ import {
   type GetItemKeyFn,
 } from '../../hooks/index.js';
 import {Button, Card, CardList, LoadMore} from '../../components/index.js';
-import {getPokemonPixel, getPokemonRoute, type Pokemon} from '../../data.js';
+import {
+  getPokemonPixel,
+  getPokemonRoute,
+  type Pokemon,
+} from '../../data/index.js';
 
 // @ts-expect-error no types
 import styles from './PokemonResults.module.css';
@@ -78,7 +82,8 @@ export function PokemonResults({pokemon}: PokemonResultsProps) {
           </CardList.Item>
         );
       })
-    : data.map(({id, slug, name}, index) => (
+    : // TODO: Restore to `data.map`.
+      ([] as Pokemon[]).map(({id, slug, name}, index) => (
         <CardList.Item
           key={`Pokemon-${id}`}
           id={`Pokemon-${id}`}

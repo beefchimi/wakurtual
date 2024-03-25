@@ -8,10 +8,6 @@
     "skipLibCheck": true,
     "noUncheckedIndexedAccess": true,
     "types": ["react/experimental"],
-    "jsx": "react-jsx",
-    "resolveJsonModule": true,
-    "paths": {
-      "~/*": ["./src/*"]
-    }
+    "jsx": "react-jsx"
   }
 }

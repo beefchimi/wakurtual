@@ -1,7 +1,11 @@
 import {use, type ReactNode} from 'react';
 
 import {cx} from '../../packages/utilities/index.js';
-import {getPokemonPixel, parsePokemonStats, type Pokemon} from '../../data.js';
+import {
+  getPokemonPixel,
+  parsePokemonStats,
+  type Pokemon,
+} from '../../data/index.js';
 
 import {getStatImage} from './PokemonHero.utils.js';
 // @ts-expect-error no types

@@ -19,14 +19,14 @@
   },
   "dependencies": {
     "@tanstack/react-virtual": "^3.2.0",
-    "react": "18.3.0-canary-6c3b8dbfe-20240226",
-    "react-dom": "18.3.0-canary-6c3b8dbfe-20240226",
+    "react": "18.3.0-canary-670811593-20240322",
+    "react-dom": "18.3.0-canary-670811593-20240322",
     "react-intersection-observer": "^9.8.1",
-    "react-server-dom-webpack": "18.3.0-canary-6c3b8dbfe-20240226",
-    "waku": "^0.19.4"
+    "react-server-dom-webpack": "18.3.0-canary-670811593-20240322",
+    "waku": "0.20.0-beta.3"
   },
   "devDependencies": {
-    "@types/react": "^18.2.67",
+    "@types/react": "^18.2.70",
     "@types/react-dom": "^18.2.22",
     "autoprefixer": "^10.4.19",
     "typescript": "^5.4.3"

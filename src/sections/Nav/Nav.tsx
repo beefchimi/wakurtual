@@ -2,7 +2,7 @@
 
 import {useState} from 'react';
 import {useInView} from 'react-intersection-observer';
-import {useLocation} from 'waku/router/client';
+import {useRouter_UNSTABLE as useRouter} from 'waku';
 
 import {useDumbContent} from '../../packages/contentious/index.js';
 import {useIsoEffect} from '../../packages/hooks/index.js';
@@ -24,9 +24,10 @@ export interface NavProps {
 export function Nav({items = []}: NavProps) {
   const [sticky, setSticky] = useState(false);
 
-  const {path} = useLocation();
-  const getContent = useDumbContent();
+  const router = useRouter();
+  const {path} = router.value;
 
+  const getContent = useDumbContent();
   const {ref, entry} = useInView({
     rootMargin: '-1px 0px 0px 0px',
     threshold: [1],

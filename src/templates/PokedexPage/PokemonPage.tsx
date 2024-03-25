@@ -1,5 +1,5 @@
 import {cx} from '../../packages/utilities/index.js';
-import {fetchPokemonBySlug, type Pokemon} from '../../data.js';
+import {fetchPokemonBySlug, type Pokemon} from '../../data/index.js';
 import {CommonAction} from '../../primitives/index.js';
 import {PokemonHero} from '../../sections/index.js';
 

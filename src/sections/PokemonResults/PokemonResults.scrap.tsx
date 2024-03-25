@@ -1,7 +1,7 @@
 import {useCallback} from 'react';
 import {type VirtualizerOptions} from '@tanstack/react-virtual';
 
-import type {Pokemon} from '../../data.js';
+import type {Pokemon} from '../../data/index.js';
 import {Card, CardList} from '../../components/index.js';
 
 type RangeExtractFn = NonNullable<

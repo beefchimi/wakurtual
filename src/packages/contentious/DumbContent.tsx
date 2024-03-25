@@ -1,18 +1,10 @@
-// import fs from 'node:fs';
-
-// TODO: Switch back to `node:js` when ready.
-// Will need to remove `resolveJsonModule` once we do that.
-import dumbContent from '../../private/dumb-content.json';
+import fs from 'node:fs';
 
 type ParsedContent = Record<string, string>;
 
-/*
 const rawContent: ParsedContent = JSON.parse(
   fs.readFileSync('./private/dumb-content.json', 'utf8')
 );
-*/
-
-const rawContent: ParsedContent = dumbContent;
 
 const handlebarRegex = /{{[\s]*.*?[\s]*}}/g;
 
