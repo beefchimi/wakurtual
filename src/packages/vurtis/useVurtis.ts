@@ -1,19 +1,22 @@
 'use client';
 
-import {useEffect, useMemo, useRef, useState} from 'react';
+import {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 
-import {arrayOfLength} from '../../utilities/index.js';
-
-import {useWindowEvent} from '../useWindowEvent.js';
-import {useResizeObserver} from '../useResizeObserver/index.js';
-import {useWindowSize} from '../useWindowSize.js';
+import {arrayOfLength, clamp} from '../utilities/index.js';
+import {useResizeObserver} from '../hooks/useResizeObserver/index.js';
+import {useWindowScroll} from '../hooks/useWindowScroll.js';
 
 import type {
+  VurtisRangeTuple,
   VurtisListElement,
-  VurtisItemX,
-  VurtisItemPosition,
+  VurtisItemData,
 } from './types.js';
-import {getItemX} from './utilities.js';
+import {
+  calcContainerHeight,
+  calcItemTop,
+  calcItemLeft,
+  getItemX,
+} from './utilities.js';
 
 // Consider an option for `px` vs `%` units.
 export interface VurtisOptions {
@@ -25,12 +28,6 @@ export interface VurtisOptions {
 const MIN_ITEM_SIZE = 10;
 const MIN_DEVICE_WIDTH = 320;
 
-export const DEFAULT_ITEM_X: VurtisItemX = {
-  columns: 1,
-  pixel: [100, 0],
-  percent: [100, 0],
-};
-
 // TODO: Referencing the following prototypes:
 // 1. https://stackblitz.com/edit/react-virtual-fluid-grid?terminal=dev
 // 2. https://stackblitz.com/edit/react-virtual-fluid-grid-fixed?terminal=dev
@@ -39,65 +36,141 @@ export function useVurtis({
   minWidth = MIN_ITEM_SIZE,
   gap = 0,
 }: VurtisOptions) {
+  // TODO: We probably want to also store the "first child" as a separate ref.
+  // And we will need to update that ref whenever the "range" changes.
   const listRef = useRef<VurtisListElement>(null);
+  // const firstItemRef = useRef<HTMLLIElement>(null);
+
+  useEffect(() => {
+    // TODO: Investigate when this gets called.
+    console.log('CHANGED: listRef', listRef);
+  }, [listRef]);
+
+  useEffect(() => {
+    // TODO: Investigate when this gets called.
+    console.log('CHANGED: listRef.current', listRef.current);
+  }, [listRef.current]);
 
   const [columns, setColumns] = useState(1);
-  const [listOffset, setListOffset] = useState(0);
+  // const [rows, setRows] = useState(1);
+
+  // const overscanRows = 2;
+  // const overscanItems = columns * overscanRows;
+
+  const [listTop, setListTop] = useState(0);
+  const [listScroll, setListScroll] = useState(0);
+
   const [listWidth, setListWidth] = useState(MIN_DEVICE_WIDTH);
+  const [listHeight, setListHeight] = useState(MIN_ITEM_SIZE);
+  const [listVisibleHeight, setListVisibleHeight] = useState(0);
 
   const [itemWidth, setItemWidth] = useState(MIN_ITEM_SIZE);
   const [itemHeight, setItemHeight] = useState(MIN_ITEM_SIZE);
 
-  // TODO: We might want document height...
-  // const {height: windowHeight} = useWindowSize();
+  // const [renderedRange, setRenderedRange] = useState<VurtisRangeTuple>([0, 0]);
+  const [visibleRange, setVisibleRange] = useState<VurtisRangeTuple>([0, 0]);
 
-  function handleWindowScroll(event: Event) {
-    console.log('window scroll', event);
-  }
-
-  useWindowEvent('scroll', handleWindowScroll);
-
-  useResizeObserver<VurtisListElement>({
-    ref: listRef,
-    onResize: ({width}) => {
-      if (!listRef.current) return;
-
-      const {firstElementChild, offsetTop} = listRef.current;
-      const itemHeight = firstElementChild
-        ? Math.round(firstElementChild.getBoundingClientRect().height)
-        : MIN_ITEM_SIZE;
-
-      setListOffset(offsetTop);
-      setListWidth(width);
-      setItemHeight(itemHeight);
-    },
+  const {
+    scrollY,
+    scrollHeight: documentHeight,
+    visibleHeight: windowHeight,
+  } = useWindowScroll({
+    updateStrategy: 'aggressive',
+    // onScroll: (event) => console.log('useVurtis > scroll event', event),
   });
 
+  useResizeObserver({
+    ref: listRef,
+    onResize: ({width}) => setListWidth(width),
+  });
+
+  const getItemHeightFromDom = useCallback(() => {
+    if (!listRef.current) return itemHeight;
+
+    const {firstElementChild} = listRef.current;
+
+    const newHeight = firstElementChild
+      ? Math.round(firstElementChild.getBoundingClientRect().height)
+      : itemHeight;
+
+    return newHeight;
+  }, [listRef.current, itemHeight]);
+
+  useEffect(() => {
+    // TODO: This should re-update whenever `listRef.current` changes.
+    if (listRef.current) setListTop(listRef.current.offsetTop);
+  }, [documentHeight]);
+
+  // Compute a certain subset of dimensions based on relevant changes.
   useEffect(() => {
     const latestX = getItemX(listWidth, minWidth, gap);
 
     setColumns(latestX.columns);
+    // setRows(Math.ceil(count / latestX.columns));
+
+    const newItemHeight = getItemHeightFromDom();
+    const newListHeight = calcContainerHeight({
+      count,
+      columns: latestX.columns,
+      itemHeight: newItemHeight,
+      gap: latestX.pixel[1],
+    });
+
     setItemWidth(latestX.pixel[0]);
-  }, [listWidth, minWidth, gap]);
+    setItemHeight(newItemHeight);
 
-  // Window scroll listener
-  // getListHeight()
-  // getRange()
-  // getVirtualItems()
+    setListHeight(newListHeight);
+  }, [count, minWidth, gap, listTop, listWidth, getItemHeightFromDom]);
 
-  const overscan = columns * 2;
-  const listHeight = 1234;
-  const items = useMemo(() => arrayOfLength(count), [count]);
+  // Compute the visible height of the list on screen.
+  useEffect(() => {
+    const scrollAdjusted = scrollY - listTop;
+    const scrollOffset = Math.abs(scrollAdjusted);
 
-  const virtualItems = items.map((data) => {
-    // perform measurements!
-  });
+    setListScroll(clamp(0, scrollAdjusted, listHeight));
+    setListVisibleHeight(clamp(0, listHeight - scrollOffset, windowHeight));
+  }, [listTop, listHeight, scrollY, windowHeight]);
+
+  // Compute the range of items to render, as well as what is visible.
+  useEffect(() => {
+    const listStart = listHeight - listScroll;
+    // const listEnd = listStart + listVisibleHeight;
+
+    const rowsBefore = Math.floor(listStart / itemHeight);
+    const visibleRows = Math.ceil(listVisibleHeight / itemHeight);
+
+    const indexStart = Math.abs(rowsBefore * columns);
+    const indexEnd = (rowsBefore + visibleRows) * columns;
+
+    // TODO: Are these tuples causing needless re-renders?
+    // Do we need to convert these to primitives?
+    // setRenderedRange([]);
+    setVisibleRange([indexStart, indexEnd]);
+  }, [columns, listHeight, itemHeight, listVisibleHeight, listScroll]);
+
+  const virtualItems: VurtisItemData[] = useMemo(() => {
+    // TODO: We need to use `renderedRange` instead.
+    const [start, end] = visibleRange;
+    const visibleLength = end - start;
+    const shellItems = arrayOfLength(visibleLength);
+
+    return shellItems.map((index) => {
+      const order = start + index;
+
+      return {
+        index,
+        order,
+        top: calcItemTop({order, columns, height: itemHeight, gap}),
+        left: calcItemLeft({order, columns, width: itemWidth, gap}),
+        width: itemWidth,
+        height: itemHeight,
+      };
+    });
+  }, [visibleRange, gap, columns, itemWidth, itemHeight]);
 
   return {
     listRef,
     listHeight,
     virtualItems,
-    // itemRef: virtualizer.measureElement,
-    // remeasure: virtualizer.measure,
   };
 }

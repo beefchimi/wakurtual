@@ -1,4 +1,7 @@
 export type VurtisListElement = HTMLOListElement | HTMLUListElement;
+export type VurtisItemElement = HTMLLIElement;
+
+export type VurtisRangeTuple = [startIndex: number, endIndex: number];
 export type VurtisWidthTuple = [width: number, gap: number];
 
 export interface VurtisContainerCalc {
@@ -9,7 +12,7 @@ export interface VurtisContainerCalc {
 }
 
 export interface VurtisItemCalc {
-  index?: number;
+  order?: number;
   columns?: number;
   width?: number;
   height?: number;
@@ -23,8 +26,14 @@ export interface VurtisItemX {
 }
 
 export interface VurtisItemPosition {
+  // TODO: Do we actually want to support `string` (for percentage)?
   top?: string | number;
   left?: string | number;
   width?: string | number;
   height?: string | number;
+}
+
+export interface VurtisItemData extends VurtisItemPosition {
+  index: number;
+  order: number;
 }

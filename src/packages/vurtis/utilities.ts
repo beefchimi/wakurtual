@@ -1,4 +1,4 @@
-import {clamp, trimDecimals} from '../../utilities/index.js';
+import {clamp, trimDecimals} from '../utilities/index.js';
 import type {
   VurtisContainerCalc,
   VurtisItemCalc,
@@ -22,22 +22,22 @@ export function calcContainerHeight({
 }
 
 export function calcItemTop({
-  index = 0,
+  order = 0,
   columns = 1,
   height = 10,
   gap = 0,
 }: VurtisItemCalc) {
-  const currentRow = Math.floor(index / columns);
+  const currentRow = Math.floor(order / columns);
   return (height + gap) * currentRow;
 }
 
 export function calcItemLeft({
-  index = 0,
+  order = 0,
   columns = 1,
   width = 10,
   gap = 0,
 }: VurtisItemCalc) {
-  const currentColumn = index % columns;
+  const currentColumn = order % columns;
   return (width + gap) * currentColumn;
 }
 
