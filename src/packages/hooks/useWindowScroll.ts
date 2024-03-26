@@ -15,6 +15,8 @@ type WindowSizeSubset = Pick<
   WindowSizeData,
   | 'scrollWidth'
   | 'scrollHeight'
+  | 'minViewWidth'
+  | 'minViewHeight'
   | 'offscreenWidth'
   | 'offscreenHeight'
   | 'scrollbarSizeX'
@@ -27,6 +29,8 @@ export interface WindowScrollData {
   scrollY: number;
   scrollWidth: WindowSizeData['scrollWidth'];
   scrollHeight: WindowSizeData['scrollHeight'];
+  visibleWidth: WindowSizeData['minViewWidth'];
+  visibleHeight: WindowSizeData['minViewHeight'];
   scrollableDistanceX: number;
   scrollableDistanceY: number;
   scrollableX: boolean;
@@ -50,6 +54,8 @@ const DEFAULT_SCROLL: WindowScrollData = {
   scrollY: 0,
   scrollWidth: 0,
   scrollHeight: 0,
+  visibleWidth: 0,
+  visibleHeight: 0,
   scrollableDistanceX: 0,
   scrollableDistanceY: 0,
   scrollableX: false,
@@ -72,6 +78,8 @@ export function measureScroll(windowSize?: WindowSizeSubset): WindowScrollData {
   const {
     scrollWidth,
     scrollHeight,
+    minViewWidth,
+    minViewHeight,
     offscreenWidth,
     offscreenHeight,
     scrollbarSizeX,
@@ -85,6 +93,8 @@ export function measureScroll(windowSize?: WindowSizeSubset): WindowScrollData {
     scrollY,
     scrollWidth,
     scrollHeight,
+    visibleWidth: minViewWidth,
+    visibleHeight: minViewHeight,
     scrollableDistanceX: offscreenWidth,
     scrollableDistanceY: offscreenHeight,
     scrollableX: Boolean(offscreenWidth),
@@ -106,8 +116,10 @@ export function useWindowScroll(options: WindowScrollOptions = {}) {
 
   const {
     scrollWidth,
-    offscreenWidth,
     scrollHeight,
+    minViewWidth,
+    minViewHeight,
+    offscreenWidth,
     offscreenHeight,
     scrollbarSizeX,
     scrollbarSizeY,
@@ -119,6 +131,8 @@ export function useWindowScroll(options: WindowScrollOptions = {}) {
     const newScroll = measureScroll({
       scrollWidth,
       scrollHeight,
+      minViewWidth,
+      minViewHeight,
       offscreenWidth,
       offscreenHeight,
       scrollbarSizeX,
@@ -135,7 +149,7 @@ export function useWindowScroll(options: WindowScrollOptions = {}) {
     onScroll?.(event);
   }
 
-  // Would performance improve with a `intersectionObserver`?
+  // Would performance improve with an `intersectionObserver`?
   useWindowEvent('scroll', handleScroll);
 
   // TODO: Is setting `scroll` at the first client-side load necessary?
@@ -150,8 +164,10 @@ export function useWindowScroll(options: WindowScrollOptions = {}) {
     if (updateStrategy === 'aggressive') remeasure();
   }, [
     scrollWidth,
-    offscreenWidth,
     scrollHeight,
+    minViewWidth,
+    minViewHeight,
+    offscreenWidth,
     offscreenHeight,
     scrollbarSizeX,
     scrollbarSizeY,

@@ -42,6 +42,7 @@ export function useResizeObserver<T extends HTMLElement = HTMLElement>({
 
   const isMounted = useMounted();
 
+  // TODO: Should we prefer `useIsoEffect()` instead?
   useEffect(() => {
     if (!ref.current || !supportResizeObserver()) return;
 
