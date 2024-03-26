@@ -1,6 +1,5 @@
 export * from './useResizeObserver/index.js';
 export * from './useScrollLock/index.js';
-export * from './useVurtis/index.js';
 
 export {
   useClickOutside,

@@ -22,9 +22,19 @@ export function Sidebar() {
   }
 
   /*
-  useEffect(() => {
-    document.body.inert = menuOpen;
-  }, [menuOpen]);
+    const router = useRouter();
+    const {searchParams} = router.value;
+
+    if (searchParams.has('sidebar')) {
+      router.push('?sidebar');
+      // router.replace('?sidebar')
+    } else {
+      // Remove search param.
+    }
+
+    useEffect(() => {
+      document.body.inert = menuOpen;
+    }, [menuOpen]);
   */
 
   const counterMarkup = desktop ? (
