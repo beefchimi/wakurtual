@@ -5,19 +5,20 @@ import {cx} from '../../../packages/utilities/index.js';
 import styles from '../VurtisPage.module.css';
 
 export interface CssGridProps {
-  items?: number[];
+  items?: string[];
 }
 
 export function CssGrid({items = []}: CssGridProps) {
-  const itemsMarkup = items.map((index) => (
+  const itemsMarkup = items.map((value, index) => (
     <li
-      key={`Css-Item-${index}`}
+      key={`Css-Item-${value}`}
       data-index={index}
       className={cx(styles.GridItem, styles.fallbackItem)}
     >
       <div className={styles.GridCard}>
-        <h2>Order: {index}</h2>
-        <p>Value/Index: {index}</p>
+        <h2>Order: {items.length - index}</h2>
+        <h3>Index: {index}</h3>
+        <p>Value: {value}</p>
       </div>
     </li>
   ));

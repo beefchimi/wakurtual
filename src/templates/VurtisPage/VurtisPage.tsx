@@ -1,6 +1,10 @@
 import {Suspense} from 'react';
 
-import {arrayOfLength, sleep} from '../../packages/utilities/index.js';
+import {
+  arrayOfLength,
+  convertNumberToWords,
+  sleep,
+} from '../../packages/utilities/index.js';
 import {VurtisDemo} from './VurtisDemo.js';
 
 // @ts-expect-error no types
@@ -16,8 +20,10 @@ async function getPageData() {
 }
 
 async function fetchItems() {
-  const items = arrayOfLength(99);
+  const items = arrayOfLength(100).map(convertNumberToWords);
   sleep(1234);
+
+  // return reverse ? items.toReversed() : items;
   return items;
 }
 

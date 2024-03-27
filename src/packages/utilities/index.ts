@@ -9,6 +9,8 @@ export {
 
 export {classNames as cx, variationName as vx} from './classNames.js';
 
+export {convertNumberToWords} from './convert.js';
+
 export {
   assertBasicError,
   convertUnknownError,

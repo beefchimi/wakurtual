@@ -91,9 +91,15 @@
 }
 
 .GridCard h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: blue;
+}
+
+.GridCard h3 {
   font-size: 18px;
   font-weight: 700;
-  color: orange;
+  color: green;
 }
 
 .GridCard p {

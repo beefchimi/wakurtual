@@ -9,13 +9,21 @@ import {CssGrid, VurtisGrid} from './grid/index.js';
 import styles from './VurtisPage.module.css';
 
 export interface VurtisDemoProps {
-  itemsData: Promise<number[]>;
+  itemsData: Promise<string[]>;
   loadMore?: boolean;
 }
 
 export function VurtisDemo({itemsData, loadMore = false}: VurtisDemoProps) {
-  const items = use(itemsData);
+  const rawItems = use(itemsData);
+
+  const [reverse, setReverse] = useState(false);
   const [virtualize, setVirtualize] = useState(true);
+
+  const items = reverse ? rawItems.toReversed() : rawItems;
+
+  function handleReverseToggle() {
+    setReverse((current) => !current);
+  }
 
   function handleVirtualizeToggle() {
     setVirtualize((current) => !current);
@@ -30,6 +38,12 @@ export function VurtisDemo({itemsData, loadMore = false}: VurtisDemoProps) {
   return (
     <div className={styles.VurtisDemo}>
       <div className={styles.ActionBar}>
+        <Button
+          label={reverse ? 'Sort normal' : 'Sort reverse'}
+          pressed={reverse}
+          onClick={handleReverseToggle}
+        />
+
         <Button
           label={
             virtualize ? 'Disable virtualization' : 'Enable virtualization'

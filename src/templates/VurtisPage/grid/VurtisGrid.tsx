@@ -7,7 +7,7 @@ import {useBreakpoint} from '../../../hooks/index.js';
 import styles from '../VurtisPage.module.css';
 
 export interface VurtisGridProps {
-  items?: number[];
+  items?: string[];
 }
 
 export function VurtisGrid({items = []}: VurtisGridProps) {
@@ -24,21 +24,21 @@ export function VurtisGrid({items = []}: VurtisGridProps) {
 
   const itemsMarkup = virtualItems.map(
     ({index, order, top, left, width, height: _height}) => {
-      const value = items[index] || 0;
+      const value = items[order] || 'zero';
 
       return (
         <li
-          key={`Vurtis-Item-${order}`}
-          data-index={index}
+          // key={`Vurtis-Item-${order}`}
+          key={`Vurtis-Item-${value}`}
+          // data-index={index}
           className={styles.GridItem}
           // Not passing `height` as it is computed natively.
           style={{top, left, width}}
         >
           <div className={styles.GridCard}>
             <h2>Order: {order}</h2>
-            <p>
-              Value/Index: {value}/{index}
-            </p>
+            <h3>Index: {index}</h3>
+            <p>Value: {value}</p>
           </div>
         </li>
       );
