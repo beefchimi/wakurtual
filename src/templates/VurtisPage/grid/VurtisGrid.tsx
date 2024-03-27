@@ -1,7 +1,5 @@
 'use client';
 
-import {use} from 'react';
-
 import {useVurtis} from '../../../packages/vurtis/index.js';
 import {useBreakpoint} from '../../../hooks/index.js';
 
@@ -9,11 +7,10 @@ import {useBreakpoint} from '../../../hooks/index.js';
 import styles from '../VurtisPage.module.css';
 
 export interface VurtisGridProps {
-  items: Promise<number[]>;
+  items?: number[];
 }
 
-export function VurtisGrid({items}: VurtisGridProps) {
-  const data = use(items);
+export function VurtisGrid({items = []}: VurtisGridProps) {
   const {desktop} = useBreakpoint();
 
   const itemMinWidth = desktop ? 260 : 160;
@@ -21,14 +18,14 @@ export function VurtisGrid({items}: VurtisGridProps) {
 
   const {listRef, listHeight, virtualItems, rangeStart, rangeEnd, itemHeight} =
     useVurtis({
-      count: data.length,
+      count: items.length,
       minWidth: itemMinWidth,
       gap: gapSize,
     });
 
   const itemsMarkup = virtualItems.map(
     ({index, order, top, left, width, height}) => {
-      const value = data[index] || 0;
+      const value = items[index] || 0;
 
       return (
         <li
@@ -54,7 +51,7 @@ export function VurtisGrid({items}: VurtisGridProps) {
       <div className={styles.GridDetails}>
         <p className={styles.GridTitle}>
           Visible range: {rangeStart}:{rangeEnd} | Range size:{' '}
-          {itemsMarkup.length}/{data.length} | Item height: {itemHeight}
+          {itemsMarkup.length}/{items.length} | Item height: {itemHeight}
         </p>
       </div>
 

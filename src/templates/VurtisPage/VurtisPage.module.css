@@ -1,6 +1,28 @@
 .VurtisPage {
 }
 
+.VurtisDemo {
+}
+
+.ActionBar {
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: center;
+  justify-items: center;
+  gap: 10px;
+}
+
+.LoadMoreWrapper {
+  display: grid;
+  justify-items: center;
+  padding-top: var(--app-gap);
+}
+
 /* --- Grid --- */
 
 .Grid {

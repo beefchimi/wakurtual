@@ -1,7 +1,7 @@
 import {Suspense} from 'react';
 
 import {arrayOfLength, sleep} from '../../packages/utilities/index.js';
-import {CssGrid, VurtisGrid} from './grid/index.js';
+import {VurtisDemo} from './VurtisDemo.js';
 
 // @ts-expect-error no types
 import styles from './VurtisPage.module.css';
@@ -21,8 +21,6 @@ async function fetchItems() {
   return items;
 }
 
-const VIRTUALIZE = true;
-
 export async function VurtisPage() {
   const pageData = await getPageData();
   const itemsPromise = fetchItems();
@@ -32,11 +30,7 @@ export async function VurtisPage() {
       <title>{pageData.htmlTitle}</title>
 
       <Suspense fallback={<p>Waiting on results...</p>}>
-        {VIRTUALIZE ? (
-          <VurtisGrid items={itemsPromise} />
-        ) : (
-          <CssGrid items={await itemsPromise} />
-        )}
+        <VurtisDemo itemsData={itemsPromise} loadMore />
       </Suspense>
     </div>
   );

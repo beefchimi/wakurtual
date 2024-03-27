@@ -4,7 +4,7 @@ import {TextLink} from '../../components/index.js';
 // @ts-expect-error no types
 import styles from './Footer.module.css';
 
-const LARGE_FOOTER = true;
+const LARGE_FOOTER = false;
 
 function TempLargeFooter() {
   return (

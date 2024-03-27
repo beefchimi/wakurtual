@@ -1,19 +1,14 @@
 'use client';
 
-// import {use} from 'react';
-
 import {cx} from '../../../packages/utilities/index.js';
 // @ts-expect-error no types
 import styles from '../VurtisPage.module.css';
 
 export interface CssGridProps {
-  // items: Promise<number[]>;
-  items: number[];
+  items?: number[];
 }
 
-export function CssGrid({items}: CssGridProps) {
-  // const data = use(items);
-
+export function CssGrid({items = []}: CssGridProps) {
   const itemsMarkup = items.map((index) => (
     <li
       key={`Css-Item-${index}`}
