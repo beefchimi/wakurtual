@@ -3,14 +3,13 @@
 import {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 
 import {arrayOfLength, clamp} from '../utilities/index.js';
-import {useResizeObserver} from '../hooks/useResizeObserver/index.js';
-import {useWindowScroll} from '../hooks/useWindowScroll.js';
+import {
+  useMounted,
+  useResizeObserver,
+  useWindowScroll,
+} from '../hooks/index.js';
 
-import type {
-  VurtisRangeTuple,
-  VurtisListElement,
-  VurtisItemData,
-} from './types.js';
+import type {VurtisListElement, VurtisItemData} from './types.js';
 import {
   calcContainerHeight,
   calcItemTop,
@@ -18,8 +17,10 @@ import {
   getItemX,
 } from './utilities.js';
 
-// Consider an option for `px` vs `%` units.
+// Consider an option for `%` units, since `getItemX()` supports it.
 export interface VurtisOptions {
+  // `minWidth` in this case is an "approximate" restriction and can be
+  // lower than that value if there are gutters.
   count?: number;
   minWidth?: number;
   gap?: number;
@@ -36,26 +37,16 @@ export function useVurtis({
   minWidth = MIN_ITEM_SIZE,
   gap = 0,
 }: VurtisOptions) {
+  const isMounted = useMounted();
+  const listRef = useRef<VurtisListElement>(null);
+
   // TODO: We probably want to also store the "first child" as a separate ref.
   // And we will need to update that ref whenever the "range" changes.
-  const listRef = useRef<VurtisListElement>(null);
   // const firstItemRef = useRef<HTMLLIElement>(null);
 
-  useEffect(() => {
-    // TODO: Investigate when this gets called.
-    console.log('CHANGED: listRef', listRef);
-  }, [listRef]);
-
-  useEffect(() => {
-    // TODO: Investigate when this gets called.
-    console.log('CHANGED: listRef.current', listRef.current);
-  }, [listRef.current]);
-
   const [columns, setColumns] = useState(1);
-  // const [rows, setRows] = useState(1);
-
-  // const overscanRows = 2;
-  // const overscanItems = columns * overscanRows;
+  const [rangeStart, setRangeStart] = useState(0);
+  const [rangeEnd, setRangeEnd] = useState(0);
 
   const [listTop, setListTop] = useState(0);
   const [listScroll, setListScroll] = useState(0);
@@ -67,17 +58,11 @@ export function useVurtis({
   const [itemWidth, setItemWidth] = useState(MIN_ITEM_SIZE);
   const [itemHeight, setItemHeight] = useState(MIN_ITEM_SIZE);
 
-  // const [renderedRange, setRenderedRange] = useState<VurtisRangeTuple>([0, 0]);
-  const [visibleRange, setVisibleRange] = useState<VurtisRangeTuple>([0, 0]);
-
   const {
     scrollY,
     scrollHeight: documentHeight,
     visibleHeight: windowHeight,
-  } = useWindowScroll({
-    updateStrategy: 'aggressive',
-    // onScroll: (event) => console.log('useVurtis > scroll event', event),
-  });
+  } = useWindowScroll({updateStrategy: 'aggressive'});
 
   useResizeObserver({
     ref: listRef,
@@ -89,37 +74,37 @@ export function useVurtis({
 
     const {firstElementChild} = listRef.current;
 
+    // Should we prefer `Math.round`?
     const newHeight = firstElementChild
-      ? Math.round(firstElementChild.getBoundingClientRect().height)
+      ? Math.ceil(firstElementChild.getBoundingClientRect().height)
       : itemHeight;
 
     return newHeight;
-  }, [listRef.current, itemHeight]);
+  }, [listRef, itemHeight]);
 
   useEffect(() => {
-    // TODO: This should re-update whenever `listRef.current` changes.
     if (listRef.current) setListTop(listRef.current.offsetTop);
-  }, [documentHeight]);
+  }, [listRef, documentHeight]);
 
   // Compute a certain subset of dimensions based on relevant changes.
   useEffect(() => {
     const latestX = getItemX(listWidth, minWidth, gap);
-
-    setColumns(latestX.columns);
-    // setRows(Math.ceil(count / latestX.columns));
-
     const newItemHeight = getItemHeightFromDom();
+
+    // Not passing `latestX.pixel[1]` as `gap` because
+    // we always want row gaps.
     const newListHeight = calcContainerHeight({
       count,
+      gap,
       columns: latestX.columns,
       itemHeight: newItemHeight,
-      gap: latestX.pixel[1],
     });
+
+    setColumns(latestX.columns);
+    setListHeight(newListHeight);
 
     setItemWidth(latestX.pixel[0]);
     setItemHeight(newItemHeight);
-
-    setListHeight(newListHeight);
   }, [count, minWidth, gap, listTop, listWidth, getItemHeightFromDom]);
 
   // Compute the visible height of the list on screen.
@@ -133,29 +118,47 @@ export function useVurtis({
 
   // Compute the range of items to render, as well as what is visible.
   useEffect(() => {
-    const listStart = listHeight - listScroll;
-    // const listEnd = listStart + listVisibleHeight;
+    // TODO: This math is not quite right, as we do not accomodate
+    // for the final row not having a trailing gap.
+    const itemHeightWithGap = itemHeight + gap;
 
-    const rowsBefore = Math.floor(listStart / itemHeight);
-    const visibleRows = Math.ceil(listVisibleHeight / itemHeight);
+    const rowsBefore = itemHeightWithGap
+      ? Math.floor(listScroll / itemHeightWithGap)
+      : 0;
+    const visibleRows = itemHeightWithGap
+      ? Math.ceil(listVisibleHeight / itemHeightWithGap)
+      : 0;
+
+    // Always render 1 extra row so we do not end up with
+    // blank space while scrolling down.
+    // TODO: We should not do this if we are scrolled well past the container.
+    const visibleRowsAdjusted = visibleRows + 1;
 
     const indexStart = Math.abs(rowsBefore * columns);
-    const indexEnd = (rowsBefore + visibleRows) * columns;
+    const indexEnd = (rowsBefore + visibleRowsAdjusted) * columns;
 
-    // TODO: Are these tuples causing needless re-renders?
-    // Do we need to convert these to primitives?
-    // setRenderedRange([]);
-    setVisibleRange([indexStart, indexEnd]);
-  }, [columns, listHeight, itemHeight, listVisibleHeight, listScroll]);
+    // The math is not quite accurate, since `indexEnd` could end up
+    // higher than `count`, or less than count when scroll to bottom.
+    const indexEndWithinRange = Math.min(count, indexEnd);
+    const indexEndAdjusted =
+      count - indexEndWithinRange <= columns ? count : indexEndWithinRange;
+
+    setRangeStart(indexStart);
+    setRangeEnd(indexEndAdjusted);
+  }, [count, columns, gap, itemHeight, listVisibleHeight, listScroll]);
+
+  // Set initial item height.
+  // Intentionally keeping `getItemHeightFromDom()` out of dependencies.
+  useEffect(() => {
+    if (isMounted()) setItemHeight(getItemHeightFromDom());
+  }, [isMounted]);
 
   const virtualItems: VurtisItemData[] = useMemo(() => {
-    // TODO: We need to use `renderedRange` instead.
-    const [start, end] = visibleRange;
-    const visibleLength = end - start;
+    const visibleLength = rangeEnd - rangeStart;
     const shellItems = arrayOfLength(visibleLength);
 
     return shellItems.map((index) => {
-      const order = start + index;
+      const order = rangeStart + index;
 
       return {
         index,
@@ -166,11 +169,15 @@ export function useVurtis({
         height: itemHeight,
       };
     });
-  }, [visibleRange, gap, columns, itemWidth, itemHeight]);
+  }, [gap, columns, rangeStart, rangeEnd, itemWidth, itemHeight]);
 
   return {
     listRef,
     listHeight,
     virtualItems,
+    rangeStart,
+    rangeEnd,
+    // TODO: Remove this export as it shouldn't be relevant for consumer's.
+    itemHeight,
   };
 }

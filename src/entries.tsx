@@ -8,6 +8,7 @@ import {
   HomePage,
   PokedexPage,
   PokemonPage,
+  VurtisPage,
 } from './templates/index.js';
 
 // Waku currently supports two rendering options:
@@ -54,5 +55,13 @@ export default createPages(async ({createPage, createLayout}) => {
     render: 'dynamic',
     path: '/[...catchAll]',
     component: ErrorPage,
+  });
+
+  // TODO: Temporary test page.
+
+  createPage({
+    render: 'dynamic',
+    path: '/vurtis',
+    component: VurtisPage,
   });
 });

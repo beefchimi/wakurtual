@@ -4,6 +4,7 @@ export const NAV_LINKS: NavProps['items'] = [
   {label: 'Trending', url: '/'},
   {label: 'Pokedex', url: '/pokedex'},
   {label: 'About', url: '/about'},
+  {label: 'Vurtis', url: '/vurtis'},
 ];
 
 export {

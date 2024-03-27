@@ -42,47 +42,44 @@ export function calcItemLeft({
 }
 
 export function getItemX(container = 100, minWidth = 10, gap = 0): VurtisItemX {
+  // `minWidth` in this case is an "approximate" restriction and can be
+  // lower than that value if there are gutters.
   const safeContainer = clamp(100, container, 9999);
   const safeItem = clamp(10, minWidth, 999);
   const safeGap = clamp(0, gap, 99);
 
-  if (safeItem >= safeContainer) {
-    return {
-      columns: 1,
-      pixel: [safeContainer, 0],
-      percent: [100, 0],
-    };
-  }
+  const singleColumn: VurtisItemX = {
+    columns: 1,
+    pixel: [safeContainer, 0],
+    percent: [100, 0],
+  };
 
-  const potentialColumns = Math.floor(safeContainer / safeItem);
-  const potentialItemPx = safeContainer / potentialColumns;
+  if (safeItem >= safeContainer) return singleColumn;
+
+  const columns = Math.floor(safeContainer / safeItem);
+  const potentialItemPx = safeContainer / columns;
   const potentialItemPercent = trimDecimals(potentialItemPx * 0.1);
 
   if (!safeGap) {
     return {
-      columns: potentialColumns,
+      columns,
       pixel: [potentialItemPx, 0],
       percent: [potentialItemPercent, 0],
     };
   }
 
-  const totalGapSize = safeGap * (potentialColumns - 1);
-  const adjustedContainer = safeContainer - totalGapSize;
-  const adjustedColumns = Math.floor(adjustedContainer / safeItem);
-  const adjustedItemPx = adjustedContainer / adjustedColumns;
+  if (columns <= 1) return singleColumn;
+
+  const totalGapSize = gap * (columns - 1);
+  const gapOffset = totalGapSize / columns;
+  const gapPercent = trimDecimals(gap * 0.1);
+
+  const adjustedItemPx = potentialItemPx - gapOffset;
   const adjustedItemPercent = trimDecimals(adjustedItemPx * 0.1);
 
-  const adjustedGapPx =
-    adjustedColumns > 1
-      ? (safeContainer - adjustedItemPx * adjustedColumns) /
-        (adjustedColumns - 1)
-      : 0;
-
-  const adjustedGapPercent = trimDecimals(adjustedGapPx * 0.1);
-
   return {
-    columns: adjustedColumns,
-    pixel: [adjustedItemPx, adjustedGapPx],
-    percent: [adjustedItemPercent, adjustedGapPercent],
+    columns,
+    pixel: [adjustedItemPx, gap],
+    percent: [adjustedItemPercent, gapPercent],
   };
 }

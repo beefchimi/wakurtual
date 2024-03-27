@@ -1,7 +1,5 @@
 export type VurtisListElement = HTMLOListElement | HTMLUListElement;
 export type VurtisItemElement = HTMLLIElement;
-
-export type VurtisRangeTuple = [startIndex: number, endIndex: number];
 export type VurtisWidthTuple = [width: number, gap: number];
 
 export interface VurtisContainerCalc {
