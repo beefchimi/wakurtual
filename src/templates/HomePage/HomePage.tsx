@@ -1,6 +1,6 @@
 import {Suspense} from 'react';
 
-import {Pokemondex, PokemondexSkeleton} from '../../sections/index.js';
+import {PokedexResults, PokedexResultsSkeleton} from '../../sections/index.js';
 import {fetchPokedex} from '../../data/index.js';
 
 async function getPageData() {
@@ -20,8 +20,8 @@ export async function HomePage() {
     <div className="HomePage">
       <title>{pageData.htmlTitle}</title>
 
-      <Suspense fallback={<PokemondexSkeleton />}>
-        <Pokemondex pokemon={pokemonPromise} />
+      <Suspense fallback={<PokedexResultsSkeleton />}>
+        <PokedexResults pokemon={pokemonPromise} />
       </Suspense>
     </div>
   );
