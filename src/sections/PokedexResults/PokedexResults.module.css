@@ -1,4 +1,4 @@
-.PokemonResults {
+.PokedexResults {
   /*
    * This wrapper - or any other parent of <CardList /> - cannot be
    * positioned (have a stacking context) or else offsetTop cannot
@@ -12,7 +12,7 @@
   padding-top: var(--app-gap);
 }
 
-.TempActionWrapper {
+.ActionBar {
   z-index: 999;
   position: fixed;
   top: 0;

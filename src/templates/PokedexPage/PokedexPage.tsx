@@ -1,6 +1,6 @@
 import {Suspense} from 'react';
 
-import {PokemonResults, PokemonResultsSkeleton} from '../../sections/index.js';
+import {PokedexResults, PokedexResultsSkeleton} from '../../sections/index.js';
 import {fetchPokedexFlatPaged} from '../../data/index.js';
 
 async function getPageData() {
@@ -21,8 +21,8 @@ export async function PokedexPage() {
     <div className="PokedexPage">
       <title>{pageData.htmlTitle}</title>
 
-      <Suspense fallback={<PokemonResultsSkeleton count={8} />}>
-        <PokemonResults pokemon={pokemonPromise} />
+      <Suspense fallback={<PokedexResultsSkeleton count={8} />}>
+        <PokedexResults pokemon={pokemonPromise} />
       </Suspense>
     </div>
   );

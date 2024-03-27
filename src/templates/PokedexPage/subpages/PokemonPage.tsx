@@ -1,12 +1,12 @@
-import {cx} from '../../packages/utilities/index.js';
-import {fetchPokemonBySlug, type Pokemon} from '../../data/index.js';
-import {CommonAction} from '../../primitives/index.js';
-import {PokemonHero} from '../../sections/index.js';
+import {cx} from '../../../packages/utilities/index.js';
+import {fetchPokemonBySlug, type Pokemon} from '../../../data/index.js';
+import {CommonAction} from '../../../primitives/index.js';
+import {PokemonHero} from '../../../sections/index.js';
 
 // @ts-expect-error no types
 import styles from './PokemonPage.module.css';
 
-interface PokemonPageProps {
+export interface PokemonPageProps {
   slug: Pokemon['slug'];
 }
 

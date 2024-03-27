@@ -7,7 +7,7 @@ import {type Pokemon} from '../../data/index.js';
 import {Static, Virtual} from './grid/index.js';
 
 // @ts-expect-error no types
-import styles from './PokedexPage.module.css';
+import styles from './PokedexResults.module.css';
 
 export interface PokedexResultsProps {
   pokemon: Promise<Pokemon[]>;
