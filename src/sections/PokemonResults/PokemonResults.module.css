@@ -2,7 +2,7 @@
   /*
    * This wrapper - or any other parent of <CardList /> - cannot be
    * positioned (have a stacking context) or else offsetTop cannot
-   * be captured within useVirtualWindowGrid().
+   * be captured within useVurtis().
   */
 }
 

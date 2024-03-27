@@ -1,4 +1,9 @@
 .VurtisPage {
+  /*
+   * This wrapper - or any other parent of <GridList /> - cannot be
+   * positioned (have a stacking context) or else offsetTop cannot
+   * be captured within useVurtis().
+  */
 }
 
 .VurtisDemo {

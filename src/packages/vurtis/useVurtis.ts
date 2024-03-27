@@ -179,7 +179,5 @@ export function useVurtis({
     virtualItems,
     rangeStart,
     rangeEnd,
-    // TODO: Remove this export as it shouldn't be relevant for consumer's.
-    itemHeight,
   };
 }

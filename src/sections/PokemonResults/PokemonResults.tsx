@@ -1,12 +1,9 @@
 'use client';
 
-import {use, useCallback, useState} from 'react';
+import {use, useState} from 'react';
 
-import {
-  useBreakpoint,
-  useVirtualWindowGrid,
-  type GetItemKeyFn,
-} from '../../hooks/index.js';
+import {useVurtis} from '../../packages/vurtis/index.js';
+import {useBreakpoint} from '../../hooks/index.js';
 import {Button, Card, CardList, LoadMore} from '../../components/index.js';
 import {
   getPokemonPixel,
@@ -37,38 +34,27 @@ export function PokemonResults({pokemon}: PokemonResultsProps) {
   const itemMinWidth = desktop ? 260 : 160;
   const gapSize = desktop ? 16 : 10;
 
-  const getItemKey: GetItemKeyFn = useCallback(
-    (index) => {
-      const item = data[index];
-      const segment = item?.id ? `Id-${item.id}` : `Index-${index}`;
-      return `Pokemon-${segment}`;
-    },
-    [data]
-  );
-
-  const {listRef, listHeight, itemRef, virtualItems, remeasure} =
-    useVirtualWindowGrid({
-      count: data.length,
-      minWidth: itemMinWidth,
-      gap: gapSize,
-      getItemKey,
-    });
+  const {listRef, listHeight, virtualItems} = useVurtis({
+    count: data.length,
+    minWidth: itemMinWidth,
+    gap: gapSize,
+  });
 
   const preferVirtual = Boolean(virtualize && virtualItems.length);
 
   const itemsMarkup = preferVirtual
-    ? virtualItems.map(({key, index, position}) => {
-        const {id, slug, name} = data[index] ?? {};
+    ? virtualItems.map(({index, order, top, left, width}) => {
+        const {id, slug, name} = data[order] ?? {};
 
         // TODO: Avoid measuring every item if we know
         // that all items are of equal height.
         return (
           <CardList.Item
-            key={key}
-            ref={itemRef}
+            key={`Virtual-Item-${order}`}
             id={`Pokemon-${id}`}
             debugIndex={index}
-            virtualPosition={position}
+            // Not passing `height` as it is computed natively.
+            virtualPosition={{top, left, width}}
           >
             <Card
               title={name?.english}
@@ -76,7 +62,7 @@ export function PokemonResults({pokemon}: PokemonResultsProps) {
               imageUrl={getPokemonPixel(id)}
               mediaAltText={slug}
               url={getPokemonRoute(slug)}
-              order={index + 1}
+              order={order + 1}
               pixelated
             />
           </CardList.Item>
@@ -128,8 +114,6 @@ export function PokemonResults({pokemon}: PokemonResultsProps) {
           pressed={virtualize}
           onClick={handleVirtualizeToggle}
         />
-
-        <Button label="Re-measure" disabled={!virtualize} onClick={remeasure} />
       </div>
 
       <CardList

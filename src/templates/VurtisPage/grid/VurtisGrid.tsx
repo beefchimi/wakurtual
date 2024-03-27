@@ -16,15 +16,14 @@ export function VurtisGrid({items = []}: VurtisGridProps) {
   const itemMinWidth = desktop ? 260 : 160;
   const gapSize = desktop ? 16 : 10;
 
-  const {listRef, listHeight, virtualItems, rangeStart, rangeEnd, itemHeight} =
-    useVurtis({
-      count: items.length,
-      minWidth: itemMinWidth,
-      gap: gapSize,
-    });
+  const {listRef, listHeight, virtualItems, rangeStart, rangeEnd} = useVurtis({
+    count: items.length,
+    minWidth: itemMinWidth,
+    gap: gapSize,
+  });
 
   const itemsMarkup = virtualItems.map(
-    ({index, order, top, left, width, height}) => {
+    ({index, order, top, left, width, height: _height}) => {
       const value = items[index] || 0;
 
       return (
@@ -51,7 +50,7 @@ export function VurtisGrid({items = []}: VurtisGridProps) {
       <div className={styles.GridDetails}>
         <p className={styles.GridTitle}>
           Visible range: {rangeStart}:{rangeEnd} | Range size:{' '}
-          {itemsMarkup.length}/{items.length} | Item height: {itemHeight}
+          {itemsMarkup.length}/{items.length}
         </p>
       </div>
 
