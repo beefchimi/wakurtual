@@ -4,11 +4,11 @@ import {TextLink} from '../../components/index.js';
 // @ts-expect-error no types
 import styles from './Footer.module.css';
 
-const LARGE_FOOTER = false;
+const LARGE_FOOTER = true;
 
 function TempLargeFooter() {
   return (
-    <div style={{maxWidth: 600}}>
+    <div id="TempLargeFooter" style={{maxWidth: 600}}>
       <p className={styles.Text}>
         Bacon ipsum dolor amet boudin shankle strip steak porchetta, bacon kevin
         picanha leberkas buffalo sausage jowl hamburger tail sirloin. Cow ribeye

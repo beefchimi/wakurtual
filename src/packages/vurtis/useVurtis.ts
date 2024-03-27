@@ -4,6 +4,7 @@ import {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 
 import {arrayOfLength, clamp} from '../utilities/index.js';
 import {
+  useIsoEffect,
   useMounted,
   useResizeObserver,
   useWindowScroll,
@@ -39,7 +40,6 @@ export function useVurtis({
 }: VurtisOptions) {
   const isMounted = useMounted();
   const listRef = useRef<VurtisListElement>(null);
-
   // TODO: We probably want to also store the "first child" as a separate ref.
   // And we will need to update that ref whenever the "range" changes.
   // const firstItemRef = useRef<HTMLLIElement>(null);
@@ -82,12 +82,12 @@ export function useVurtis({
     return newHeight;
   }, [listRef, itemHeight]);
 
-  useEffect(() => {
+  useIsoEffect(() => {
     if (listRef.current) setListTop(listRef.current.offsetTop);
   }, [listRef, documentHeight]);
 
   // Compute a certain subset of dimensions based on relevant changes.
-  useEffect(() => {
+  useIsoEffect(() => {
     const latestX = getItemX(listWidth, minWidth, gap);
     const newItemHeight = getItemHeightFromDom();
 
@@ -108,7 +108,7 @@ export function useVurtis({
   }, [count, minWidth, gap, listTop, listWidth, getItemHeightFromDom]);
 
   // Compute the visible height of the list on screen.
-  useEffect(() => {
+  useIsoEffect(() => {
     const scrollAdjusted = scrollY - listTop;
     const scrollOffset = Math.abs(scrollAdjusted);
 
@@ -117,7 +117,7 @@ export function useVurtis({
   }, [listTop, listHeight, scrollY, windowHeight]);
 
   // Compute the range of items to render, as well as what is visible.
-  useEffect(() => {
+  useIsoEffect(() => {
     // TODO: This math is not quite right, as we do not accomodate
     // for the final row not having a trailing gap.
     const itemHeightWithGap = itemHeight + gap;
@@ -149,9 +149,11 @@ export function useVurtis({
 
   // Set initial item height.
   // Intentionally keeping `getItemHeightFromDom()` out of dependencies.
+  // Intentionally including `rangeEnd` as it is the last state to update.
   useEffect(() => {
+    // TODO: This should be improved.
     if (isMounted()) setItemHeight(getItemHeightFromDom());
-  }, [isMounted]);
+  }, [isMounted, rangeEnd]);
 
   const virtualItems: VurtisItemData[] = useMemo(() => {
     const visibleLength = rangeEnd - rangeStart;

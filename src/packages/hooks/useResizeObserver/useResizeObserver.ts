@@ -1,7 +1,9 @@
-import {useEffect, useRef, useState, type RefObject} from 'react';
+import {useRef, useState, type RefObject} from 'react';
 
 import {supportResizeObserver} from '../../utilities/index.js';
+import {useIsoEffect} from '../useIsoEffect.js';
 import {useMounted} from '../useMounted.js';
+
 import type {ResizeKebabBox} from './types.js';
 import {convertKebabToCamel, extractSize} from './utilities.js';
 
@@ -42,8 +44,7 @@ export function useResizeObserver<T extends HTMLElement = HTMLElement>({
 
   const isMounted = useMounted();
 
-  // TODO: Should we prefer `useIsoEffect()` instead?
-  useEffect(() => {
+  useIsoEffect(() => {
     if (!ref.current || !supportResizeObserver()) return;
 
     const observer = new ResizeObserver(([entry]) => {
