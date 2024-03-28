@@ -1,5 +1,7 @@
 'use client';
 
+import {AnimatePresence, motion} from 'framer-motion';
+
 import {cx} from '../../../packages/utilities/index.js';
 import {useVurtis} from '../../../packages/vurtis/index.js';
 import {useBreakpoint} from '../../../hooks/index.js';
@@ -8,12 +10,15 @@ import type {Vurticies} from '../VurtisPage.types.js';
 // @ts-expect-error no types
 import styles from './VurtisDemo.module.css';
 
-export interface VurtisGridProps {
+export interface VurtisGridMotionProps {
   items?: Vurticies;
   reversed?: boolean;
 }
 
-export function VurtisGrid({items = [], reversed = false}: VurtisGridProps) {
+export function VurtisGridMotion({
+  items = [],
+  reversed = false,
+}: VurtisGridMotionProps) {
   const {desktop} = useBreakpoint();
 
   const itemMinWidth = desktop ? 260 : 160;
@@ -31,20 +36,33 @@ export function VurtisGrid({items = [], reversed = false}: VurtisGridProps) {
     const label = items[order]?.label || 'zero';
 
     return (
-      <li
+      <motion.li
+        variants={{
+          hide: {opacity: 0},
+          show: {opacity: 1},
+        }}
+        initial="hide"
+        animate="show"
+        exit="hide"
         key={`Vurtis-Item-${originalOrder}`}
         className={styles.GridItem}
         style={{top, left, width}}
         // data-index={index}
         // data-order={order}
       >
-        <div className={styles.GridCard}>
+        <motion.div
+          variants={{
+            hide: {scale: 0},
+            show: {scale: 1},
+          }}
+          className={styles.GridCard}
+        >
           <h2>Original order: {originalOrder}</h2>
           <h3>Range order: {order}</h3>
           <h4>Index: {index}</h4>
           <p>Label: {label}</p>
-        </div>
-      </li>
+        </motion.div>
+      </motion.li>
     );
   });
 
@@ -64,7 +82,7 @@ export function VurtisGrid({items = [], reversed = false}: VurtisGridProps) {
         })}
         style={{height: listHeight}}
       >
-        {itemsMarkup}
+        <AnimatePresence initial={false}>{itemsMarkup}</AnimatePresence>
       </ul>
     </div>
   );

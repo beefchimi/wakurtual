@@ -54,6 +54,8 @@ export function VurtisDemo({itemsData, loadMore = false}: VurtisDemoProps) {
         />
       </div>
 
+      {/* <VurtisGridMotion items={items} reversed={reverse} /> */}
+
       {virtualize ? (
         <VurtisGrid items={items} reversed={reverse} />
       ) : (

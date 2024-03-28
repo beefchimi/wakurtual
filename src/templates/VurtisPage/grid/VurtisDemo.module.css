@@ -90,6 +90,7 @@
   aspect-ratio: 1 / 1.2;
   border-radius: 6px;
   background-color: var(--grid-list-card-bg);
+  text-align: center;
 }
 
 .GridCard h2 {
