@@ -7,7 +7,7 @@ import {
 } from '../../packages/utilities/index.js';
 
 import type {Vurticies} from './VurtisPage.types.js';
-import {VurtisDemo} from './VurtisDemo.js';
+import {VurtisDemo} from './grid/index.js';
 
 // @ts-expect-error no types
 import styles from './VurtisPage.module.css';

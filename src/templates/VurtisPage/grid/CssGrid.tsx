@@ -6,7 +6,7 @@ import {cx} from '../../../packages/utilities/index.js';
 import type {Vurticies} from '../VurtisPage.types.js';
 
 // @ts-expect-error no types
-import styles from '../VurtisPage.module.css';
+import styles from './VurtisDemo.module.css';
 
 export interface CssGridProps {
   items?: Vurticies;

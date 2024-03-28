@@ -2,13 +2,14 @@
 
 import {use, useState} from 'react';
 
-import {Button, LoadMore} from '../../components/index.js';
+import {Button, LoadMore} from '../../../components/index.js';
 
-import type {Vurticies} from './VurtisPage.types.js';
-import {CssGrid, VurtisGrid} from './grid/index.js';
+import type {Vurticies} from '../VurtisPage.types.js';
+import {CssGrid} from './CssGrid.js';
+import {VurtisGrid} from './VurtisGrid.js';
 
 // @ts-expect-error no types
-import styles from './VurtisPage.module.css';
+import styles from './VurtisDemo.module.css';
 
 export interface VurtisDemoProps {
   itemsData: Promise<Vurticies>;

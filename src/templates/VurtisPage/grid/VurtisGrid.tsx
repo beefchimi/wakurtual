@@ -9,7 +9,7 @@ import {useBreakpoint} from '../../../hooks/index.js';
 import type {Vurticies} from '../VurtisPage.types.js';
 
 // @ts-expect-error no types
-import styles from '../VurtisPage.module.css';
+import styles from './VurtisDemo.module.css';
 
 export interface VurtisGridProps {
   items?: Vurticies;
