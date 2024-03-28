@@ -24,7 +24,14 @@ export function VurtisGridMotion({
   const itemMinWidth = desktop ? 260 : 160;
   const gapSize = desktop ? 16 : 10;
 
-  const {listRef, listHeight, virtualItems, rangeStart, rangeEnd} = useVurtis({
+  const {
+    listRef,
+    listHeight,
+    virtualItems,
+    rangeStart,
+    rangeEnd,
+    updateItemHeight,
+  } = useVurtis({
     count: items.length,
     minWidth: itemMinWidth,
     gap: gapSize,
@@ -37,6 +44,12 @@ export function VurtisGridMotion({
 
     return (
       <motion.li
+        ref={index === 0 ? updateItemHeight : undefined}
+        key={`Vurtis-Item-${originalOrder}`}
+        className={styles.GridItem}
+        style={{top, left, width}}
+        // data-index={index}
+        // data-order={order}
         variants={{
           hide: {opacity: 0},
           show: {opacity: 1},
@@ -44,18 +57,13 @@ export function VurtisGridMotion({
         initial="hide"
         animate="show"
         exit="hide"
-        key={`Vurtis-Item-${originalOrder}`}
-        className={styles.GridItem}
-        style={{top, left, width}}
-        // data-index={index}
-        // data-order={order}
       >
         <motion.div
+          className={styles.GridCard}
           variants={{
             hide: {scale: 0},
             show: {scale: 1},
           }}
-          className={styles.GridCard}
         >
           <h2>Original order: {originalOrder}</h2>
           <h3>Range order: {order}</h3>
