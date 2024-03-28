@@ -1,16 +1,22 @@
 'use client';
 
+// TODO: The framer-motion animations are not actually working as intended.
+import {LayoutGroup, motion} from 'framer-motion';
+
+import {cx} from '../../../packages/utilities/index.js';
 import {useVurtis} from '../../../packages/vurtis/index.js';
 import {useBreakpoint} from '../../../hooks/index.js';
+import type {Vurticies} from '../VurtisPage.types.js';
 
 // @ts-expect-error no types
 import styles from '../VurtisPage.module.css';
 
 export interface VurtisGridProps {
-  items?: string[];
+  items?: Vurticies;
+  reversed?: boolean;
 }
 
-export function VurtisGrid({items = []}: VurtisGridProps) {
+export function VurtisGrid({items = [], reversed = false}: VurtisGridProps) {
   const {desktop} = useBreakpoint();
 
   const itemMinWidth = desktop ? 260 : 160;
@@ -22,28 +28,30 @@ export function VurtisGrid({items = []}: VurtisGridProps) {
     gap: gapSize,
   });
 
-  const itemsMarkup = virtualItems.map(
-    ({index, order, top, left, width, height: _height}) => {
-      const value = items[order] || 'zero';
+  const itemsMarkup = virtualItems.map(({order, top, left, width}, index) => {
+    const originalOrder = items[order]?.order || 0;
+    const label = items[order]?.label || 'zero';
 
-      return (
-        <li
-          // key={`Vurtis-Item-${order}`}
-          key={`Vurtis-Item-${value}`}
-          // data-index={index}
-          className={styles.GridItem}
-          // Not passing `height` as it is computed natively.
-          style={{top, left, width}}
-        >
-          <div className={styles.GridCard}>
-            <h2>Order: {order}</h2>
-            <h3>Index: {index}</h3>
-            <p>Value: {value}</p>
-          </div>
-        </li>
-      );
-    }
-  );
+    return (
+      <motion.li
+        // layout
+        layoutId={`Id-${originalOrder}`}
+        key={`Vurtis-Item-${originalOrder}`}
+        // data-index={index}
+        // data-order={order}
+        className={styles.GridItem}
+        // Not passing `height` as it is computed natively.
+        style={{top, left, width}}
+      >
+        <div className={styles.GridCard}>
+          <h2>Original order: {originalOrder}</h2>
+          <h3>Range order: {order}</h3>
+          <h4>Index: {index}</h4>
+          <p>Label: {label}</p>
+        </div>
+      </motion.li>
+    );
+  });
 
   return (
     <div className={styles.Grid}>
@@ -54,13 +62,18 @@ export function VurtisGrid({items = []}: VurtisGridProps) {
         </p>
       </div>
 
-      <ul
-        ref={listRef}
-        className={styles.GridList}
-        style={{height: listHeight}}
-      >
-        {itemsMarkup}
-      </ul>
+      <LayoutGroup>
+        <motion.ul
+          key="VirtualList"
+          ref={listRef}
+          className={cx(styles.GridList, {
+            [styles.reversed]: reversed,
+          })}
+          style={{height: listHeight}}
+        >
+          {itemsMarkup}
+        </motion.ul>
+      </LayoutGroup>
     </div>
   );
 }

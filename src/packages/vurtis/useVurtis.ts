@@ -163,7 +163,6 @@ export function useVurtis({
       const order = rangeStart + index;
 
       return {
-        index,
         order,
         top: calcItemTop({order, columns, height: itemHeight, gap}),
         left: calcItemLeft({order, columns, width: itemWidth, gap}),

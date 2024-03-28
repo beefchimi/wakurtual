@@ -5,6 +5,8 @@ import {
   convertNumberToWords,
   sleep,
 } from '../../packages/utilities/index.js';
+
+import type {Vurticies} from './VurtisPage.types.js';
 import {VurtisDemo} from './VurtisDemo.js';
 
 // @ts-expect-error no types
@@ -20,10 +22,13 @@ async function getPageData() {
 }
 
 async function fetchItems() {
-  const items = arrayOfLength(100).map(convertNumberToWords);
+  const items: Vurticies = arrayOfLength(100).map((index) => ({
+    order: index,
+    label: convertNumberToWords(index),
+  }));
+
   sleep(1234);
 
-  // return reverse ? items.toReversed() : items;
   return items;
 }
 

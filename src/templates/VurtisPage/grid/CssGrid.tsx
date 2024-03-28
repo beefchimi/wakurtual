@@ -1,26 +1,31 @@
 'use client';
 
+import {LayoutGroup, motion} from 'framer-motion';
+
 import {cx} from '../../../packages/utilities/index.js';
+import type {Vurticies} from '../VurtisPage.types.js';
+
 // @ts-expect-error no types
 import styles from '../VurtisPage.module.css';
 
 export interface CssGridProps {
-  items?: string[];
+  items?: Vurticies;
+  reversed?: boolean;
 }
 
-export function CssGrid({items = []}: CssGridProps) {
-  const itemsMarkup = items.map((value, index) => (
-    <li
-      key={`Css-Item-${value}`}
-      data-index={index}
+export function CssGrid({items = [], reversed = false}: CssGridProps) {
+  const itemsMarkup = items.map(({order, label}, index) => (
+    <motion.li
+      layoutId={`Id-${order}`}
+      key={`Css-Item-${order}`}
       className={cx(styles.GridItem, styles.fallbackItem)}
     >
       <div className={styles.GridCard}>
-        <h2>Order: {items.length - index}</h2>
+        <h2>Order: {order}</h2>
         <h3>Index: {index}</h3>
-        <p>Value: {value}</p>
+        <p>Label: {label}</p>
       </div>
-    </li>
+    </motion.li>
   ));
 
   return (
@@ -29,9 +34,15 @@ export function CssGrid({items = []}: CssGridProps) {
         <p className={styles.GridTitle}>This list is not virtualized</p>
       </div>
 
-      <ul className={cx(styles.GridList, styles.fallbackList)}>
-        {itemsMarkup}
-      </ul>
+      <LayoutGroup>
+        <motion.ul
+          className={cx(styles.GridList, styles.fallbackList, {
+            [styles.reversed]: reversed,
+          })}
+        >
+          {itemsMarkup}
+        </motion.ul>
+      </LayoutGroup>
     </div>
   );
 }

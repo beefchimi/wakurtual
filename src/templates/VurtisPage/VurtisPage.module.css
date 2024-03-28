@@ -53,7 +53,12 @@
 }
 
 .GridList {
+  --grid-list-card-bg: rgb(0, 255, 0, 0.1);
   position: relative;
+}
+
+.reversed {
+  --grid-list-card-bg: rgb(0, 0, 255, 0.1);
 }
 
 .fallbackList {
@@ -87,7 +92,7 @@
   width: 100%;
   aspect-ratio: 1 / 1.2;
   border-radius: 6px;
-  background-color: rgb(0, 0, 0, 0.1);
+  background-color: var(--grid-list-card-bg);
 }
 
 .GridCard h2 {
@@ -100,6 +105,12 @@
   font-size: 18px;
   font-weight: 700;
   color: green;
+}
+
+.GridCard h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: orange;
 }
 
 .GridCard p {

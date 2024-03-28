@@ -32,6 +32,8 @@ export interface VurtisItemPosition {
 }
 
 export interface VurtisItemData extends VurtisItemPosition {
-  index: number;
+  // `order` is the items "index" within the full virtual collection.
+  // Since `virtualItems` is only returning a subset of the full
+  // collection, this "original index" value is important.
   order: number;
 }

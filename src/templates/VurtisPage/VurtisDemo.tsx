@@ -3,13 +3,15 @@
 import {use, useState} from 'react';
 
 import {Button, LoadMore} from '../../components/index.js';
+
+import type {Vurticies} from './VurtisPage.types.js';
 import {CssGrid, VurtisGrid} from './grid/index.js';
 
 // @ts-expect-error no types
 import styles from './VurtisPage.module.css';
 
 export interface VurtisDemoProps {
-  itemsData: Promise<string[]>;
+  itemsData: Promise<Vurticies>;
   loadMore?: boolean;
 }
 
@@ -45,15 +47,17 @@ export function VurtisDemo({itemsData, loadMore = false}: VurtisDemoProps) {
         />
 
         <Button
-          label={
-            virtualize ? 'Disable virtualization' : 'Enable virtualization'
-          }
+          label={virtualize ? 'Switch to Static' : 'Switch to Virtual'}
           pressed={virtualize}
           onClick={handleVirtualizeToggle}
         />
       </div>
 
-      {virtualize ? <VurtisGrid items={items} /> : <CssGrid items={items} />}
+      {virtualize ? (
+        <VurtisGrid items={items} reversed={reverse} />
+      ) : (
+        <CssGrid items={items} reversed={reverse} />
+      )}
 
       {loadMoreMarkup}
     </div>

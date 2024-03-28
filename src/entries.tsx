@@ -22,19 +22,21 @@ export default createPages(async ({createPage, createLayout}) => {
   });
 
   createPage({
-    render: 'dynamic',
+    // render: 'dynamic',
+    render: 'static',
     path: '/',
     component: HomePage,
   });
 
   createPage({
-    render: 'dynamic',
+    render: 'static',
     path: '/about',
     component: AboutPage,
   });
 
   createPage({
-    render: 'dynamic',
+    // render: 'dynamic',
+    render: 'static',
     path: '/pokedex',
     component: PokedexPage,
   });
@@ -60,7 +62,7 @@ export default createPages(async ({createPage, createLayout}) => {
   // TODO: Temporary test page.
 
   createPage({
-    render: 'dynamic',
+    render: 'static',
     path: '/vurtis',
     component: VurtisPage,
   });
