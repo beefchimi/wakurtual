@@ -172,6 +172,19 @@ export function useVurtis({
     });
   }, [gap, columns, rangeStart, rangeEnd, itemWidth, itemHeight]);
 
+  const getSpaceBefore = useCallback(() => {
+    // TODO: If we solve the bug where `virtualItems` retains a single `row`,
+    // we likely need to update this to use `getTotalSize()` as fallback.
+    const firstItem = virtualItems[0];
+    return firstItem ? Math.max(0, firstItem.top ?? 0) : 0;
+  }, [virtualItems]);
+
+  const getSpaceAfter = useCallback(() => {
+    const lastItem = virtualItems[virtualItems.length - 1];
+    const lastItemEnd = lastItem ? (lastItem.top ?? 0) + itemHeight : 0;
+    return lastItem ? Math.max(0, listHeight - lastItemEnd) : 0;
+  }, [virtualItems]);
+
   return {
     listRef,
     updateItemHeight,
@@ -179,5 +192,9 @@ export function useVurtis({
     virtualItems,
     rangeStart,
     rangeEnd,
+    // Useful for layouts that want to use a CSS grid instead of
+    // absolute positioning. This may be necessary for animation.
+    getSpaceBefore,
+    getSpaceAfter,
   };
 }

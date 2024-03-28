@@ -24,11 +24,11 @@ export interface VurtisItemX {
 }
 
 export interface VurtisItemPosition {
-  // TODO: Do we actually want to support `string` (for percentage)?
-  top?: string | number;
-  left?: string | number;
-  width?: string | number;
-  height?: string | number;
+  // TODO: Do we want to support `string` (for percentage)?
+  top?: number;
+  left?: number;
+  width?: number;
+  height?: number;
 }
 
 export interface VurtisItemData extends VurtisItemPosition {
