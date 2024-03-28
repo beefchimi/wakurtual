@@ -70,16 +70,16 @@ export function getItemX(container = 100, minWidth = 10, gap = 0): VurtisItemX {
 
   if (columns <= 1) return singleColumn;
 
-  const totalGapSize = gap * (columns - 1);
-  const gapOffset = totalGapSize / columns;
-  const gapPercent = trimDecimals(gap * 0.1);
+  const gapTotal = safeGap * (columns - 1);
+  const gapOffset = gapTotal / columns;
+  const gapPercent = trimDecimals(safeGap * 0.1);
 
   const adjustedItemPx = potentialItemPx - gapOffset;
   const adjustedItemPercent = trimDecimals(adjustedItemPx * 0.1);
 
   return {
     columns,
-    pixel: [adjustedItemPx, gap],
+    pixel: [adjustedItemPx, safeGap],
     percent: [adjustedItemPercent, gapPercent],
   };
 }
