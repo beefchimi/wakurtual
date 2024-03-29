@@ -5,8 +5,11 @@ import {use, useState} from 'react';
 import {Button, LoadMore} from '../../../components/index.js';
 
 import type {Vurticies} from '../VurtisPage.types.js';
+
 import {CssGrid} from './CssGrid.js';
+// import {CssGridMotion} from './CssGridMotion.js';
 import {VurtisGrid} from './VurtisGrid.js';
+// import {VurtisGridMotion} from './VurtisGridMotion.js';
 
 // @ts-expect-error no types
 import styles from './VurtisDemo.module.css';

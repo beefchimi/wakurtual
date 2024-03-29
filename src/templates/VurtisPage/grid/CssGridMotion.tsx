@@ -10,12 +10,15 @@ import type {Vurticies} from '../VurtisPage.types.js';
 // @ts-expect-error no types
 import styles from './VurtisDemo.module.css';
 
-export interface CssGridProps {
+export interface CssGridMotionProps {
   items?: Vurticies;
   reversed?: boolean;
 }
 
-export function CssGrid({items = [], reversed = false}: CssGridProps) {
+export function CssGridMotion({
+  items = [],
+  reversed = false,
+}: CssGridMotionProps) {
   const {desktop} = useBreakpoint();
 
   const itemMinWidth = desktop ? 260 : 160;
@@ -23,7 +26,6 @@ export function CssGrid({items = [], reversed = false}: CssGridProps) {
 
   const {
     listRef,
-    listHeight,
     virtualItems,
     rangeStart,
     rangeEnd,

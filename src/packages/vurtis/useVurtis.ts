@@ -23,8 +23,6 @@ import {
 
 // Consider an option for `%` units, since `getItemX()` supports it.
 export interface VurtisOptions {
-  // `minWidth` in this case is an "approximate" restriction and can be
-  // lower than that value if there are gutters.
   count?: number;
   minWidth?: number;
   gap?: number;
@@ -196,5 +194,8 @@ export function useVurtis({
     // absolute positioning. This may be necessary for animation.
     getSpaceBefore,
     getSpaceAfter,
+
+    // TODO: Temporary for "overlay" testing.
+    // listWidth,
   };
 }

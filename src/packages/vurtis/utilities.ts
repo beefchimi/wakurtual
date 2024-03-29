@@ -42,44 +42,61 @@ export function calcItemLeft({
 }
 
 export function getItemX(container = 100, minWidth = 10, gap = 0): VurtisItemX {
-  // `minWidth` in this case is an "approximate" restriction and can be
-  // lower than that value if there are gutters.
   const safeContainer = clamp(100, container, 9999);
   const safeItem = clamp(10, minWidth, 999);
   const safeGap = clamp(0, gap, 99);
 
-  const singleColumn: VurtisItemX = {
+  const singleColumnLayout: VurtisItemX = {
     columns: 1,
     pixel: [safeContainer, 0],
     percent: [100, 0],
   };
 
-  if (safeItem >= safeContainer) return singleColumn;
+  if (safeItem >= safeContainer) return singleColumnLayout;
 
-  const columns = Math.floor(safeContainer / safeItem);
-  const potentialItemPx = safeContainer / columns;
+  const potentialColumns = Math.floor(safeContainer / safeItem);
+
+  if (potentialColumns <= 1) return singleColumnLayout;
+
+  const potentialItemPx = safeContainer / potentialColumns;
   const potentialItemPercent = trimDecimals(potentialItemPx * 0.1);
 
   if (!safeGap) {
     return {
-      columns,
+      columns: potentialColumns,
       pixel: [potentialItemPx, 0],
       percent: [potentialItemPercent, 0],
     };
   }
 
-  if (columns <= 1) return singleColumn;
-
-  const gapTotal = safeGap * (columns - 1);
-  const gapOffset = gapTotal / columns;
+  const gapTotal = safeGap * (potentialColumns - 1);
   const gapPercent = trimDecimals(safeGap * 0.1);
 
-  const adjustedItemPx = potentialItemPx - gapOffset;
+  const adjustedContainer = safeContainer - gapTotal;
+  const adjustedItemPx = adjustedContainer / potentialColumns;
   const adjustedItemPercent = trimDecimals(adjustedItemPx * 0.1);
 
+  if (adjustedItemPx >= safeItem) {
+    return {
+      columns: potentialColumns,
+      pixel: [adjustedItemPx, safeGap],
+      percent: [adjustedItemPercent, gapPercent],
+    };
+  }
+
+  const finalColumns = potentialColumns - 1;
+
+  if (finalColumns <= 1) return singleColumnLayout;
+
+  const finalGapTotal = safeGap * (finalColumns - 1);
+
+  const finalContainer = safeContainer - finalGapTotal;
+  const finalItemPx = finalContainer / finalColumns;
+  const finalItemPercent = trimDecimals(finalItemPx * 0.1);
+
   return {
-    columns,
-    pixel: [adjustedItemPx, safeGap],
-    percent: [adjustedItemPercent, gapPercent],
+    columns: finalColumns,
+    pixel: [finalItemPx, safeGap],
+    percent: [finalItemPercent, gapPercent],
   };
 }

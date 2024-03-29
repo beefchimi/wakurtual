@@ -116,3 +116,19 @@
   font-weight: 600;
   color: black;
 }
+
+/* --- Overlay testing --- */
+
+.overlayList {
+  --grid-list-card-bg: rgb(255, 0, 0, 0.1);
+  position: absolute;
+  width: 100%;
+  opacity: 0.6;
+}
+
+.overlayList h2,
+.overlayList h3,
+.overlayList h4,
+.overlayList p {
+  color: red !important;
+}
