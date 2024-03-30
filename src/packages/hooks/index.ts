@@ -34,6 +34,8 @@ export {
   type TimeoutOptions,
 } from './useTimeout.js';
 
+export {useUnmount} from './useUnmount.js';
+
 export {
   useWindowEvent,
   type WindowEventName,
