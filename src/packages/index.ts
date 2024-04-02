@@ -5,4 +5,3 @@ export const contentiousVersion = '0.0.1';
 export const hooksVersion = '0.0.1';
 export const typesVersion = '0.0.1';
 export const utilitiesVersion = '0.0.1';
-export const vurtisVersion = '0.0.1';
