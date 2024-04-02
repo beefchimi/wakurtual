@@ -4,24 +4,19 @@
    * positioned (have a stacking context) or else offsetTop cannot
    * be captured within useVurtis().
   */
+
+  /*
+  display: grid;
+  gap: var(--app-gap);
+  */
 }
 
 .ActionBar {
-  z-index: 999;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
   display: grid;
   grid-auto-flow: column;
   justify-content: center;
   justify-items: center;
-  gap: 10px;
-}
-
-.LoadMoreWrapper {
-  display: grid;
-  justify-items: center;
+  gap: var(--app-padding);
   padding-top: var(--app-gap);
 }
 
@@ -30,23 +25,6 @@
 .Grid {
   display: grid;
   gap: 20px;
-}
-
-.GridDetails {
-  z-index: 999;
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 10px;
-  border: 1px solid black;
-  background-color: rgb(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-}
-
-.GridTitle {
-  font-size: 20px;
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
 }
 
 .GridList {

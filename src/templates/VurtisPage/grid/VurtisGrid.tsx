@@ -24,14 +24,28 @@ export function VurtisGrid({items = [], reversed = false}: VurtisGridProps) {
     listRef,
     listHeight,
     virtualItems,
-    rangeStart,
-    rangeEnd,
+    // rangeStart,
+    // rangeEnd,
     updateItemHeight,
   } = useVurtis({
     count: items.length,
     minWidth: itemMinWidth,
     gap: gapSize,
   });
+
+  /*
+  useEffect(() => {
+    setVirtualStats({
+      listHeight,
+      itemHeight: 0,
+      gapSize,
+      rangeStart,
+      rangeEnd,
+      pool: virtualItems.length,
+      total: items.length
+    });
+  }, [items, gapSize, listHeight, rangeStart, rangeEnd, virtualItems]);
+  */
 
   // Not passing `{height}` from `item` as it is computed natively.
   const itemsMarkup = virtualItems.map(({order, top, left, width}, index) => {
@@ -59,13 +73,6 @@ export function VurtisGrid({items = [], reversed = false}: VurtisGridProps) {
 
   return (
     <div className={styles.Grid}>
-      <div className={styles.GridDetails}>
-        <p className={styles.GridTitle}>
-          Visible range: {rangeStart}:{rangeEnd} | Range size:{' '}
-          {itemsMarkup.length}/{items.length}
-        </p>
-      </div>
-
       <ul
         ref={listRef}
         className={clx(styles.GridList, {

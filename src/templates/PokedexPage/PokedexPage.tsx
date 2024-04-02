@@ -21,7 +21,7 @@ export async function PokedexPage() {
     <div className="PokedexPage">
       <title>{pageData.htmlTitle}</title>
 
-      <Suspense fallback={<PokedexResultsSkeleton count={8} />}>
+      <Suspense fallback={<PokedexResultsSkeleton count={12} />}>
         <PokedexResults pokemon={pokemonPromise} />
       </Suspense>
     </div>

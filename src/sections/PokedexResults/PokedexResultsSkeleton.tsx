@@ -1,5 +1,3 @@
-'use client';
-
 import {arrayOfLength, clamp} from 'beeftools';
 
 import {CardSkeleton, CardList} from '../../components/index.js';

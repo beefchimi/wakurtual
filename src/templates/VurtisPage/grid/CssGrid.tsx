@@ -30,10 +30,6 @@ export function CssGrid({items = [], reversed = false}: CssGridProps) {
 
   return (
     <div className={styles.Grid}>
-      <div className={styles.GridDetails}>
-        <p className={styles.GridTitle}>This list is not virtualized</p>
-      </div>
-
       <LayoutGroup>
         <motion.ul
           className={clx(styles.GridList, styles.fallbackList, {

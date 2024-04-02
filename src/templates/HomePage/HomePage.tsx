@@ -20,7 +20,7 @@ export async function HomePage() {
     <div className="HomePage">
       <title>{pageData.htmlTitle}</title>
 
-      <Suspense fallback={<PokedexResultsSkeleton />}>
+      <Suspense fallback={<PokedexResultsSkeleton count={12} />}>
         <PokedexResults pokemon={pokemonPromise} />
       </Suspense>
     </div>

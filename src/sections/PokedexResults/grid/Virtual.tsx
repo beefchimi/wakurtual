@@ -21,23 +21,42 @@ export function Virtual({items}: VirtualProps) {
   const itemMinWidth = desktop ? 260 : 160;
   const gapSize = desktop ? 16 : 10;
 
-  const {listRef, listHeight, virtualItems} = useVurtis({
+  const {
+    listRef,
+    listHeight,
+    virtualItems,
+    // rangeStart,
+    // rangeEnd,
+    // updateItemHeight,
+  } = useVurtis({
     count: items.length,
     minWidth: itemMinWidth,
     gap: gapSize,
   });
 
+  /*
+  useEffect(() => {
+    setVirtualStats({
+      listHeight,
+      itemHeight: 0,
+      gapSize,
+      rangeStart,
+      rangeEnd,
+      pool: virtualItems.length,
+      total: items.length
+    });
+  }, [items, gapSize, listHeight, rangeStart, rangeEnd, virtualItems]);
+  */
+
   const itemsMarkup = virtualItems.map(({order, top, left, width}, index) => {
     const {id, slug, name} = items[order] ?? {};
 
-    // TODO: Avoid measuring every item if we know
-    // that all items are of equal height.
     return (
       <CardList.Item
+        // ref={index === 0 ? updateItemHeight : undefined}
         key={`Virtual-Item-${order}`}
         id={`Pokemon-${id}`}
         debugIndex={index}
-        // Not passing `height` as it is computed natively.
         virtualPosition={{top, left, width}}
       >
         <Card
@@ -63,7 +82,10 @@ export function Virtual({items}: VirtualProps) {
   );
 
   return (
-    <CardList ref={listRef} virtualHeight={listHeight}>
+    <CardList
+      ref={listRef}
+      virtualHeight={emptyItemMarkup ? undefined : listHeight}
+    >
       {emptyItemMarkup || itemsMarkup}
     </CardList>
   );

@@ -95,6 +95,16 @@
   }
 }
 
+.MobileLabel {
+  padding-right: calc(var(--app-padding) / 2);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: white;
+  text-align: right;
+}
+
+/* --- Metrics --- */
+
 .Metrics {
   display: grid;
   grid-auto-flow: column;

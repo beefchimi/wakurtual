@@ -4,15 +4,17 @@ import {useState} from 'react';
 import {clx} from 'beeftools';
 
 import {useBreakpoint} from '../../hooks/index.js';
-import {Counter, Hamburger} from '../../components/index.js';
+import {Hamburger} from '../../components/index.js';
 import {CommonAction} from '../../primitives/index.js';
 
 import {TestMeasureHooks} from '../TestMeasureHooks/index.js';
+import {MockStats} from './MockStats.js';
+
 // @ts-expect-error no types
 import styles from './Sidebar.module.css';
 
 export function Sidebar() {
-  const {tablet, desktop} = useBreakpoint();
+  const {tablet} = useBreakpoint();
 
   // TODO: `open` state should update search params.
   const [menuOpen, setMenuOpen] = useState(false);
@@ -37,12 +39,11 @@ export function Sidebar() {
     }, [menuOpen]);
   */
 
-  const counterMarkup = desktop ? (
-    <li className={styles.DataPoint}>
-      <p className={clx('text-box-trim', styles.DataTitle)}>Counter</p>
-      <Counter />
-    </li>
-  ) : null;
+  const persistentStats = tablet ? (
+    <MockStats showCounter />
+  ) : (
+    <p className={styles.MobileLabel}>Open to see stats</p>
+  );
 
   return (
     <aside className={clx(styles.Sidebar, {[styles.open]: menuOpen})}>
@@ -55,24 +56,7 @@ export function Sidebar() {
           <Hamburger active={menuOpen} large={tablet} />
         </CommonAction>
 
-        <ul className={styles.Metrics}>
-          <li className={styles.DataPoint}>
-            <p className={clx('text-box-trim', styles.DataTitle)}>Visible</p>
-            <p className={styles.DataValue}>4</p>
-          </li>
-
-          <li className={styles.DataPoint}>
-            <p className={clx('text-box-trim', styles.DataTitle)}>In Pool</p>
-            <p className={styles.DataValue}>20</p>
-          </li>
-
-          <li className={styles.DataPoint}>
-            <p className={clx('text-box-trim', styles.DataTitle)}>Total</p>
-            <p className={styles.DataValue}>160</p>
-          </li>
-
-          {counterMarkup}
-        </ul>
+        {persistentStats}
       </div>
 
       <div className={styles.Secondary} hidden={!menuOpen}>

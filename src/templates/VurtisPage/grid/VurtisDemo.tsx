@@ -7,8 +7,9 @@ import {Button, LoadMore} from '../../../components/index.js';
 import type {Vurticies} from '../VurtisPage.types.js';
 
 import {CssGrid} from './CssGrid.js';
-// import {CssGridMotion} from './CssGridMotion.js';
 import {VurtisGrid} from './VurtisGrid.js';
+
+// import {CssGridMotion} from './CssGridMotion.js';
 // import {VurtisGridMotion} from './VurtisGridMotion.js';
 
 // @ts-expect-error no types
@@ -36,13 +37,17 @@ export function VurtisDemo({itemsData, loadMore = false}: VurtisDemoProps) {
   }
 
   const loadMoreMarkup = loadMore ? (
-    <div className={styles.LoadMoreWrapper}>
-      <LoadMore onLoad={() => console.log('L O A D')} />
-    </div>
+    <LoadMore onLoad={() => console.log('L O A D')} />
   ) : null;
 
   return (
     <div className={styles.VurtisDemo}>
+      {virtualize ? (
+        <VurtisGrid items={items} reversed={reverse} />
+      ) : (
+        <CssGrid items={items} reversed={reverse} />
+      )}
+
       <div className={styles.ActionBar}>
         <Button
           label={reverse ? 'Sort normal' : 'Sort reverse'}
@@ -55,15 +60,9 @@ export function VurtisDemo({itemsData, loadMore = false}: VurtisDemoProps) {
           pressed={virtualize}
           onClick={handleVirtualizeToggle}
         />
+
+        {loadMoreMarkup}
       </div>
-
-      {virtualize ? (
-        <VurtisGrid items={items} reversed={reverse} />
-      ) : (
-        <CssGrid items={items} reversed={reverse} />
-      )}
-
-      {loadMoreMarkup}
     </div>
   );
 }

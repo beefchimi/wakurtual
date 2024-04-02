@@ -13,21 +13,16 @@
   }
 }
 
-.virtualList {
-  position: relative;
-
-  /* TODO: Re-enable these once we have solved the bugs. */
-  /* display: block; */
-  /* width: 100%; */
-  /* Replaced by inline style */
-  /* height: auto; */
+.CardItem {
 }
 
-.CardItem {
-  /* background-color: rgb(255, 0, 0, 0.1); */
+/* --- Virtualized --- */
+
+.virtualList {
+  position: relative;
+  display: block;
 }
 
 .virtualItem {
   position: absolute;
-  /* background-color: rgb(0, 255, 0, 0.1); */
 }

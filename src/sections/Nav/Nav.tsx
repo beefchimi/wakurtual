@@ -67,7 +67,9 @@ export function Nav({items = []}: NavProps) {
 
   return (
     <nav ref={ref} className={clx(styles.Nav, {[styles.sticky]: sticky})}>
-      <ul className={styles.List}>{listChildren}</ul>
+      <div className={styles.Container}>
+        <ul className={styles.List}>{listChildren}</ul>
+      </div>
     </nav>
   );
 }

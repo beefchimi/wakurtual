@@ -76,13 +76,6 @@ export function VurtisGridMotion({
 
   return (
     <div className={styles.Grid}>
-      <div className={styles.GridDetails}>
-        <p className={styles.GridTitle}>
-          Visible range: {rangeStart}:{rangeEnd} | Range size:{' '}
-          {itemsMarkup.length}/{items.length}
-        </p>
-      </div>
-
       <ul
         ref={listRef}
         className={clx(styles.GridList, {

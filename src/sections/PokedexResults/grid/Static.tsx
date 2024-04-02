@@ -1,5 +1,7 @@
 'use client';
 
+// import {useEffect} from 'react';
+
 import {Card, CardList} from '../../../components/index.js';
 import {
   getPokemonPixel,
@@ -12,6 +14,12 @@ export interface StaticProps {
 }
 
 export function Static({items = []}: StaticProps) {
+  /*
+  useEffect(() => {
+    setVirtualStats(...DEFAULT_VIRTUAL_STATS);
+  }, []);
+  */
+
   const itemsMarkup = items.map(({id, slug, name}, index) => (
     <CardList.Item
       key={`Pokemon-${id}`}
