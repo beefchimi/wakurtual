@@ -1,8 +1,8 @@
 import {StrictMode} from 'react';
 import {createRoot, hydrateRoot} from 'react-dom/client';
 import {Router} from 'waku/router/client';
+import {getErrorMessage} from 'beeftools';
 
-import {getErrorMessage} from './packages/utilities/index.js';
 import {ErrorBoundarySingleton} from './classes/index.js';
 
 const rootElement = (

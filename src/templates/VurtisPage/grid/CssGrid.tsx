@@ -1,8 +1,8 @@
 'use client';
 
 import {LayoutGroup, motion} from 'framer-motion';
+import {clx} from 'beeftools';
 
-import {cx} from '../../../packages/utilities/index.js';
 import type {Vurticies} from '../VurtisPage.types.js';
 
 // @ts-expect-error no types
@@ -18,7 +18,7 @@ export function CssGrid({items = [], reversed = false}: CssGridProps) {
     <motion.li
       layoutId={`Id-${order}`}
       key={`Css-Item-${order}`}
-      className={cx(styles.GridItem, styles.fallbackItem)}
+      className={clx(styles.GridItem, styles.fallbackItem)}
     >
       <div className={styles.GridCard}>
         <h2>Order: {order}</h2>
@@ -36,7 +36,7 @@ export function CssGrid({items = [], reversed = false}: CssGridProps) {
 
       <LayoutGroup>
         <motion.ul
-          className={cx(styles.GridList, styles.fallbackList, {
+          className={clx(styles.GridList, styles.fallbackList, {
             [styles.reversed]: reversed,
           })}
         >

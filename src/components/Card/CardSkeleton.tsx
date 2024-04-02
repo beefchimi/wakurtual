@@ -1,4 +1,4 @@
-import {cx} from '../../packages/utilities/index.js';
+import {clx} from 'beeftools';
 import {Thumbnail} from '../Thumbnail/index.js';
 
 // @ts-expect-error no types
@@ -14,10 +14,10 @@ export function CardSkeleton() {
 
         <div className={styles.Details}>
           <div
-            className={cx(styles.Title, 'skeleton-base', styles.textSkeleton)}
+            className={clx(styles.Title, 'skeleton-base', styles.textSkeleton)}
           />
           <div
-            className={cx(
+            className={clx(
               styles.Subtitle,
               'skeleton-base',
               styles.textSkeleton
@@ -27,7 +27,7 @@ export function CardSkeleton() {
       </div>
 
       <div
-        className={cx(styles.Order, 'skeleton-base', styles.orderSkeleton)}
+        className={clx(styles.Order, 'skeleton-base', styles.orderSkeleton)}
       />
     </article>
   );

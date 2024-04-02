@@ -1,6 +1,5 @@
 import {Link} from 'waku';
-
-import {cx} from '../../packages/utilities/index.js';
+import {clx} from 'beeftools';
 
 import {Thumbnail, type ThumbnailProps} from '../Thumbnail/index.js';
 // @ts-expect-error no types
@@ -27,13 +26,13 @@ export function Card({
   const orderMarkup = order ? (
     <div className={styles.Order}>
       <div className={styles.OrderPill}>
-        <p className={cx('text-box-trim', styles.OrderLabel)}>#{order}</p>
+        <p className={clx('text-box-trim', styles.OrderLabel)}>#{order}</p>
       </div>
     </div>
   ) : null;
 
   const subtitleMarkup = subtitle.length ? (
-    <p className={cx('text-box-trim', styles.Subtitle)}>{subtitle}</p>
+    <p className={clx('text-box-trim', styles.Subtitle)}>{subtitle}</p>
   ) : null;
 
   const interiorMarkup = (
@@ -44,7 +43,7 @@ export function Card({
         </div>
 
         <div className={styles.Details}>
-          <p className={cx('text-box-trim', styles.Title)}>{title}</p>
+          <p className={clx('text-box-trim', styles.Title)}>{title}</p>
           {subtitleMarkup}
         </div>
       </div>

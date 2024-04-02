@@ -4,9 +4,9 @@ import {
   type ForwardedRef,
   type ReactNode,
 } from 'react';
+import {clx} from 'beeftools';
+import type {VurtisItemPosition} from 'vurtis';
 
-import {cx} from '../../packages/utilities/index.js';
-import type {VirtualItemPosition} from '../../hooks/index.js';
 // @ts-expect-error no types
 import styles from './CardList.module.css';
 
@@ -19,7 +19,7 @@ export interface CardItemProps {
   children: ReactNode;
   id?: string;
   debugIndex?: number;
-  virtualPosition?: VirtualItemPosition;
+  virtualPosition?: VurtisItemPosition;
 }
 
 function ListComponent(
@@ -33,7 +33,7 @@ function ListComponent(
   return (
     <ul
       ref={ref}
-      className={cx(styles.CardList, {
+      className={clx(styles.CardList, {
         [styles.virtualList]: Boolean(virtualStyle),
       })}
       style={virtualStyle}
@@ -56,7 +56,7 @@ function ItemComponent(
       ref={ref}
       id={id}
       data-index={debugIndex}
-      className={cx(styles.CardItem, {
+      className={clx(styles.CardItem, {
         [styles.virtualItem]: Boolean(virtualStyle),
       })}
       style={virtualStyle}

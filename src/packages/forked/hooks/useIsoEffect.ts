@@ -1,4 +1,4 @@
 import {useEffect, useLayoutEffect} from 'react';
-import {supportDom} from '../utilities/index.js';
+import {supportDom} from 'beeftools';
 
 export const useIsoEffect = supportDom() ? useLayoutEffect : useEffect;

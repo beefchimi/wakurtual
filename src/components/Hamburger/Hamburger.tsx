@@ -1,4 +1,4 @@
-import {cx} from '../../packages/utilities/index.js';
+import {clx} from 'beeftools';
 // @ts-expect-error no types
 import styles from './Hamburger.module.css';
 
@@ -10,7 +10,7 @@ export interface HamburgerProps {
 export function Hamburger({active = false, large = false}: HamburgerProps) {
   return (
     <div
-      className={cx(styles.Hamburger, {
+      className={clx(styles.Hamburger, {
         [styles.active]: active,
         [styles.large]: large,
       })}

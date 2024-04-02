@@ -1,8 +1,8 @@
 'use client';
 
 import {useCallback, useMemo, useRef, useState} from 'react';
+import {arrayOfLength, clamp} from 'beeftools';
 
-import {arrayOfLength, clamp} from '../utilities/index.js';
 import {
   useIsoEffect,
   useResizeObserver,

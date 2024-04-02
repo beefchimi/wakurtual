@@ -1,6 +1,6 @@
 import {useState} from 'react';
+import {useIsoEffect} from 'vurtis';
 
-import {useIsoEffect} from '../useIsoEffect.js';
 import {
   applyScrollStyles,
   resetScrollStyles,

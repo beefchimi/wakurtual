@@ -7,8 +7,6 @@ import {
   useMemo,
   type ReactNode,
 } from 'react';
-
-// @ts-expect-error no types
 import fs from 'node:fs';
 
 type ParsedContent = Record<string, string>;

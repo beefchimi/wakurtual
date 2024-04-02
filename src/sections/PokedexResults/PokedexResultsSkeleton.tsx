@@ -1,8 +1,8 @@
 'use client';
 
-import {arrayOfLength, clamp} from '../../packages/utilities/index.js';
-import {CardSkeleton, CardList} from '../../components/index.js';
+import {arrayOfLength, clamp} from 'beeftools';
 
+import {CardSkeleton, CardList} from '../../components/index.js';
 // @ts-expect-error no types
 import styles from './PokedexResults.module.css';
 

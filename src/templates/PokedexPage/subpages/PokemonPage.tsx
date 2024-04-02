@@ -1,4 +1,5 @@
-import {cx} from '../../../packages/utilities/index.js';
+import {clx} from 'beeftools';
+
 import {fetchPokemonBySlug, type Pokemon} from '../../../data/index.js';
 import {CommonAction} from '../../../primitives/index.js';
 import {PokemonHero} from '../../../sections/index.js';
@@ -17,10 +18,10 @@ export async function PokemonPage({slug}: PokemonPageProps) {
     <div className={styles.PokemonPage}>
       <PokemonHero pokemon={pokemonPromise}>
         <CommonAction
-          className={cx('button-basic', styles.BackAction)}
+          className={clx('button-basic', styles.BackAction)}
           url="/pokedex"
         >
-          <span className={cx('text-box-trim', styles.BackActionLabel)}>
+          <span className={clx('text-box-trim', styles.BackActionLabel)}>
             ⇦ Go Back
           </span>
         </CommonAction>

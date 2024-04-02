@@ -1,9 +1,9 @@
 'use client';
 
 import {useCallback, useEffect, useRef, useState} from 'react';
+import {timeMeasurement} from 'beeftools';
 
 import {useTimeout} from '../../packages/hooks/index.js';
-import {timeMeasurement} from '../../packages/utilities/index.js';
 
 import {
   type MediaEventHandler,

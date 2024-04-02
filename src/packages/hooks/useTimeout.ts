@@ -1,7 +1,6 @@
 import {useEffect, useRef} from 'react';
-
-import type {TimeoutId} from '../types/index.js';
-import {useIsoEffect} from './useIsoEffect.js';
+import type {TimeoutId} from 'beeftools';
+import {useIsoEffect} from 'vurtis';
 
 export type TimeoutCallback = (timestamp: number) => void;
 

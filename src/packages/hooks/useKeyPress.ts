@@ -1,7 +1,6 @@
 import {useCallback, useRef} from 'react';
-
-import type {GlobalEventTarget} from '../types/types.js';
-import {useIsoEffect} from './useIsoEffect.js';
+import type {GlobalEventTarget} from 'beeftools';
+import {useIsoEffect} from 'vurtis';
 
 // TODO: Could consider using an array of event types:
 // https://github.com/beefchimi/react-hooks/issues/21

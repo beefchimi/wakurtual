@@ -1,8 +1,7 @@
 'use client';
 
 import {type ForwardedRef, forwardRef, type ReactNode} from 'react';
-
-import {cx, supportSafari} from '../../packages/utilities/index.js';
+import {clx, supportSafari} from 'beeftools';
 
 import {type MediaEventHandler} from './VisualAsset.types.js';
 import {Loader} from './Loader/index.js';
@@ -103,7 +102,7 @@ function VisualAssetComponent(
   // AnimatePresence / ReactTransitionGroup.
   return (
     <div
-      className={cx(styles.VisualAsset, {
+      className={clx(styles.VisualAsset, {
         [styles.bgPoster]: posterAsBg,
         [styles.contain]: contain,
         [styles.hideAsset]: hideAsset,

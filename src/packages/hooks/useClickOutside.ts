@@ -1,5 +1,5 @@
 import {useCallback, useRef} from 'react';
-import {useIsoEffect} from './useIsoEffect.js';
+import {useIsoEffect} from 'vurtis';
 
 export type ClickOutsideCallback = (event: PointerEvent) => void;
 export type ClickOutsideExclusion = (HTMLElement | null | undefined)[];

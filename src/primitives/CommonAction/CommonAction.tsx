@@ -7,9 +7,9 @@ import {
   type PointerEventHandler,
   type ReactNode,
 } from 'react';
+import {clx} from 'beeftools';
 import {Link} from 'waku';
 
-import {cx} from '../../packages/utilities/index.js';
 // @ts-expect-error no types
 import styles from './CommonAction.module.css';
 
@@ -89,7 +89,7 @@ function CommonActionComponent(
     const sharedLinkProps = {
       ...globalProps,
       ref: ref as ForwardedRef<HTMLAnchorElement>,
-      className: cx(styles.PrimitiveLink, className),
+      className: clx(styles.PrimitiveLink, className),
       'data-link-disabled': isDisabled,
       'data-link-pressed': isPressed,
     };
@@ -123,7 +123,7 @@ function CommonActionComponent(
       {...globalProps}
       ref={ref as ForwardedRef<HTMLButtonElement>}
       type={type}
-      className={cx(styles.PrimitiveButton, className)}
+      className={clx(styles.PrimitiveButton, className)}
       disabled={isDisabled}
       aria-label={ariaLabel}
       aria-pressed={isPressed}

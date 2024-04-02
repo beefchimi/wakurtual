@@ -1,4 +1,4 @@
-import {cx} from '../../packages/utilities/index.js';
+import {clx} from 'beeftools';
 import {CommonAction, type CommonActionProps} from '../../primitives/index.js';
 
 // @ts-expect-error no types
@@ -12,7 +12,7 @@ export interface TextLinkProps
 export function TextLink({label, ...commonProps}: TextLinkProps) {
   return (
     <CommonAction
-      className={cx('link-basic', styles.TextLink)}
+      className={clx('link-basic', styles.TextLink)}
       {...commonProps}
     >
       {label}

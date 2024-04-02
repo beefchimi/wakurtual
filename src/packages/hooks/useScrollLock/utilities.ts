@@ -1,4 +1,4 @@
-import {assertNumber, supportDom} from '../../utilities/index.js';
+import {assertNumber, supportDom} from 'beeftools';
 
 import type {
   ScrollbarWidth,

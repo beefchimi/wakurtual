@@ -1,7 +1,6 @@
 import {useState} from 'react';
-
-import {supportDom, supportMatchMedia} from '../utilities/index.js';
-import {useIsoEffect} from './useIsoEffect.js';
+import {supportDom, supportMatchMedia} from 'beeftools';
+import {useIsoEffect} from 'vurtis';
 
 export interface MediaQueryOptions {
   // The default value to return if the hook is being

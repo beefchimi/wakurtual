@@ -1,7 +1,7 @@
 import type {ReactNode} from 'react';
+import {clx} from 'beeftools';
 
 import {useDumbContent} from '../../packages/contentious/index.js';
-import {cx} from '../../packages/utilities/index.js';
 
 // @ts-expect-error no types
 import styles from './Header.module.css';
@@ -20,11 +20,11 @@ export function Header({children}: HeaderProps) {
   return (
     <header className={styles.Header}>
       <div className={styles.Content}>
-        <h1 className={cx('text-box-trim', styles.Title)}>
+        <h1 className={clx('text-box-trim', styles.Title)}>
           {getContent('header-title')}
         </h1>
 
-        <p className={cx('text-box-trim', styles.Subtitle)}>
+        <p className={clx('text-box-trim', styles.Subtitle)}>
           {getContent('header-subtitle')}
         </p>
       </div>

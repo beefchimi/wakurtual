@@ -1,6 +1,6 @@
 import {use, type ReactNode} from 'react';
+import {clx} from 'beeftools';
 
-import {cx} from '../../packages/utilities/index.js';
 import {
   getPokemonPixel,
   parsePokemonStats,
@@ -44,7 +44,7 @@ export function PokemonHero({pokemon, children}: PokemonHeroProps) {
         <img src={getStatImage(stat)} alt={stat} />
       </div>
 
-      <p className={cx('text-box-trim', styles.StatsLabel)}>{value}</p>
+      <p className={clx('text-box-trim', styles.StatsLabel)}>{value}</p>
     </li>
   ));
 

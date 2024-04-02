@@ -1,6 +1,5 @@
 import {useEffect, useRef} from 'react';
-
-import {useIsoEffect} from './useIsoEffect.js';
+import {useIsoEffect} from 'vurtis';
 
 export type DocumentEventName = keyof DocumentEventMap;
 export type DocumentEventFn = (

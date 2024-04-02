@@ -1,19 +1,18 @@
 // TODO: Switch back to `node:js` when ready.
 // Will need to remove `resolveJsonModule` once we do that.
 // import fs from 'node:fs';
-
-// TODO: Alternatively, we should use an actual API:
-// 1. https://pokeapi.co/
-// 2. https://www.reddit.com/r/reactjs/comments/z5omi6/should_i_hardcode_the_info_for_800_pokemon_in_my/
-import POKEDEX from '../private/pokedex.json';
-
 import {
   arrayOfLength,
   arrayPaginate,
   arrayShuffle,
   clamp,
   sleep,
-} from '../packages/utilities/index.js';
+} from 'beeftools';
+
+// TODO: Alternatively, we should use an actual API:
+// 1. https://pokeapi.co/
+// 2. https://www.reddit.com/r/reactjs/comments/z5omi6/should_i_hardcode_the_info_for_800_pokemon_in_my/
+import POKEDEX from '../private/pokedex.json';
 
 export interface PokemonName {
   english: string;

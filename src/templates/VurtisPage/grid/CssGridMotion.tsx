@@ -1,9 +1,9 @@
 'use client';
 
 import {AnimatePresence, motion} from 'framer-motion';
+import {clx} from 'beeftools';
+import {useVurtis} from 'vurtis';
 
-import {cx} from '../../../packages/utilities/index.js';
-import {useVurtis} from '../../../packages/vurtis/index.js';
 import {useBreakpoint} from '../../../hooks/index.js';
 import type {Vurticies} from '../VurtisPage.types.js';
 
@@ -46,7 +46,7 @@ export function CssGridMotion({
       <motion.li
         ref={index === 0 ? updateItemHeight : undefined}
         key={`Css-Item-${originalOrder}`}
-        className={cx(styles.GridItem, styles.fallbackItem)}
+        className={clx(styles.GridItem, styles.fallbackItem)}
         // data-index={index}
         // data-order={order}
         variants={{
@@ -84,7 +84,7 @@ export function CssGridMotion({
 
       <ul
         ref={listRef}
-        className={cx(styles.GridList, styles.fallbackList, {
+        className={clx(styles.GridList, styles.fallbackList, {
           [styles.reversed]: reversed,
         })}
         style={{

@@ -1,5 +1,6 @@
+import {clx} from 'beeftools';
+
 import {imgSkull} from '../../../assets/index.js';
-import {cx} from '../../../packages/utilities/index.js';
 // @ts-expect-error no types
 import styles from './Loader.module.css';
 
@@ -24,7 +25,7 @@ export function Loader({failed = false}: LoaderProps) {
   ) : null;
 
   return (
-    <div className={cx(styles.Loader, {[styles.failed]: failed})}>
+    <div className={clx(styles.Loader, {[styles.failed]: failed})}>
       {skeletonMarkup}
       {failedMarkup}
     </div>

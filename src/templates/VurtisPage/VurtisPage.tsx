@@ -1,11 +1,7 @@
 import {Suspense} from 'react';
+import {arrayOfLength, sleep} from 'beeftools';
 
-import {
-  arrayOfLength,
-  convertNumberToWords,
-  sleep,
-} from '../../packages/utilities/index.js';
-
+import {convertNumberToWords} from '../../packages/utilities/index.js';
 import type {Vurticies} from './VurtisPage.types.js';
 import {VurtisDemo} from './grid/index.js';
 

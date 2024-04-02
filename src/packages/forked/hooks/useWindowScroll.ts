@@ -1,6 +1,6 @@
 import {useState} from 'react';
+import {supportDom} from 'beeftools';
 
-import {supportDom} from '../utilities/index.js';
 import {useIsoEffect} from './useIsoEffect.js';
 import {useWindowEvent} from './useWindowEvent.js';
 import {

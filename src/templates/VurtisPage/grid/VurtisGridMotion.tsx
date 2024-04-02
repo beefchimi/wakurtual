@@ -1,9 +1,9 @@
 'use client';
 
 import {AnimatePresence, motion} from 'framer-motion';
+import {clx} from 'beeftools';
+import {useVurtis} from 'vurtis';
 
-import {cx} from '../../../packages/utilities/index.js';
-import {useVurtis} from '../../../packages/vurtis/index.js';
 import {useBreakpoint} from '../../../hooks/index.js';
 import type {Vurticies} from '../VurtisPage.types.js';
 
@@ -85,7 +85,7 @@ export function VurtisGridMotion({
 
       <ul
         ref={listRef}
-        className={cx(styles.GridList, {
+        className={clx(styles.GridList, {
           [styles.reversed]: reversed,
         })}
         style={{height: listHeight}}

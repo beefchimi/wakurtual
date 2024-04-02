@@ -2,7 +2,7 @@
 
 import {useState} from 'react';
 
-import {useWindowScroll} from '../../packages/hooks/index.js';
+import {useWindowScroll} from '../../packages/forked/hooks/index.js';
 import {Button} from '../../components/index.js';
 
 // @ts-expect-error no types

@@ -15,16 +15,18 @@
     "format:fix": "prettier --write ."
   },
   "dependencies": {
+    "beeftools": "^0.0.4",
     "framer-motion": "^11.0.24",
     "react": "18.3.0-canary-670811593-20240322",
     "react-dom": "18.3.0-canary-670811593-20240322",
     "react-intersection-observer": "^9.8.1",
     "react-server-dom-webpack": "18.3.0-canary-670811593-20240322",
+    "vurtis": "^0.0.4",
     "waku": "^0.20.0"
   },
   "devDependencies": {
-    "@types/react": "^18.2.73",
-    "@types/react-dom": "^18.2.22",
+    "@types/react": "^18.2.74",
+    "@types/react-dom": "^18.2.23",
     "autoprefixer": "^10.4.19",
     "typescript": "^5.4.3"
   }

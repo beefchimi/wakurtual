@@ -1,6 +1,6 @@
 import {forwardRef, type ForwardedRef} from 'react';
+import {clx} from 'beeftools';
 
-import {cx} from '../../packages/utilities/index.js';
 import {CommonAction, type CommonActionProps} from '../../primitives/index.js';
 import {SimpleSpinner} from '../SimpleSpinner/index.js';
 
@@ -21,7 +21,7 @@ function ButtonComponent(
   ref: ForwardedRef<HTMLButtonElement>
 ) {
   const loadingMarkup = loading ? (
-    <div className={cx('position-cover', styles.LoadingWrapper)}>
+    <div className={clx('position-cover', styles.LoadingWrapper)}>
       <SimpleSpinner />
     </div>
   ) : null;
@@ -29,10 +29,12 @@ function ButtonComponent(
   return (
     <CommonAction
       ref={ref}
-      className={cx('button-basic', styles.Button, {[styles.loading]: loading})}
+      className={clx('button-basic', styles.Button, {
+        [styles.loading]: loading,
+      })}
       {...buttonProps}
     >
-      <span className={cx('text-box-trim', styles.Label)}>{label}</span>
+      <span className={clx('text-box-trim', styles.Label)}>{label}</span>
       {loadingMarkup}
     </CommonAction>
   );

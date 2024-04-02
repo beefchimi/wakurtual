@@ -1,6 +1,7 @@
 'use client';
 
-import {useVurtis} from '../../../packages/vurtis/index.js';
+import {useVurtis} from 'vurtis';
+
 import {useBreakpoint} from '../../../hooks/index.js';
 import {Card, CardList} from '../../../components/index.js';
 import {
@@ -26,7 +27,7 @@ export function Virtual({items}: VirtualProps) {
     gap: gapSize,
   });
 
-  const itemsMarkup = virtualItems.map(({index, order, top, left, width}) => {
+  const itemsMarkup = virtualItems.map(({order, top, left, width}, index) => {
     const {id, slug, name} = items[order] ?? {};
 
     // TODO: Avoid measuring every item if we know

@@ -1,7 +1,8 @@
 'use client';
 
-import {cx} from '../../../packages/utilities/index.js';
-import {useVurtis} from '../../../packages/vurtis/index.js';
+import {useVurtis} from 'vurtis';
+import {clx} from 'beeftools';
+
 import {useBreakpoint} from '../../../hooks/index.js';
 import type {Vurticies} from '../VurtisPage.types.js';
 
@@ -67,7 +68,7 @@ export function VurtisGrid({items = [], reversed = false}: VurtisGridProps) {
 
       <ul
         ref={listRef}
-        className={cx(styles.GridList, {
+        className={clx(styles.GridList, {
           [styles.reversed]: reversed,
         })}
         style={{height: listHeight}}

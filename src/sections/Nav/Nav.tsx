@@ -3,10 +3,10 @@
 import {useState} from 'react';
 import {useInView} from 'react-intersection-observer';
 import {useRouter_UNSTABLE as useRouter} from 'waku';
+import {assertNumber, clx} from 'beeftools';
+import {useIsoEffect} from 'vurtis';
 
 // import {useDumbContent} from '../../packages/contentious/index.js';
-import {useIsoEffect} from '../../packages/hooks/index.js';
-import {assertNumber, cx} from '../../packages/utilities/index.js';
 import {TextLink} from '../../components/index.js';
 
 // @ts-expect-error no types
@@ -66,7 +66,7 @@ export function Nav({items = []}: NavProps) {
   );
 
   return (
-    <nav ref={ref} className={cx(styles.Nav, {[styles.sticky]: sticky})}>
+    <nav ref={ref} className={clx(styles.Nav, {[styles.sticky]: sticky})}>
       <ul className={styles.List}>{listChildren}</ul>
     </nav>
   );

@@ -1,6 +1,6 @@
 import {useRef, useState, type RefObject} from 'react';
+import {supportResizeObserver} from 'beeftools';
 
-import {supportResizeObserver} from '../../utilities/index.js';
 import {useIsoEffect} from '../useIsoEffect.js';
 import {useMounted} from '../useMounted.js';
 
