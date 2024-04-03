@@ -1,15 +1,18 @@
 'use client';
 
-import {useState} from 'react';
+import {useEffect} from 'react';
+import {useAtom} from 'jotai';
 import {clx} from 'beeftools';
 
-import {useBreakpoint} from '../../hooks/index.js';
-import {Hamburger} from '../../components/index.js';
+import {
+  sidebarAtom,
+  animationAtom,
+  virtualizationAtom,
+} from '../../store/index.js';
 import {CommonAction} from '../../primitives/index.js';
+import {useBreakpoint} from '../../hooks/index.js';
 
 import {TestMeasureHooks} from '../TestMeasureHooks/index.js';
-import {MockStats} from './MockStats.js';
-
 // @ts-expect-error no types
 import styles from './Sidebar.module.css';
 
@@ -17,11 +20,13 @@ export function Sidebar() {
   const {tablet} = useBreakpoint();
 
   // TODO: `open` state should update search params.
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [sidebarOpen, toggleSidebar] = useAtom(sidebarAtom);
+  const [animationOn, toggleAnimation] = useAtom(animationAtom);
+  const [virtualizationOn, toggleVirtualization] = useAtom(virtualizationAtom);
 
-  function toggleMenu() {
-    setMenuOpen((current) => !current);
-  }
+  useEffect(() => {
+    if (!tablet) toggleSidebar(false);
+  }, [tablet]);
 
   /*
     const router = useRouter();
@@ -35,35 +40,46 @@ export function Sidebar() {
     }
 
     useEffect(() => {
-      document.body.inert = menuOpen;
-    }, [menuOpen]);
+      document.body.inert = sidebarOpen;
+    }, [sidebarOpen]);
   */
 
-  const persistentStats = tablet ? (
-    <MockStats showCounter />
-  ) : (
-    <p className={styles.MobileLabel}>Open to see stats</p>
-  );
-
   return (
-    <aside className={clx(styles.Sidebar, {[styles.open]: menuOpen})}>
+    <aside className={clx(styles.Sidebar, {[styles.open]: sidebarOpen})}>
       <div className={styles.Primary}>
         <CommonAction
           className={styles.MenuAction}
-          pressed={menuOpen}
-          onClick={toggleMenu}
+          pressed={sidebarOpen}
+          // onClick={() => toggleSidebar(true)}
+          onClick={() => toggleSidebar()}
         >
-          <Hamburger active={menuOpen} large={tablet} />
+          <div className={styles.MenuActionIcon}>🍔</div>
         </CommonAction>
 
-        {persistentStats}
+        <CommonAction
+          className={styles.MenuAction}
+          pressed={animationOn}
+          onClick={() => toggleAnimation()}
+        >
+          <div className={styles.MenuActionIcon}>💫</div>
+        </CommonAction>
+
+        <CommonAction
+          className={styles.MenuAction}
+          pressed={virtualizationOn}
+          onClick={() => toggleVirtualization()}
+        >
+          <div className={styles.MenuActionIcon}>✨</div>
+        </CommonAction>
       </div>
 
-      <div className={styles.Secondary} hidden={!menuOpen}>
-        <p className={clx('main-text', styles.SecondaryContent)}>
-          This is just temporary content for now. Eventually, this area will be
-          populated with relevant UI.
-        </p>
+      <div className={styles.Secondary} hidden={!sidebarOpen}>
+        <CommonAction
+          className={styles.CloseAction}
+          onClick={() => toggleSidebar(false)}
+        >
+          <p className={styles.CloseActionLabel}>Close</p>
+        </CommonAction>
 
         <TestMeasureHooks />
       </div>

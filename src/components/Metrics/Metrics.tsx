@@ -3,16 +3,16 @@
 import {clx} from 'beeftools';
 
 import {useBreakpoint} from '../../hooks/index.js';
-import {Counter} from '../../components/index.js';
+import {Counter} from '../Counter/index.js';
 
 // @ts-expect-error no types
-import styles from './Sidebar.module.css';
+import styles from './Metrics.module.css';
 
-export interface MockStatsProps {
+export interface MetricsProps {
   showCounter?: boolean;
 }
 
-export function MockStats({showCounter = false}: MockStatsProps) {
+export function Metrics({showCounter = false}: MetricsProps) {
   const {tablet} = useBreakpoint();
 
   const counterMarkup =

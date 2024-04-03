@@ -1,15 +1,15 @@
 import {useAtomValue} from 'jotai';
-import {windowAtom} from '../../../store/index.js';
+import {scrollAtom} from '../../../store/index.js';
 
 // @ts-expect-error no types
 import styles from './Stats.module.css';
 
-export function WindowStats() {
-  const state = useAtomValue(windowAtom);
+export function ScrollStats() {
+  const state = useAtomValue(scrollAtom);
 
   const stateItems = Object.entries(state).map(
     ([key, value]: [string, number | boolean]) => (
-      <li key={`Stat-Window-${key}`} className={styles.Item}>
+      <li key={`Stat-Scroll-${key}`} className={styles.Item}>
         <p className={styles.Text}>
           <strong>{key}:</strong> {value}
         </p>
@@ -20,14 +20,14 @@ export function WindowStats() {
   const emptyItem = stateItems.length ? null : (
     <li className={styles.Item}>
       <p className={styles.Text}>
-        No data for <code>window</code> state.
+        No data for <code>scroll</code> state.
       </p>
     </li>
   );
 
   return (
     <div className={styles.Stats}>
-      <p className={styles.Title}>Window</p>
+      <p className={styles.Title}>Scroll</p>
 
       <ul className={styles.List}>{emptyItem || stateItems}</ul>
     </div>

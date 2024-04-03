@@ -9,6 +9,7 @@ import '../styles/utility.css';
 
 import {NAV_LINKS} from '../data/index.js';
 import {Footer, Header, Main, Nav, Sidebar} from '../sections/index.js';
+import {Providers} from './Providers.js';
 
 interface RootLayoutProps {
   children: ReactNode;
@@ -31,7 +32,7 @@ export async function RootLayout({children}: RootLayoutProps) {
   // <ContentProvider path="./src/content/app.json"></ContentProvider>
 
   return (
-    <>
+    <Providers>
       <meta property="description" content={pageData.description} />
       <link rel="icon" type="image/png" href={pageData.icon} />
 
@@ -52,6 +53,6 @@ export async function RootLayout({children}: RootLayoutProps) {
 
         <Sidebar />
       </div>
-    </>
+    </Providers>
   );
 }
