@@ -1,7 +1,9 @@
 'use client';
 
 import {use} from 'react';
+import {useAtomValue} from 'jotai';
 
+import {virtualizationAtom} from '../../store/index.js';
 import {LoadMore} from '../../components/index.js';
 import {type Pokemon} from '../../data/index.js';
 import {Static, Virtual} from './grid/index.js';
@@ -14,10 +16,9 @@ export interface PokedexResultsProps {
   loadMore?: boolean;
 }
 
-const VIRTUAL = true;
-
 export function PokedexResults({pokemon, loadMore}: PokedexResultsProps) {
   const items = use(pokemon);
+  const virtualizationOn = useAtomValue(virtualizationAtom);
 
   // TODO: Figure out how to wire this up so that we can keep `PokedexPage`
   // as a server component (avoid `useState` to increment `range` argument).
@@ -29,7 +30,7 @@ export function PokedexResults({pokemon, loadMore}: PokedexResultsProps) {
 
   return (
     <div className={styles.PokedexResults}>
-      {VIRTUAL ? <Virtual items={items} /> : <Static items={items} />}
+      {virtualizationOn ? <Virtual items={items} /> : <Static items={items} />}
 
       {loadMoreMarkup}
     </div>

@@ -1,9 +1,10 @@
 'use client';
 
 import {use, useState} from 'react';
+import {useAtomValue} from 'jotai';
 
+import {virtualizationAtom} from '../../../store/index.js';
 import {Button, LoadMore} from '../../../components/index.js';
-
 import type {Vurticies} from '../VurtisPage.types.js';
 
 import {CssGrid} from './CssGrid.js';
@@ -22,18 +23,13 @@ export interface VurtisDemoProps {
 
 export function VurtisDemo({itemsData, loadMore = false}: VurtisDemoProps) {
   const rawItems = use(itemsData);
+  const virtualizationOn = useAtomValue(virtualizationAtom);
 
   const [reverse, setReverse] = useState(false);
-  const [virtualize, setVirtualize] = useState(true);
-
   const items = reverse ? rawItems.toReversed() : rawItems;
 
   function handleReverseToggle() {
     setReverse((current) => !current);
-  }
-
-  function handleVirtualizeToggle() {
-    setVirtualize((current) => !current);
   }
 
   const loadMoreMarkup = loadMore ? (
@@ -42,7 +38,7 @@ export function VurtisDemo({itemsData, loadMore = false}: VurtisDemoProps) {
 
   return (
     <div className={styles.VurtisDemo}>
-      {virtualize ? (
+      {virtualizationOn ? (
         <VurtisGrid items={items} reversed={reverse} />
       ) : (
         <CssGrid items={items} reversed={reverse} />
@@ -53,12 +49,6 @@ export function VurtisDemo({itemsData, loadMore = false}: VurtisDemoProps) {
           label={reverse ? 'Sort normal' : 'Sort reverse'}
           pressed={reverse}
           onClick={handleReverseToggle}
-        />
-
-        <Button
-          label={virtualize ? 'Switch to Static' : 'Switch to Virtual'}
-          pressed={virtualize}
-          onClick={handleVirtualizeToggle}
         />
 
         {loadMoreMarkup}

@@ -3,7 +3,7 @@ import {arrayOfLength, sleep} from 'beeftools';
 
 import {convertNumberToWords} from '../../packages/utilities/index.js';
 import type {Vurticies} from './VurtisPage.types.js';
-import {VurtisDemo} from './grid/index.js';
+import {SkeletonGrid, VurtisDemo} from './grid/index.js';
 
 // @ts-expect-error no types
 import styles from './VurtisPage.module.css';
@@ -36,7 +36,7 @@ export async function VurtisPage() {
     <div className={styles.VurtisPage}>
       <title>{pageData.htmlTitle}</title>
 
-      <Suspense fallback={<p>Waiting on results...</p>}>
+      <Suspense fallback={<SkeletonGrid />}>
         <VurtisDemo itemsData={itemsPromise} loadMore />
       </Suspense>
     </div>
