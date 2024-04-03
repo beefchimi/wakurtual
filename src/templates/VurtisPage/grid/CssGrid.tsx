@@ -6,7 +6,7 @@ import {clx} from 'beeftools';
 import type {Vurticies} from '../VurtisPage.types.js';
 
 // @ts-expect-error no types
-import styles from './VurtisDemo.module.css';
+import styles from './Grid.module.css';
 
 export interface CssGridProps {
   items?: Vurticies;

@@ -1,0 +1,88 @@
+.Grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.GridList {
+  --grid-list-card-bg: rgb(0, 255, 0, 0.1);
+  position: relative;
+}
+
+.reversed {
+  --grid-list-card-bg: rgb(0, 0, 255, 0.1);
+}
+
+.fallbackList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  grid-template-rows: auto;
+  align-content: start;
+  align-items: start;
+  gap: 1rem;
+
+  @media (min-width: 1280px) {
+    grid-template-columns: repeat(auto-fill, minmax(26rem, 1fr));
+    gap: 1.6rem;
+  }
+}
+
+.GridItem {
+  position: absolute;
+  box-shadow: inset 0 0 0 0.2rem black;
+}
+
+.fallbackItem {
+  position: static;
+}
+
+.GridCard {
+  display: grid;
+  place-items: center;
+  place-content: center;
+  gap: 1rem;
+  width: 100%;
+  aspect-ratio: 1 / 1.2;
+  border-radius: 0.6rem;
+  background-color: var(--grid-list-card-bg);
+  text-align: center;
+}
+
+.GridCard h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: blue;
+}
+
+.GridCard h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: green;
+}
+
+.GridCard h4 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: orange;
+}
+
+.GridCard p {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: black;
+}
+
+/* --- Overlay testing --- */
+
+.overlayList {
+  --grid-list-card-bg: rgb(255, 0, 0, 0.1);
+  position: absolute;
+  width: 100%;
+  opacity: 0.6;
+}
+
+.overlayList h2,
+.overlayList h3,
+.overlayList h4,
+.overlayList p {
+  color: red !important;
+}

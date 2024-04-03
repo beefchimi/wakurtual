@@ -2,7 +2,7 @@ import {arrayOfLength, clamp} from 'beeftools';
 import {clx} from 'beeftools';
 
 // @ts-expect-error no types
-import styles from './VurtisDemo.module.css';
+import styles from './Grid.module.css';
 
 export interface SkeletonGridProps {
   count?: number;

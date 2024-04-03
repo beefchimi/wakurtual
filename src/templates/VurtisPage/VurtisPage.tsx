@@ -2,8 +2,10 @@ import {Suspense} from 'react';
 import {arrayOfLength, sleep} from 'beeftools';
 
 import {convertNumberToWords} from '../../packages/utilities/index.js';
+
 import type {Vurticies} from './VurtisPage.types.js';
-import {SkeletonGrid, VurtisDemo} from './grid/index.js';
+import {SkeletonGrid} from './grid/index.js';
+import {VurtisDemo} from './sections/index.js';
 
 // @ts-expect-error no types
 import styles from './VurtisPage.module.css';
