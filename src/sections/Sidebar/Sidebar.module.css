@@ -55,7 +55,7 @@
   left: 0;
   right: 0;
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-auto-flow: column;
   align-items: center;
   gap: var(--sidebar-gap);
   padding-left: var(--sidebar-gap);
@@ -64,8 +64,7 @@
 
   @media (min-width: 768px) {
     position: relative;
-    grid-template-columns: unset;
-    grid-template-rows: auto auto auto;
+    grid-auto-flow: row;
     align-items: unset;
     justify-items: center;
     gap: calc(var(--sidebar-gap) * 2);

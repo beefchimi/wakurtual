@@ -1,10 +1,17 @@
 'use client';
 
+import {useEffect, useMemo} from 'react';
+
+import {AnimatePresence, MotionConfig, motion} from 'framer-motion';
 import {useAtomValue} from 'jotai';
-import {useVurtis} from 'vurtis';
+import {useVurtis, useVurttle} from 'vurtis';
 import {clx} from 'beeftools';
 
-import {altLayoutAtom, aggressiveMeasureAtom} from '../../../store/index.js';
+import {
+  animationAtom,
+  altLayoutAtom,
+  aggressiveMeasureAtom,
+} from '../../../store/index.js';
 import {useBreakpoint} from '../../../hooks/index.js';
 import type {Vurticies} from '../VurtisPage.types.js';
 
@@ -18,6 +25,8 @@ export interface VurtisGridProps {
 
 export function VurtisGrid({items = [], reversed = false}: VurtisGridProps) {
   const {desktop} = useBreakpoint();
+
+  const animation = useAtomValue(animationAtom);
   const altLayout = useAtomValue(altLayoutAtom);
   const aggressiveMeasure = useAtomValue(aggressiveMeasureAtom);
 
@@ -26,6 +35,7 @@ export function VurtisGrid({items = [], reversed = false}: VurtisGridProps) {
 
   const {
     listRef,
+    listWidth,
     listHeight,
     virtualItems,
     updateItemHeight,
@@ -36,6 +46,8 @@ export function VurtisGrid({items = [], reversed = false}: VurtisGridProps) {
     minWidth: itemMinWidth,
     gap: gapSize,
   });
+
+  const pending = useVurttle(listWidth, true);
 
   /*
   useEffect(() => {
@@ -58,45 +70,64 @@ export function VurtisGrid({items = [], reversed = false}: VurtisGridProps) {
 
     // Not passing `{height}` from `item` as it is computed natively.
     return (
-      <li
+      <motion.li
         ref={passRef ? updateItemHeight : undefined}
         key={`Vurtis-Item-${originalOrder}`}
         className={styles.GridItem}
         style={altLayout ? undefined : {top, left, width}}
         // data-index={index}
         // data-order={order}
+        variants={{
+          hide: {opacity: 0},
+          show: {opacity: 1},
+        }}
+        initial="hide"
+        animate="show"
+        exit="hide"
       >
-        <div className={styles.GridCard}>
+        <motion.div
+          className={styles.GridCard}
+          variants={{
+            hide: {scale: 0},
+            show: {scale: 1},
+          }}
+        >
           <h2>Original order: {originalOrder}</h2>
           <h3>Range order: {order}</h3>
           <h4>Index: {index}</h4>
           <p>Label: {label}</p>
-        </div>
-      </li>
+        </motion.div>
+      </motion.li>
     );
   });
 
+  const motionTransition = useMemo(() => {
+    return !animation || pending ? {duration: 0} : undefined;
+  }, [animation, pending]);
+
   return (
     <div className={styles.Grid}>
-      <ul
-        ref={listRef}
-        className={clx(styles.GridList, {
-          [styles.reversed]: reversed,
-          [styles.static]: altLayout,
-        })}
-        style={
-          altLayout
-            ? {
-                paddingTop: getSpaceBefore(),
-                paddingBottom: getSpaceAfter(),
-              }
-            : {
-                height: listHeight,
-              }
-        }
-      >
-        {itemsMarkup}
-      </ul>
+      <MotionConfig transition={motionTransition}>
+        <motion.ul
+          ref={listRef}
+          className={clx(styles.GridList, {
+            [styles.reversed]: reversed,
+            [styles.static]: altLayout,
+          })}
+          style={
+            altLayout
+              ? {
+                  paddingTop: getSpaceBefore(),
+                  paddingBottom: getSpaceAfter(),
+                }
+              : {
+                  height: listHeight,
+                }
+          }
+        >
+          <AnimatePresence initial={false}>{itemsMarkup}</AnimatePresence>
+        </motion.ul>
+      </MotionConfig>
     </div>
   );
 }
