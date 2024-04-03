@@ -22,11 +22,4 @@ export {
 } from './useKeyPress.js';
 
 export {useMediaQuery, type MediaQueryOptions} from './useMediaQuery.js';
-
-export {
-  useTimeout,
-  type TimeoutCallback,
-  type TimeoutOptions,
-} from './useTimeout.js';
-
 export {useUnmount} from './useUnmount.js';

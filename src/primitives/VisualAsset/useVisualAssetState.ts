@@ -2,8 +2,7 @@
 
 import {useCallback, useEffect, useRef, useState} from 'react';
 import {timeMeasurement} from 'beeftools';
-
-import {useTimeout} from '../../packages/hooks/index.js';
+import {useTimeout} from 'vurtis';
 
 import {
   type MediaEventHandler,
