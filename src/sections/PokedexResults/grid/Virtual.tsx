@@ -1,7 +1,10 @@
 'use client';
 
+// import {useEffect} from 'react';
+import {useAtomValue} from 'jotai';
 import {useVurtis} from 'vurtis';
 
+import {altLayoutAtom, aggressiveMeasureAtom} from '../../../store/index.js';
 import {useBreakpoint} from '../../../hooks/index.js';
 import {Card, CardList} from '../../../components/index.js';
 import {
@@ -16,6 +19,8 @@ export interface VirtualProps {
 
 export function Virtual({items}: VirtualProps) {
   const {desktop} = useBreakpoint();
+  const altLayout = useAtomValue(altLayoutAtom);
+  const aggressiveMeasure = useAtomValue(aggressiveMeasureAtom);
 
   // TODO: We should have shareable tokens for `item` and `gap` values.
   const itemMinWidth = desktop ? 260 : 160;
@@ -25,9 +30,9 @@ export function Virtual({items}: VirtualProps) {
     listRef,
     listHeight,
     virtualItems,
-    // rangeStart,
-    // rangeEnd,
-    // updateItemHeight,
+    updateItemHeight,
+    getSpaceBefore,
+    getSpaceAfter,
   } = useVurtis({
     count: items.length,
     minWidth: itemMinWidth,
@@ -50,14 +55,15 @@ export function Virtual({items}: VirtualProps) {
 
   const itemsMarkup = virtualItems.map(({order, top, left, width}, index) => {
     const {id, slug, name} = items[order] ?? {};
+    const passRef = aggressiveMeasure && index === 0;
 
     return (
       <CardList.Item
-        // ref={index === 0 ? updateItemHeight : undefined}
+        ref={passRef ? updateItemHeight : undefined}
         key={`Virtual-Item-${order}`}
         id={`Pokemon-${id}`}
         debugIndex={index}
-        virtualPosition={{top, left, width}}
+        virtualPosition={altLayout ? undefined : {top, left, width}}
       >
         <Card
           title={name?.english}
@@ -84,7 +90,16 @@ export function Virtual({items}: VirtualProps) {
   return (
     <CardList
       ref={listRef}
-      virtualHeight={emptyItemMarkup ? undefined : listHeight}
+      virtualStyle={
+        emptyItemMarkup
+          ? undefined
+          : altLayout
+          ? {
+              paddingTop: getSpaceBefore(),
+              paddingBottom: getSpaceAfter(),
+            }
+          : {height: listHeight}
+      }
     >
       {emptyItemMarkup || itemsMarkup}
     </CardList>

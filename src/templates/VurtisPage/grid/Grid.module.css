@@ -8,11 +8,18 @@
   position: relative;
 }
 
+.GridItem {
+  position: absolute;
+  box-shadow: inset 0 0 0 0.2rem black;
+}
+
+/* --- List variants --- */
+
 .reversed {
   --grid-list-card-bg: rgb(0, 0, 255, 0.1);
 }
 
-.fallbackList {
+.static {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
   grid-template-rows: auto;
@@ -26,14 +33,11 @@
   }
 }
 
-.GridItem {
-  position: absolute;
-  box-shadow: inset 0 0 0 0.2rem black;
-}
-
-.fallbackItem {
+.static .GridItem {
   position: static;
 }
+
+/* --- Grid Card --- */
 
 .GridCard {
   display: grid;

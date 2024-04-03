@@ -13,6 +13,19 @@ export interface CssGridProps {
   reversed?: boolean;
 }
 
+// An alternate approach to animation is to use a `<LayoutGroup />`.
+// This solution does not appear to work well for our use-case.
+
+/*
+<LayoutGroup>
+  <motion.ul>
+    <motion.li layoutId={`Id-${order}`} key={`Item-${order}`}>
+      <p>Content</p>
+    </motion.li>
+  </motion.ul>
+</LayoutGroup>
+*/
+
 export function CssGrid({items = [], reversed = false}: CssGridProps) {
   const itemsMarkup = items.map(({order, label}, index) => (
     <motion.li
@@ -32,7 +45,7 @@ export function CssGrid({items = [], reversed = false}: CssGridProps) {
     <div className={styles.Grid}>
       <LayoutGroup>
         <motion.ul
-          className={clx(styles.GridList, styles.fallbackList, {
+          className={clx(styles.GridList, styles.static, {
             [styles.reversed]: reversed,
           })}
         >

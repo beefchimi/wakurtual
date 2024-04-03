@@ -13,10 +13,7 @@ export function SkeletonGrid({count = 4}: SkeletonGridProps) {
   const items = arrayOfLength(safeCount);
 
   const itemsMarkup = items.map((index) => (
-    <li
-      key={`Vurtis-Skeleton-${index}`}
-      className={clx(styles.GridItem, styles.fallbackItem)}
-    >
+    <li key={`Vurtis-Skeleton-${index}`} className={styles.GridItem}>
       <div className={styles.GridCard}>
         <h2>Loading…</h2>
       </div>
@@ -25,9 +22,7 @@ export function SkeletonGrid({count = 4}: SkeletonGridProps) {
 
   return (
     <div className={styles.Grid}>
-      <ul className={clx(styles.GridList, styles.fallbackList)}>
-        {itemsMarkup}
-      </ul>
+      <ul className={clx(styles.GridList, styles.static)}>{itemsMarkup}</ul>
     </div>
   );
 }

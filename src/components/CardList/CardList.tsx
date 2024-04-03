@@ -1,18 +1,22 @@
-import {
-  forwardRef,
-  type CSSProperties,
-  type ForwardedRef,
-  type ReactNode,
-} from 'react';
+import {forwardRef, type ForwardedRef, type ReactNode} from 'react';
 import {clx} from 'beeftools';
 import type {VurtisItemPosition} from 'vurtis';
 
 // @ts-expect-error no types
 import styles from './CardList.module.css';
 
+interface CardListHeight {
+  height?: number;
+}
+
+interface CardListPadding {
+  paddingTop?: number;
+  paddingBottom?: number;
+}
+
 export interface CardListProps {
   children: ReactNode;
-  virtualHeight?: number;
+  virtualStyle?: CardListHeight | CardListPadding;
 }
 
 export interface CardItemProps {
@@ -23,13 +27,9 @@ export interface CardItemProps {
 }
 
 function ListComponent(
-  {children, virtualHeight = 0}: CardListProps,
+  {children, virtualStyle}: CardListProps,
   ref: ForwardedRef<HTMLUListElement>
 ) {
-  const virtualStyle: CSSProperties | undefined = virtualHeight
-    ? {height: `${virtualHeight}px`}
-    : undefined;
-
   return (
     <ul
       ref={ref}
@@ -47,19 +47,15 @@ function ItemComponent(
   {children, id, debugIndex, virtualPosition}: CardItemProps,
   ref: ForwardedRef<HTMLLIElement>
 ) {
-  const virtualStyle: CSSProperties | undefined = virtualPosition
-    ? {...virtualPosition}
-    : undefined;
-
   return (
     <li
       ref={ref}
       id={id}
       data-index={debugIndex}
       className={clx(styles.CardItem, {
-        [styles.virtualItem]: Boolean(virtualStyle),
+        [styles.virtualItem]: Boolean(virtualPosition),
       })}
-      style={virtualStyle}
+      style={virtualPosition}
     >
       {children}
     </li>

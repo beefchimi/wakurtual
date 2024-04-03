@@ -1,4 +1,11 @@
-export {sidebarAtom, animationAtom, virtualizationAtom} from './app.js';
+export {
+  sidebarAtom,
+  animationAtom,
+  virtualizationAtom,
+  altLayoutAtom,
+  aggressiveMeasureAtom,
+} from './app.js';
+
 export {scrollAtom, INITIAL_SCROLL_ATOM, type ScrollAtom} from './scroll.js';
 
 export {

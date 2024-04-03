@@ -77,7 +77,7 @@ export function CssGridMotion({
     <div className={styles.Grid}>
       <ul
         ref={listRef}
-        className={clx(styles.GridList, styles.fallbackList, {
+        className={clx(styles.GridList, styles.static, {
           [styles.reversed]: reversed,
         })}
         style={{

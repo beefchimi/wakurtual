@@ -1,8 +1,10 @@
 'use client';
 
+import {useAtomValue} from 'jotai';
 import {useVurtis} from 'vurtis';
 import {clx} from 'beeftools';
 
+import {altLayoutAtom, aggressiveMeasureAtom} from '../../../store/index.js';
 import {useBreakpoint} from '../../../hooks/index.js';
 import type {Vurticies} from '../VurtisPage.types.js';
 
@@ -16,6 +18,8 @@ export interface VurtisGridProps {
 
 export function VurtisGrid({items = [], reversed = false}: VurtisGridProps) {
   const {desktop} = useBreakpoint();
+  const altLayout = useAtomValue(altLayoutAtom);
+  const aggressiveMeasure = useAtomValue(aggressiveMeasureAtom);
 
   const itemMinWidth = desktop ? 260 : 160;
   const gapSize = desktop ? 16 : 10;
@@ -24,9 +28,9 @@ export function VurtisGrid({items = [], reversed = false}: VurtisGridProps) {
     listRef,
     listHeight,
     virtualItems,
-    // rangeStart,
-    // rangeEnd,
     updateItemHeight,
+    getSpaceBefore,
+    getSpaceAfter,
   } = useVurtis({
     count: items.length,
     minWidth: itemMinWidth,
@@ -47,17 +51,18 @@ export function VurtisGrid({items = [], reversed = false}: VurtisGridProps) {
   }, [items, gapSize, listHeight, rangeStart, rangeEnd, virtualItems]);
   */
 
-  // Not passing `{height}` from `item` as it is computed natively.
   const itemsMarkup = virtualItems.map(({order, top, left, width}, index) => {
     const originalOrder = items[order]?.order || 0;
     const label = items[order]?.label || 'zero';
+    const passRef = aggressiveMeasure && index === 0;
 
+    // Not passing `{height}` from `item` as it is computed natively.
     return (
       <li
-        ref={index === 0 ? updateItemHeight : undefined}
+        ref={passRef ? updateItemHeight : undefined}
         key={`Vurtis-Item-${originalOrder}`}
         className={styles.GridItem}
-        style={{top, left, width}}
+        style={altLayout ? undefined : {top, left, width}}
         // data-index={index}
         // data-order={order}
       >
@@ -77,8 +82,18 @@ export function VurtisGrid({items = [], reversed = false}: VurtisGridProps) {
         ref={listRef}
         className={clx(styles.GridList, {
           [styles.reversed]: reversed,
+          [styles.static]: altLayout,
         })}
-        style={{height: listHeight}}
+        style={
+          altLayout
+            ? {
+                paddingTop: getSpaceBefore(),
+                paddingBottom: getSpaceAfter(),
+              }
+            : {
+                height: listHeight,
+              }
+        }
       >
         {itemsMarkup}
       </ul>

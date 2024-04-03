@@ -6,12 +6,7 @@ import {useAtomValue} from 'jotai';
 import {virtualizationAtom} from '../../../store/index.js';
 import {Button, LoadMore} from '../../../components/index.js';
 import type {Vurticies} from '../VurtisPage.types.js';
-
-import {CssGrid} from './CssGrid.js';
-import {VurtisGrid} from './VurtisGrid.js';
-
-// import {CssGridMotion} from './CssGridMotion.js';
-// import {VurtisGridMotion} from './VurtisGridMotion.js';
+import {CssGrid, VurtisGrid} from '../grid/index.js';
 
 // @ts-expect-error no types
 import styles from './VurtisDemo.module.css';
@@ -23,7 +18,7 @@ export interface VurtisDemoProps {
 
 export function VurtisDemo({itemsData, loadMore = false}: VurtisDemoProps) {
   const rawItems = use(itemsData);
-  const virtualizationOn = useAtomValue(virtualizationAtom);
+  const virtualization = useAtomValue(virtualizationAtom);
 
   const [reverse, setReverse] = useState(false);
   const items = reverse ? rawItems.toReversed() : rawItems;
@@ -38,7 +33,7 @@ export function VurtisDemo({itemsData, loadMore = false}: VurtisDemoProps) {
 
   return (
     <div className={styles.VurtisDemo}>
-      {virtualizationOn ? (
+      {virtualization ? (
         <VurtisGrid items={items} reversed={reverse} />
       ) : (
         <CssGrid items={items} reversed={reverse} />

@@ -8,6 +8,8 @@ import {
   sidebarAtom,
   animationAtom,
   virtualizationAtom,
+  altLayoutAtom,
+  aggressiveMeasureAtom,
 } from '../../store/index.js';
 import {CommonAction} from '../../primitives/index.js';
 import {useBreakpoint} from '../../hooks/index.js';
@@ -21,8 +23,12 @@ export function Sidebar() {
 
   // TODO: `open` state should update search params.
   const [sidebarOpen, toggleSidebar] = useAtom(sidebarAtom);
-  const [animationOn, toggleAnimation] = useAtom(animationAtom);
-  const [virtualizationOn, toggleVirtualization] = useAtom(virtualizationAtom);
+  const [animation, toggleAnimation] = useAtom(animationAtom);
+  const [virtualization, toggleVirtualization] = useAtom(virtualizationAtom);
+  const [altLayout, toggleAltLayout] = useAtom(altLayoutAtom);
+  const [aggressiveMeasure, toggleAggressiveMeasure] = useAtom(
+    aggressiveMeasureAtom
+  );
 
   useEffect(() => {
     if (!tablet) toggleSidebar(false);
@@ -58,7 +64,7 @@ export function Sidebar() {
 
         <CommonAction
           className={styles.MenuAction}
-          pressed={animationOn}
+          pressed={animation}
           onClick={() => toggleAnimation()}
         >
           <div className={styles.MenuActionIcon}>💫</div>
@@ -66,10 +72,26 @@ export function Sidebar() {
 
         <CommonAction
           className={styles.MenuAction}
-          pressed={virtualizationOn}
+          pressed={virtualization}
           onClick={() => toggleVirtualization()}
         >
           <div className={styles.MenuActionIcon}>✨</div>
+        </CommonAction>
+
+        <CommonAction
+          className={styles.MenuAction}
+          pressed={altLayout}
+          onClick={() => toggleAltLayout()}
+        >
+          <div className={styles.MenuActionIcon}>📐</div>
+        </CommonAction>
+
+        <CommonAction
+          className={styles.MenuAction}
+          pressed={aggressiveMeasure}
+          onClick={() => toggleAggressiveMeasure()}
+        >
+          <div className={styles.MenuActionIcon}>😤</div>
         </CommonAction>
       </div>
 

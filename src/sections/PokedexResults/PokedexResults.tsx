@@ -18,7 +18,7 @@ export interface PokedexResultsProps {
 
 export function PokedexResults({pokemon, loadMore}: PokedexResultsProps) {
   const items = use(pokemon);
-  const virtualizationOn = useAtomValue(virtualizationAtom);
+  const virtualization = useAtomValue(virtualizationAtom);
 
   // TODO: Figure out how to wire this up so that we can keep `PokedexPage`
   // as a server component (avoid `useState` to increment `range` argument).
@@ -30,8 +30,7 @@ export function PokedexResults({pokemon, loadMore}: PokedexResultsProps) {
 
   return (
     <div className={styles.PokedexResults}>
-      {virtualizationOn ? <Virtual items={items} /> : <Static items={items} />}
-
+      {virtualization ? <Virtual items={items} /> : <Static items={items} />}
       {loadMoreMarkup}
     </div>
   );
