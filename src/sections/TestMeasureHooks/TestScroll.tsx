@@ -1,8 +1,8 @@
 'use client';
 
 import {useState} from 'react';
+import {useWindowScroll} from 'vurtis';
 
-import {useWindowScroll} from '../../packages/forked/hooks/index.js';
 import {Button} from '../../components/index.js';
 
 // @ts-expect-error no types
