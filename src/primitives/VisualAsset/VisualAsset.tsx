@@ -73,7 +73,7 @@ function VisualAssetComponent(
       preload="auto"
       id={id}
       className={styles.Media}
-      src={safeVideo}
+      src={safeVideo || undefined}
       poster={safeImage}
       title={mediaAltText}
       autoPlay={autoPlay}
@@ -92,7 +92,7 @@ function VisualAssetComponent(
       loading="lazy"
       id={id}
       className={styles.Media}
-      src={safeImage}
+      src={safeImage || undefined}
       alt={mediaAltText}
       onError={onError}
       onLoad={onLoad}
