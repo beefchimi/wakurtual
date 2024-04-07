@@ -1,5 +1,4 @@
-import {arrayOfLength, clamp} from 'beeftools';
-import {clx} from 'beeftools';
+import {arrayOfLength, clamp, clx} from 'beeftools';
 
 // @ts-expect-error no types
 import styles from './Grid.module.css';

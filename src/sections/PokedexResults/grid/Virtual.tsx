@@ -1,10 +1,15 @@
 'use client';
 
 // import {useEffect} from 'react';
+import {MotionConfig} from 'framer-motion';
 import {useAtomValue} from 'jotai';
 import {useVurtis} from 'vurtis';
 
-import {altLayoutAtom, aggressiveMeasureAtom} from '../../../store';
+import {
+  animationAtom,
+  altLayoutAtom,
+  aggressiveMeasureAtom,
+} from '../../../store';
 import {useBreakpoint} from '../../../hooks';
 import {Card, CardList} from '../../../components';
 import {getPokemonPixel, getPokemonRoute, type Pokemon} from '../../../data';
@@ -15,6 +20,8 @@ export interface VirtualProps {
 
 export function Virtual({items}: VirtualProps) {
   const {desktop} = useBreakpoint();
+
+  const animation = useAtomValue(animationAtom);
   const altLayout = useAtomValue(altLayoutAtom);
   const aggressiveMeasure = useAtomValue(aggressiveMeasureAtom);
 
@@ -84,20 +91,22 @@ export function Virtual({items}: VirtualProps) {
   );
 
   return (
-    <CardList
-      ref={listRef}
-      virtualStyle={
-        emptyItemMarkup
-          ? undefined
-          : altLayout
-            ? {
-                paddingTop: getSpaceBefore(),
-                paddingBottom: getSpaceAfter(),
-              }
-            : {height: listHeight}
-      }
-    >
-      {emptyItemMarkup || itemsMarkup}
-    </CardList>
+    <MotionConfig transition={animation ? undefined : {duration: 0}}>
+      <CardList
+        ref={listRef}
+        virtualStyle={
+          emptyItemMarkup
+            ? undefined
+            : altLayout
+              ? {
+                  paddingTop: getSpaceBefore(),
+                  paddingBottom: getSpaceAfter(),
+                }
+              : {height: listHeight}
+        }
+      >
+        {emptyItemMarkup || itemsMarkup}
+      </CardList>
+    </MotionConfig>
   );
 }

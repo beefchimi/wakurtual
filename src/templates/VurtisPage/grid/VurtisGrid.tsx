@@ -1,10 +1,8 @@
 'use client';
 
-import {useMemo} from 'react';
-
-import {AnimatePresence, MotionConfig, motion} from 'framer-motion';
+import {MotionConfig, motion} from 'framer-motion';
 import {useAtomValue} from 'jotai';
-import {useVurtis, useVurttle} from 'vurtis';
+import {useVurtis} from 'vurtis';
 import {clx} from 'beeftools';
 
 import {
@@ -35,7 +33,6 @@ export function VurtisGrid({items = [], reversed = false}: VurtisGridProps) {
 
   const {
     listRef,
-    listWidth,
     listHeight,
     virtualItems,
     updateItemHeight,
@@ -46,8 +43,6 @@ export function VurtisGrid({items = [], reversed = false}: VurtisGridProps) {
     minWidth: itemMinWidth,
     gap: gapSize,
   });
-
-  const pending = useVurttle(listWidth, true);
 
   /*
   useEffect(() => {
@@ -101,14 +96,10 @@ export function VurtisGrid({items = [], reversed = false}: VurtisGridProps) {
     );
   });
 
-  const motionTransition = useMemo(() => {
-    return !animation || pending ? {duration: 0} : undefined;
-  }, [animation, pending]);
-
   return (
     <div className={styles.Grid}>
-      <MotionConfig transition={motionTransition}>
-        <motion.ul
+      <MotionConfig transition={animation ? undefined : {duration: 0}}>
+        <ul
           ref={listRef}
           className={clx(styles.GridList, {
             [styles.reversed]: reversed,
@@ -125,8 +116,8 @@ export function VurtisGrid({items = [], reversed = false}: VurtisGridProps) {
                 }
           }
         >
-          <AnimatePresence initial={false}>{itemsMarkup}</AnimatePresence>
-        </motion.ul>
+          {itemsMarkup}
+        </ul>
       </MotionConfig>
     </div>
   );

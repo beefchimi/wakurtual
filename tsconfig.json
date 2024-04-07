@@ -10,14 +10,6 @@
     "noUncheckedIndexedAccess": true,
     "types": ["react/experimental"],
     "jsx": "react-jsx",
-    "resolveJsonModule": true,
-    "verbatimModuleSyntax": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "baseUrl": ".",
-    "composite": true,
-    "incremental": true,
-    "declaration": true,
-    "emitDeclarationOnly": true
+    "resolveJsonModule": true
   }
 }

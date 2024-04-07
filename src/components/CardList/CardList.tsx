@@ -1,7 +1,7 @@
 import {forwardRef, type ForwardedRef, type ReactNode} from 'react';
 import {clx} from 'beeftools';
-import type {VurtisItemPosition} from 'vurtis';
 
+import {CardItem} from './CardItem';
 // @ts-expect-error no types
 import styles from './CardList.module.css';
 
@@ -17,13 +17,6 @@ interface CardListPadding {
 export interface CardListProps {
   children: ReactNode;
   virtualStyle?: CardListHeight | CardListPadding;
-}
-
-export interface CardItemProps {
-  children: ReactNode;
-  id?: string;
-  debugIndex?: number;
-  virtualPosition?: VurtisItemPosition;
 }
 
 function ListComponent(
@@ -43,26 +36,5 @@ function ListComponent(
   );
 }
 
-function ItemComponent(
-  {children, id, debugIndex, virtualPosition}: CardItemProps,
-  ref: ForwardedRef<HTMLLIElement>,
-) {
-  return (
-    <li
-      ref={ref}
-      id={id}
-      data-index={debugIndex}
-      className={clx(styles.CardItem, {
-        [styles.virtualItem]: Boolean(virtualPosition),
-      })}
-      style={virtualPosition}
-    >
-      {children}
-    </li>
-  );
-}
-
 const ListForward = forwardRef(ListComponent);
-const ItemForward = forwardRef(ItemComponent);
-
-export const CardList = Object.assign(ListForward, {Item: ItemForward});
+export const CardList = Object.assign(ListForward, {Item: CardItem});

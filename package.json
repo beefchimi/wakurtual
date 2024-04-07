@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "beeftools": "^0.0.4",
-    "framer-motion": "^11.0.25",
+    "framer-motion": "^10.0.0",
     "jotai": "^2.7.2",
     "react": "19.0.0-canary-e3ebcd54b-20240405",
     "react-dom": "19.0.0-canary-e3ebcd54b-20240405",

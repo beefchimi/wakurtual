@@ -1,1 +1,2 @@
-export {CardList, type CardListProps, type CardItemProps} from './CardList';
+export {CardList, type CardListProps} from './CardList';
+export {type CardItemProps} from './CardItem';
