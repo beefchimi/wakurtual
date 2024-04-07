@@ -3,13 +3,13 @@ import {useIsoEffect} from 'vurtis';
 
 export type DocumentEventName = keyof DocumentEventMap;
 export type DocumentEventFn = (
-  event: DocumentEventMap[DocumentEventName]
+  event: DocumentEventMap[DocumentEventName],
 ) => void;
 
 export function useDocumentEvent(
   eventName: DocumentEventName,
   callback: DocumentEventFn,
-  options?: boolean | AddEventListenerOptions
+  options?: boolean | AddEventListenerOptions,
 ) {
   const callbackRef = useRef(callback);
 

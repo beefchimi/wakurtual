@@ -54,7 +54,7 @@ export function useVisualAssetState({
 
       setResolved(true);
     },
-    [onLoad]
+    [onLoad],
   );
 
   const errorHandler: MediaEventHandler = useCallback(
@@ -76,7 +76,7 @@ export function useVisualAssetState({
         setImageLoaded(false);
       }
     },
-    [onError]
+    [onError],
   );
 
   const loadedHandler: MediaEventHandler = useCallback(
@@ -89,7 +89,7 @@ export function useVisualAssetState({
         timeStamp,
       });
     },
-    [updateLoadedState]
+    [updateLoadedState],
   );
 
   // Not doing default assignment during destructure so
@@ -147,7 +147,7 @@ export function useVisualAssetState({
       setVideoLoaded(false);
       setImageLoaded(false);
     },
-    {duration: EXPIRATION_MS, disabled: resolved}
+    {duration: EXPIRATION_MS, disabled: resolved},
   );
 
   return {

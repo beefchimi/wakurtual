@@ -27,7 +27,7 @@ export function Sidebar() {
   const [virtualization, toggleVirtualization] = useAtom(virtualizationAtom);
   const [altLayout, toggleAltLayout] = useAtom(altLayoutAtom);
   const [aggressiveMeasure, toggleAggressiveMeasure] = useAtom(
-    aggressiveMeasureAtom
+    aggressiveMeasureAtom,
   );
 
   useEffect(() => {

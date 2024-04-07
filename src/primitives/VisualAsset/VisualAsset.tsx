@@ -45,7 +45,7 @@ function VisualAssetComponent(
   // need to call `play/pause/stop`. Those concerns are
   // not needed for the `<img />`. Access to each element
   // can also be obtained from the `onLoad()` callback.
-  ref: ForwardedRef<HTMLVideoElement | HTMLImageElement>
+  ref: ForwardedRef<HTMLVideoElement | HTMLImageElement>,
 ) {
   // Not doing default assignment during destructure so
   // that we can handle for a `null` case.

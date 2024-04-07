@@ -75,7 +75,7 @@ export function useContent(namespace = 'TODO') {
 
       return final;
     },
-    [namespace]
+    [namespace],
   );
 
   return getContent;

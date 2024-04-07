@@ -64,7 +64,7 @@ export function parsePokemonStats(stats: PokemonStats) {
   const parsed = Object.entries(stats) as [keyof PokemonStats, number][];
 
   return parsed.sort(
-    ([key1], [key2]) => STAT_ORDER.indexOf(key1) - STAT_ORDER.indexOf(key2)
+    ([key1], [key2]) => STAT_ORDER.indexOf(key1) - STAT_ORDER.indexOf(key2),
   );
 }
 

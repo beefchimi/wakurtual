@@ -18,7 +18,7 @@ export interface ButtonProps
 
 function ButtonComponent(
   {label, loading = false, ...buttonProps}: ButtonProps,
-  ref: ForwardedRef<HTMLButtonElement>
+  ref: ForwardedRef<HTMLButtonElement>,
 ) {
   const loadingMarkup = loading ? (
     <div className={clx('position-cover', styles.LoadingWrapper)}>

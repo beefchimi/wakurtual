@@ -19,7 +19,7 @@ export interface KeyPressOptions {
 export function useKeyPress(
   keys: KeyPressInput,
   callback: KeyPressCallback,
-  options: KeyPressOptions = {}
+  options: KeyPressOptions = {},
 ) {
   const {eventType = 'keydown', target = document, disabled = false} = options;
 
@@ -33,7 +33,7 @@ export function useKeyPress(
         callbackRef.current?.(event);
       }
     },
-    [keys]
+    [keys],
   );
 
   useIsoEffect(() => {

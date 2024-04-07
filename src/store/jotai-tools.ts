@@ -5,7 +5,7 @@ import {atomWithStorage} from 'jotai/utils';
 export function atomStorageToggle(
   key: string,
   initialValue?: boolean,
-  storage?: any
+  storage?: any,
 ): WritableAtom<boolean, [boolean?], void> {
   const thisAtom = atomWithStorage(key, initialValue, storage);
 
@@ -14,7 +14,7 @@ export function atomStorageToggle(
     (get, set, nextValue?: boolean) => {
       const update = nextValue ?? !get(thisAtom);
       void set(thisAtom, update);
-    }
+    },
   );
 
   return derivedAtom as WritableAtom<boolean, [boolean?], void>;

@@ -28,7 +28,7 @@ export interface CardItemProps {
 
 function ListComponent(
   {children, virtualStyle}: CardListProps,
-  ref: ForwardedRef<HTMLUListElement>
+  ref: ForwardedRef<HTMLUListElement>,
 ) {
   return (
     <ul
@@ -45,7 +45,7 @@ function ListComponent(
 
 function ItemComponent(
   {children, id, debugIndex, virtualPosition}: CardItemProps,
-  ref: ForwardedRef<HTMLLIElement>
+  ref: ForwardedRef<HTMLLIElement>,
 ) {
   return (
     <li

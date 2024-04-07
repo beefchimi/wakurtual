@@ -19,7 +19,7 @@ interface CapturedPropertiesCriteria {
 
 function getTargetPadding(
   target: RequiredScrollTarget,
-  padding: TargetPadding
+  padding: TargetPadding,
 ) {
   return supportDom()
     ? parseInt(window.getComputedStyle(target).getPropertyValue(padding), 10)
@@ -67,7 +67,7 @@ function getCapturedProperties({
 }
 
 export function assertScrollbarWidthDualAxis(
-  value: ScrollbarWidth
+  value: ScrollbarWidth,
 ): value is ScrollbarWidthDualAxis {
   return (
     Object.prototype.hasOwnProperty.call(value, 'vertical') &&

@@ -15,13 +15,13 @@ export function mediaTypeFromEventTarget(target: EventTarget): VisualAssetType {
 }
 
 export function refIsVideo(
-  ref?: RefObject<HTMLVideoElement | HTMLImageElement | null>
+  ref?: RefObject<HTMLVideoElement | HTMLImageElement | null>,
 ): ref is RefObject<HTMLVideoElement> {
   return ref?.current instanceof HTMLVideoElement;
 }
 
 export function refIsImage(
-  ref?: RefObject<HTMLVideoElement | HTMLImageElement | null>
+  ref?: RefObject<HTMLVideoElement | HTMLImageElement | null>,
 ): ref is RefObject<HTMLImageElement> {
   return ref?.current instanceof HTMLImageElement;
 }

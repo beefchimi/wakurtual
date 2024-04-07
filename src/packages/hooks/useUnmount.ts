@@ -8,6 +8,6 @@ export function useUnmount(callback: () => void) {
     () => () => {
       callbackRef.current();
     },
-    []
+    [],
   );
 }

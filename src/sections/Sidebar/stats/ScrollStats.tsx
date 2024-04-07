@@ -14,7 +14,7 @@ export function ScrollStats() {
           <strong>{key}:</strong> {value}
         </p>
       </li>
-    )
+    ),
   );
 
   const emptyItem = stateItems.length ? null : (

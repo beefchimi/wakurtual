@@ -8,5 +8,5 @@ export const virtualizationAtom = atomStorageToggle('virtualization', false);
 export const altLayoutAtom = atomStorageToggle('altLayout', false);
 export const aggressiveMeasureAtom = atomStorageToggle(
   'aggressiveMeasure',
-  false
+  false,
 );

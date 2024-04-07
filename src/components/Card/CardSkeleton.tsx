@@ -20,7 +20,7 @@ export function CardSkeleton() {
             className={clx(
               styles.Subtitle,
               'skeleton-base',
-              styles.textSkeleton
+              styles.textSkeleton,
             )}
           />
         </div>

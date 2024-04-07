@@ -12,7 +12,7 @@ export interface ClickOutsideOptions {
 export function useClickOutside(
   element: HTMLElement | null | undefined,
   callback: ClickOutsideCallback,
-  options: ClickOutsideOptions = {}
+  options: ClickOutsideOptions = {},
 ) {
   const {disabled = false, exclude = []} = options;
 
@@ -34,7 +34,7 @@ export function useClickOutside(
         callbackRef.current(event);
       }
     },
-    [exclude]
+    [exclude],
   );
 
   useIsoEffect(() => {
@@ -50,7 +50,7 @@ export function useClickOutside(
       target.addEventListener(
         'click',
         handleCallback as EventListener,
-        listenerOptions
+        listenerOptions,
       );
     }
 
@@ -58,7 +58,7 @@ export function useClickOutside(
       target?.removeEventListener(
         'click',
         handleCallback as EventListener,
-        listenerOptions
+        listenerOptions,
       );
     };
   }, [disabled]);

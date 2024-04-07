@@ -72,7 +72,7 @@ function CommonActionComponent(
     onFocus,
     onClick,
   }: CommonActionProps,
-  ref: ForwardedRef<EitherElement>
+  ref: ForwardedRef<EitherElement>,
 ) {
   const isDisabled = disabled ? true : undefined;
   const isPressed = pressed ? true : undefined;

@@ -94,11 +94,11 @@ export function Virtual({items}: VirtualProps) {
         emptyItemMarkup
           ? undefined
           : altLayout
-          ? {
-              paddingTop: getSpaceBefore(),
-              paddingBottom: getSpaceAfter(),
-            }
-          : {height: listHeight}
+            ? {
+                paddingTop: getSpaceBefore(),
+                paddingBottom: getSpaceAfter(),
+              }
+            : {height: listHeight}
       }
     >
       {emptyItemMarkup || itemsMarkup}
