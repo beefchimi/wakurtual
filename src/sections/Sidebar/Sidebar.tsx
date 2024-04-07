@@ -36,7 +36,7 @@ export function Sidebar() {
 
   /*
     const router = useRouter();
-    const {searchParams} = router.value;
+    const {searchParams} = router;
 
     if (searchParams.has('sidebar')) {
       router.push('?sidebar');

@@ -25,7 +25,7 @@ export function Nav({items = []}: NavProps) {
   const [sticky, setSticky] = useState(false);
 
   const router = useRouter();
-  const {path} = router.value;
+  const {path} = router;
 
   // const getContent = useDumbContent();
   // const errorContent = getContent('nav-empty');

@@ -16,19 +16,28 @@
   },
   "dependencies": {
     "beeftools": "^0.0.4",
-    "framer-motion": "^11.0.24",
+    "framer-motion": "^11.0.25",
     "jotai": "^2.7.2",
-    "react": "18.3.0-canary-670811593-20240322",
-    "react-dom": "18.3.0-canary-670811593-20240322",
+    "react": "19.0.0-canary-e3ebcd54b-20240405",
+    "react-dom": "19.0.0-canary-e3ebcd54b-20240405",
     "react-intersection-observer": "^9.8.1",
-    "react-server-dom-webpack": "18.3.0-canary-670811593-20240322",
+    "react-server-dom-webpack": "19.0.0-canary-e3ebcd54b-20240405",
     "vurtis": "^0.0.6",
-    "waku": "^0.20.0"
+    "waku": "^0.20.1-alpha.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.74",
-    "@types/react-dom": "^18.2.23",
+    "@types/react-dom": "^18.2.24",
+    "@typescript-eslint/eslint-plugin": "^7.5.0",
+    "@typescript-eslint/parser": "^7.5.0",
     "autoprefixer": "^10.4.19",
-    "typescript": "^5.4.3"
+    "eslint": "8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.4"
   }
 }
