@@ -3,10 +3,10 @@
 import {use, useState} from 'react';
 import {useAtomValue} from 'jotai';
 
-import {virtualizationAtom} from '../../../store/index.js';
-import {Button, LoadMore} from '../../../components/index.js';
-import type {Vurticies} from '../VurtisPage.types.js';
-import {CssGrid, VurtisGrid} from '../grid/index.js';
+import {virtualizationAtom} from '../../../store';
+import {Button, LoadMore} from '../../../components';
+import type {Vurticies} from '../VurtisPage.types';
+import {CssGrid, VurtisGrid} from '../grid';
 
 // @ts-expect-error no types
 import styles from './VurtisDemo.module.css';

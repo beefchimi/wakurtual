@@ -2,8 +2,8 @@
 
 import {clx} from 'beeftools';
 
-import {useBreakpoint} from '../../hooks/index.js';
-import {Counter} from '../Counter/index.js';
+import {useBreakpoint} from '../../hooks';
+import {Counter} from '../Counter';
 
 // @ts-expect-error no types
 import styles from './Metrics.module.css';

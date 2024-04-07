@@ -1,6 +1,6 @@
 'use client';
 
-import {useEffect, useMemo} from 'react';
+import {useMemo} from 'react';
 
 import {AnimatePresence, MotionConfig, motion} from 'framer-motion';
 import {useAtomValue} from 'jotai';
@@ -11,9 +11,9 @@ import {
   animationAtom,
   altLayoutAtom,
   aggressiveMeasureAtom,
-} from '../../../store/index.js';
-import {useBreakpoint} from '../../../hooks/index.js';
-import type {Vurticies} from '../VurtisPage.types.js';
+} from '../../../store';
+import {useBreakpoint} from '../../../hooks';
+import type {Vurticies} from '../VurtisPage.types';
 
 // @ts-expect-error no types
 import styles from './Grid.module.css';

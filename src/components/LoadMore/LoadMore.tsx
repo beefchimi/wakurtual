@@ -2,7 +2,7 @@
 
 import {useInView} from 'react-intersection-observer';
 
-import {Button, type ButtonProps} from '../Button/index.js';
+import {Button, type ButtonProps} from '../Button';
 
 export interface LoadMoreProps {
   disabled?: ButtonProps['disabled'];
@@ -10,7 +10,7 @@ export interface LoadMoreProps {
 }
 
 export function LoadMore({disabled = false, onLoad}: LoadMoreProps) {
-  const {ref, entry} = useInView();
+  const {ref} = useInView();
 
   // console.log('LoadMore > ref', ref);
   // console.log('LoadMore > entry?.intersectionRatio', entry?.intersectionRatio);

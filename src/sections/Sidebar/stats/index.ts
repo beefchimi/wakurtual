@@ -1,3 +1,3 @@
-export {ScrollStats} from './ScrollStats.js';
-export {VirtualStats} from './VirtualStats.js';
-export {WindowStats} from './WindowStats.js';
+export {ScrollStats} from './ScrollStats';
+export {VirtualStats} from './VirtualStats';
+export {WindowStats} from './WindowStats';

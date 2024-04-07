@@ -6,8 +6,8 @@ import {useRouter_UNSTABLE as useRouter} from 'waku';
 import {assertNumber, clx} from 'beeftools';
 import {useIsoEffect} from 'vurtis';
 
-// import {useDumbContent} from '../../packages/contentious/index.js';
-import {TextLink} from '../../components/index.js';
+// import {useDumbContent} from '../../packages/contentious';
+import {TextLink} from '../../components';
 
 // @ts-expect-error no types
 import styles from './Nav.module.css';

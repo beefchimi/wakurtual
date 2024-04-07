@@ -10,11 +10,11 @@ import {
   virtualizationAtom,
   altLayoutAtom,
   aggressiveMeasureAtom,
-} from '../../store/index.js';
-import {CommonAction} from '../../primitives/index.js';
-import {useBreakpoint} from '../../hooks/index.js';
+} from '../../store';
+import {CommonAction} from '../../primitives';
+import {useBreakpoint} from '../../hooks';
 
-import {TestMeasureHooks} from '../TestMeasureHooks/index.js';
+import {TestMeasureHooks} from '../TestMeasureHooks';
 // @ts-expect-error no types
 import styles from './Sidebar.module.css';
 
@@ -32,7 +32,7 @@ export function Sidebar() {
 
   useEffect(() => {
     if (!tablet) toggleSidebar(false);
-  }, [tablet]);
+  }, [tablet, toggleSidebar]);
 
   /*
     const router = useRouter();

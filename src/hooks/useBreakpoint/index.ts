@@ -1,1 +1,1 @@
-export {useBreakpoint} from './useBreakpoint.js';
+export {useBreakpoint} from './useBreakpoint';

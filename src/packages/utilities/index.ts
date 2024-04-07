@@ -1,1 +1,1 @@
-export {convertNumberToWords} from './convert.js';
+export {convertNumberToWords} from './convert';

@@ -1,1 +1,1 @@
-export {Nav, type NavProps, type NavItemDescriptor} from './Nav.js';
+export {Nav, type NavProps, type NavItemDescriptor} from './Nav';

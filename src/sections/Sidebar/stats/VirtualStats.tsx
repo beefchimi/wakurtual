@@ -1,6 +1,6 @@
 import {useAtomValue} from 'jotai';
-import {virtualAtom} from '../../../store/index.js';
 
+import {virtualAtom} from '../../../store';
 // @ts-expect-error no types
 import styles from './Stats.module.css';
 

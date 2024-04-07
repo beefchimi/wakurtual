@@ -1,8 +1,8 @@
 import {forwardRef, type ForwardedRef} from 'react';
 import {clx} from 'beeftools';
 
-import {CommonAction, type CommonActionProps} from '../../primitives/index.js';
-import {SimpleSpinner} from '../SimpleSpinner/index.js';
+import {CommonAction, type CommonActionProps} from '../../primitives';
+import {SimpleSpinner} from '../SimpleSpinner';
 
 // @ts-expect-error no types
 import styles from './Button.module.css';

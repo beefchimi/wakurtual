@@ -1,2 +1,2 @@
-export * from './CommonAction/index.js';
-export * from './VisualAsset/index.js';
+export * from './CommonAction';
+export * from './VisualAsset';

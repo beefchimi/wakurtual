@@ -1,2 +1,2 @@
-export {PokedexPage} from './PokedexPage.js';
-export * from './subpages/index.js';
+export {PokedexPage} from './PokedexPage';
+export * from './subpages';

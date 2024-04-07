@@ -2,12 +2,8 @@
 
 // import {useEffect} from 'react';
 
-import {Card, CardList} from '../../../components/index.js';
-import {
-  getPokemonPixel,
-  getPokemonRoute,
-  type Pokemon,
-} from '../../../data/index.js';
+import {Card, CardList} from '../../../components';
+import {getPokemonPixel, getPokemonRoute, type Pokemon} from '../../../data';
 
 export interface StaticProps {
   items?: Pokemon[];

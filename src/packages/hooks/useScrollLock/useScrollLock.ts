@@ -6,8 +6,8 @@ import {
   resetScrollStyles,
   guessScrollbarWidthVertical,
   guessScrollbarWidthHorizontal,
-} from './utilities.js';
-import type {ScrollLockOptions} from './types.js';
+} from './utilities';
+import type {ScrollLockOptions} from './types';
 
 // NOTE: Original PR for this hook
 // https://github.com/beefchimi/react-hooks/pull/47

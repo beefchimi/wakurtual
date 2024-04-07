@@ -1,4 +1,4 @@
-export {TestMeasureHooks} from './TestMeasureHooks.js';
+export {TestMeasureHooks} from './TestMeasureHooks';
 
-export {TestScroll} from './TestScroll.js';
-export {TestSize} from './TestSize.js';
+export {TestScroll} from './TestScroll';
+export {TestSize} from './TestSize';

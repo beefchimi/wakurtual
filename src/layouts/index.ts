@@ -1,1 +1,1 @@
-export {RootLayout} from './RootLayout.js';
+export {RootLayout} from './RootLayout';

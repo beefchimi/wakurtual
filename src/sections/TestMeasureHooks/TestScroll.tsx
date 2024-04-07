@@ -3,7 +3,7 @@
 import {useState} from 'react';
 import {useWindowScroll} from 'vurtis';
 
-import {Button} from '../../components/index.js';
+import {Button} from '../../components';
 
 // @ts-expect-error no types
 import styles from './TestMeasureHooks.module.css';
@@ -15,7 +15,7 @@ export function TestScroll() {
     setAggressive((current) => !current);
   }
 
-  const {remeasure: notUsed, ...scrollData} = useWindowScroll({
+  const {remeasure: _notUsed, ...scrollData} = useWindowScroll({
     updateStrategy: aggressive ? 'aggressive' : 'lazy',
     // onScroll: (event) => console.log('Scroll', event),
   });

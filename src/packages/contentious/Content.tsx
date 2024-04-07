@@ -2,7 +2,7 @@
 
 import {type ReactNode} from 'react';
 
-import {useContent} from './Provider.js';
+import {useContent} from './Provider';
 
 export interface ContentProps {
   id: string;

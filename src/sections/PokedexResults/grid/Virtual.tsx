@@ -4,14 +4,10 @@
 import {useAtomValue} from 'jotai';
 import {useVurtis} from 'vurtis';
 
-import {altLayoutAtom, aggressiveMeasureAtom} from '../../../store/index.js';
-import {useBreakpoint} from '../../../hooks/index.js';
-import {Card, CardList} from '../../../components/index.js';
-import {
-  getPokemonPixel,
-  getPokemonRoute,
-  type Pokemon,
-} from '../../../data/index.js';
+import {altLayoutAtom, aggressiveMeasureAtom} from '../../../store';
+import {useBreakpoint} from '../../../hooks';
+import {Card, CardList} from '../../../components';
+import {getPokemonPixel, getPokemonRoute, type Pokemon} from '../../../data';
 
 export interface VirtualProps {
   items: Pokemon[];

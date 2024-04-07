@@ -1,5 +1,5 @@
-import {TestScroll} from './TestScroll.js';
-import {TestSize} from './TestSize.js';
+import {TestScroll} from './TestScroll';
+import {TestSize} from './TestSize';
 
 // @ts-expect-error no types
 import styles from './TestMeasureHooks.module.css';

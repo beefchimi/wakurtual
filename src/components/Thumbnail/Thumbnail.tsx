@@ -5,7 +5,7 @@ import {
   VisualAsset,
   type VisualAssetProps,
   type VisualAssetStateOptions,
-} from '../../primitives/index.js';
+} from '../../primitives';
 
 // @ts-expect-error no types
 import styles from './Thumbnail.module.css';

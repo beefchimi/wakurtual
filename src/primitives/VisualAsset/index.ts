@@ -1,16 +1,16 @@
-export {VisualAsset, type VisualAssetProps} from './VisualAsset.js';
+export {VisualAsset, type VisualAssetProps} from './VisualAsset';
 export {
   useVisualAssetState,
   type VisualAssetStateOptions,
-} from './useVisualAssetState.js';
+} from './useVisualAssetState';
 
 export {
   mediaTypeFromEventTarget,
   refIsVideo,
   refIsImage,
-} from './VisualAsset.utils.js';
+} from './VisualAsset.utils';
 export type {
   VisualAssetType,
   VisualAssetEvent,
   VisualAssetEventHandler,
-} from './VisualAsset.types.js';
+} from './VisualAsset.types';

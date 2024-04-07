@@ -1,1 +1,1 @@
-export {Thumbnail, type ThumbnailProps} from './Thumbnail.js';
+export {Thumbnail, type ThumbnailProps} from './Thumbnail';

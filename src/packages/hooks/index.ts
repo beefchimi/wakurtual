@@ -1,17 +1,17 @@
-export * from './useScrollLock/index.js';
+export * from './useScrollLock';
 
 export {
   useClickOutside,
   type ClickOutsideCallback,
   type ClickOutsideExclusion,
   type ClickOutsideOptions,
-} from './useClickOutside.js';
+} from './useClickOutside';
 
 export {
   useDocumentEvent,
   type DocumentEventName,
   type DocumentEventFn,
-} from './useDocumentEvent.js';
+} from './useDocumentEvent';
 
 export {
   useKeyPress,
@@ -19,7 +19,7 @@ export {
   type KeyPressCallback,
   type KeyPressInput,
   type KeyPressOptions,
-} from './useKeyPress.js';
+} from './useKeyPress';
 
-export {useMediaQuery, type MediaQueryOptions} from './useMediaQuery.js';
-export {useUnmount} from './useUnmount.js';
+export {useMediaQuery, type MediaQueryOptions} from './useMediaQuery';
+export {useUnmount} from './useUnmount';

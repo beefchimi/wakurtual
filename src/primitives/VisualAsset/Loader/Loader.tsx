@@ -1,6 +1,6 @@
 import {clx} from 'beeftools';
 
-import {imgSkull} from '../../../assets/index.js';
+import {imgSkull} from '../../../assets';
 // @ts-expect-error no types
 import styles from './Loader.module.css';
 

@@ -7,7 +7,7 @@ import type {
   ScrollLockCapturedProperties,
   OptionalScrollTarget,
   RequiredScrollTarget,
-} from './types.js';
+} from './types';
 
 type TargetPadding = 'padding-right' | 'padding-bottom';
 

@@ -1,11 +1,11 @@
 import {Suspense} from 'react';
 import {arrayOfLength, sleep} from 'beeftools';
 
-import {convertNumberToWords} from '../../packages/utilities/index.js';
+import {convertNumberToWords} from '../../packages/utilities';
 
-import type {Vurticies} from './VurtisPage.types.js';
-import {SkeletonGrid} from './grid/index.js';
-import {VurtisDemo} from './sections/index.js';
+import type {Vurticies} from './VurtisPage.types';
+import {SkeletonGrid} from './grid';
+import {VurtisDemo} from './sections';
 
 // @ts-expect-error no types
 import styles from './VurtisPage.module.css';
@@ -25,7 +25,7 @@ async function fetchItems() {
     label: convertNumberToWords(index),
   }));
 
-  sleep(1234);
+  await sleep(1234);
 
   return items;
 }

@@ -8,12 +8,12 @@ import {
   type MediaEventHandler,
   type VisualAssetEvent,
   type VisualAssetEventHandler,
-} from './VisualAsset.types.js';
+} from './VisualAsset.types';
 import {
   mediaTypeFromEventTarget,
   refIsImage,
   refIsVideo,
-} from './VisualAsset.utils.js';
+} from './VisualAsset.utils';
 
 export interface VisualAssetStateOptions {
   videoUrl?: string | null;

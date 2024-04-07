@@ -1,1 +1,1 @@
-export {SimpleSpinner, type SimpleSpinnerProps} from './SimpleSpinner.js';
+export {SimpleSpinner, type SimpleSpinnerProps} from './SimpleSpinner';

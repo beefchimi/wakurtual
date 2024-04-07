@@ -1,13 +1,9 @@
 import {use, type ReactNode} from 'react';
 import {clx} from 'beeftools';
 
-import {
-  getPokemonPixel,
-  parsePokemonStats,
-  type Pokemon,
-} from '../../data/index.js';
+import {getPokemonPixel, parsePokemonStats, type Pokemon} from '../../data';
 
-import {getStatImage} from './PokemonHero.utils.js';
+import {getStatImage} from './PokemonHero.utils';
 // @ts-expect-error no types
 import styles from './PokemonHero.module.css';
 

@@ -4,4 +4,4 @@ export {
   type CommonActionBaseProps,
   type CommonActionButtonProps,
   type CommonActionLinkProps,
-} from './CommonAction.js';
+} from './CommonAction';

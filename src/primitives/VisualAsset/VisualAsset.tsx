@@ -3,8 +3,9 @@
 import {type ForwardedRef, forwardRef, type ReactNode} from 'react';
 import {clx, supportSafari} from 'beeftools';
 
-import {type MediaEventHandler} from './VisualAsset.types.js';
-import {Loader} from './Loader/index.js';
+import {type MediaEventHandler} from './VisualAsset.types';
+import {Loader} from './Loader';
+
 // @ts-expect-error no types
 import styles from './VisualAsset.module.css';
 

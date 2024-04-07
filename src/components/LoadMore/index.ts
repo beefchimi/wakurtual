@@ -1,1 +1,1 @@
-export {LoadMore, type LoadMoreProps} from './LoadMore.js';
+export {LoadMore, type LoadMoreProps} from './LoadMore';

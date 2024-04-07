@@ -1,1 +1,1 @@
-export {TextLink, type TextLinkProps} from './TextLink.js';
+export {TextLink, type TextLinkProps} from './TextLink';

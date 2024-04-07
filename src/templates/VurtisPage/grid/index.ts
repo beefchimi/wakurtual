@@ -1,4 +1,4 @@
-export {SkeletonGrid, type SkeletonGridProps} from './SkeletonGrid.js';
+export {SkeletonGrid, type SkeletonGridProps} from './SkeletonGrid';
 
-export {CssGrid, type CssGridProps} from './CssGrid.js';
-export {VurtisGrid, type VurtisGridProps} from './VurtisGrid.js';
+export {CssGrid, type CssGridProps} from './CssGrid';
+export {VurtisGrid, type VurtisGridProps} from './VurtisGrid';

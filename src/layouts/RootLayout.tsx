@@ -5,11 +5,11 @@ import '../styles/design-system.css';
 import '../styles/global.css';
 import '../styles/utility.css';
 
-// import {ContentProvider} from '../packages/index.js';
+// import {ContentProvider} from '../packages';
 
-import {NAV_LINKS} from '../data/index.js';
-import {Footer, Header, Main, Nav, Sidebar} from '../sections/index.js';
-import {Providers} from './Providers.js';
+import {NAV_LINKS} from '../data';
+import {Footer, Header, Main, Nav, Sidebar} from '../sections';
+import {Providers} from './Providers';
 
 interface RootLayoutProps {
   children: ReactNode;

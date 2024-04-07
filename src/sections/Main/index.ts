@@ -1,1 +1,1 @@
-export {Main, type MainProps} from './Main.js';
+export {Main, type MainProps} from './Main';

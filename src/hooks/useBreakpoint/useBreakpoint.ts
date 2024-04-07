@@ -1,4 +1,4 @@
-import {useMediaQuery} from '../../packages/hooks/index.js';
+import {useMediaQuery} from '../../packages/hooks';
 
 // TODO: Migrate this to `jotai` so we have a single instance of
 // breakpoints, instead of multiple `matchMedia` listeners.

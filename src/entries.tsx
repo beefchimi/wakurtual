@@ -1,7 +1,7 @@
 import {createPages} from 'waku';
 
-import {fetchPokedexSlugs} from './data/index.js';
-import {RootLayout} from './layouts/index.js';
+import {fetchPokedexSlugs} from './data';
+import {RootLayout} from './layouts';
 import {
   AboutPage,
   ErrorPage,
@@ -9,7 +9,7 @@ import {
   PokedexPage,
   PokemonPage,
   VurtisPage,
-} from './templates/index.js';
+} from './templates';
 
 // Waku currently supports two rendering options:
 // 1. `static` for static pre-rendering (SSG).

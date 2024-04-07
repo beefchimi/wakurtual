@@ -1,1 +1,1 @@
-export {Header, type HeaderProps} from './Header.js';
+export {Header, type HeaderProps} from './Header';

@@ -3,7 +3,7 @@
 import {AnimatePresence, motion} from 'framer-motion';
 import {clx} from 'beeftools';
 
-import type {Vurticies} from '../VurtisPage.types.js';
+import type {Vurticies} from '../VurtisPage.types';
 
 // @ts-expect-error no types
 import styles from './Grid.module.css';

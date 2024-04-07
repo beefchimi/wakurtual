@@ -1,1 +1,1 @@
-export {Hamburger, type HamburgerProps} from './Hamburger.js';
+export {Hamburger, type HamburgerProps} from './Hamburger';

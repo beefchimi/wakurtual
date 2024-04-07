@@ -1,4 +1,4 @@
-import {type PokemonStats} from '../../data/index.js';
+import {type PokemonStats} from '../../data';
 import {
   imgPixelAttack,
   imgPixelDefense,
@@ -6,7 +6,7 @@ import {
   imgPixelSpAttack,
   imgPixelSpDefense,
   imgPixelSpeed,
-} from '../../assets/index.js';
+} from '../../assets';
 
 type StatAssets = Record<keyof PokemonStats, string>;
 

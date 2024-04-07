@@ -1,4 +1,4 @@
-import {atomStorageToggle} from './jotai-tools.js';
+import {atomStorageToggle} from './jotai-tools';
 
 export const sidebarAtom = atomStorageToggle('sidebar', false);
 

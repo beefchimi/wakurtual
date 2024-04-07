@@ -1,2 +1,2 @@
-export {Card, type CardProps} from './Card.js';
-export {CardSkeleton} from './CardSkeleton.js';
+export {Card, type CardProps} from './Card';
+export {CardSkeleton} from './CardSkeleton';

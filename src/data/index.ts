@@ -1,4 +1,4 @@
-import type {NavProps} from '../sections/index.js';
+import type {NavProps} from '../sections';
 
 export const NAV_LINKS: NavProps['items'] = [
   {label: 'Trending', url: '/'},
@@ -28,4 +28,4 @@ export {
   fetchPokemonBySlug,
   fetchPokemonPixel,
   fetchPokemonRoute,
-} from './pokemon.js';
+} from './pokemon';

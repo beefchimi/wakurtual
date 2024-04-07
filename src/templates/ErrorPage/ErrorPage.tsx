@@ -1,4 +1,4 @@
-import {TextLink} from '../../components/index.js';
+import {TextLink} from '../../components';
 
 async function getPageData() {
   const data = {

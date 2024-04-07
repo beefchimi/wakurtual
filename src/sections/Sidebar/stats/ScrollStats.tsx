@@ -1,6 +1,6 @@
 import {useAtomValue} from 'jotai';
-import {scrollAtom} from '../../../store/index.js';
 
+import {scrollAtom} from '../../../store';
 // @ts-expect-error no types
 import styles from './Stats.module.css';
 

@@ -1,8 +1,8 @@
 import {clx} from 'beeftools';
 
-import {fetchPokemonBySlug, type Pokemon} from '../../../data/index.js';
-import {CommonAction} from '../../../primitives/index.js';
-import {PokemonHero} from '../../../sections/index.js';
+import {fetchPokemonBySlug, type Pokemon} from '../../../data';
+import {CommonAction} from '../../../primitives';
+import {PokemonHero} from '../../../sections';
 
 // @ts-expect-error no types
 import styles from './PokemonPage.module.css';

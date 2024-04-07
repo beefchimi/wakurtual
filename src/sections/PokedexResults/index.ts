@@ -1,5 +1,5 @@
-export {PokedexResults, type PokedexResultsProps} from './PokedexResults.js';
+export {PokedexResults, type PokedexResultsProps} from './PokedexResults';
 export {
   PokedexResultsSkeleton,
   type PokedexResultsSkeletonProps,
-} from './PokedexResultsSkeleton.js';
+} from './PokedexResultsSkeleton';

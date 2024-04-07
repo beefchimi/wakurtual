@@ -3,10 +3,10 @@
 import {use} from 'react';
 import {useAtomValue} from 'jotai';
 
-import {virtualizationAtom} from '../../store/index.js';
-import {LoadMore} from '../../components/index.js';
-import {type Pokemon} from '../../data/index.js';
-import {Static, Virtual} from './grid/index.js';
+import {virtualizationAtom} from '../../store';
+import {LoadMore} from '../../components';
+import {type Pokemon} from '../../data';
+import {Static, Virtual} from './grid';
 
 // @ts-expect-error no types
 import styles from './PokedexResults.module.css';

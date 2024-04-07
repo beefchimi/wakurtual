@@ -1,6 +1,6 @@
 import {type RefObject} from 'react';
 
-import {type VisualAssetType} from './VisualAsset.types.js';
+import {type VisualAssetType} from './VisualAsset.types';
 
 export function mediaTypeFromEventTarget(target: EventTarget): VisualAssetType {
   // Since we know the exact elements we are rendering

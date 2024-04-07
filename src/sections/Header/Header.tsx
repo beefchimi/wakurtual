@@ -1,7 +1,7 @@
 import type {ReactNode} from 'react';
 import {clx} from 'beeftools';
 
-import {useDumbContent} from '../../packages/contentious/index.js';
+import {useDumbContent} from '../../packages/contentious';
 
 // @ts-expect-error no types
 import styles from './Header.module.css';

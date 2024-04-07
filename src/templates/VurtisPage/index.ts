@@ -1,1 +1,1 @@
-export {VurtisPage} from './VurtisPage.js';
+export {VurtisPage} from './VurtisPage';

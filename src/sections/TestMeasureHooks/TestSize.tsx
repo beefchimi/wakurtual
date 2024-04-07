@@ -3,7 +3,7 @@
 import {useState} from 'react';
 import {useWindowSize} from 'vurtis';
 
-import {Button} from '../../components/index.js';
+import {Button} from '../../components';
 
 // @ts-expect-error no types
 import styles from './TestMeasureHooks.module.css';
@@ -15,7 +15,7 @@ export function TestSize() {
     setAggressive((current) => !current);
   }
 
-  const {remeasure: notUsed, ...sizeData} = useWindowSize({
+  const {remeasure: _notUsed, ...sizeData} = useWindowSize({
     updateStrategy: aggressive ? 'aggressive' : 'lazy',
     // onResize: (event) => console.log('Resize', event),
   });

@@ -1,13 +1,13 @@
-export {useScrollLock} from './useScrollLock.js';
+export {useScrollLock} from './useScrollLock';
 
 export {
   guessScrollbarWidthVertical,
   guessScrollbarWidthHorizontal,
-} from './utilities.js';
+} from './utilities';
 
 export type {
   ScrollAxis,
   ScrollbarWidthDualAxis,
   ScrollLockCapturedProperties,
   ScrollLockOptions,
-} from './types.js';
+} from './types';

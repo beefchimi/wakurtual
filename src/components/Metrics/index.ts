@@ -1,1 +1,1 @@
-export {Metrics, type MetricsProps} from './Metrics.js';
+export {Metrics, type MetricsProps} from './Metrics';

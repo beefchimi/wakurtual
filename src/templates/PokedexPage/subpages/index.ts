@@ -1,1 +1,1 @@
-export {PokemonPage, type PokemonPageProps} from './PokemonPage.js';
+export {PokemonPage, type PokemonPageProps} from './PokemonPage';
