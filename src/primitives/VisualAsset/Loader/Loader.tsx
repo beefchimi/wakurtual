@@ -1,4 +1,5 @@
 import {clx} from 'beeftools';
+import {AnimatePresence} from 'framer-motion';
 
 import {imgSkull} from '../../../assets';
 // @ts-expect-error no types
@@ -9,9 +10,6 @@ export interface LoaderProps {
 }
 
 export function Loader({failed = false}: LoaderProps) {
-  // TODO: `children` need to be wrapped by something like
-  // AnimatePresence / ReactTransitionGroup.
-
   const skeletonMarkup = failed ? null : (
     <div key="VisualAsset-Loader-Loading" className={styles.SkeletonWrapper}>
       <div className={styles.Skeleton} />
@@ -26,8 +24,10 @@ export function Loader({failed = false}: LoaderProps) {
 
   return (
     <div className={clx(styles.Loader, {[styles.failed]: failed})}>
-      {skeletonMarkup}
-      {failedMarkup}
+      <AnimatePresence>
+        {skeletonMarkup}
+        {failedMarkup}
+      </AnimatePresence>
     </div>
   );
 }

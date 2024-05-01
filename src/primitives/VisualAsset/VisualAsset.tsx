@@ -2,6 +2,7 @@
 
 import {type ForwardedRef, forwardRef, type ReactNode} from 'react';
 import {clx, supportSafari} from 'beeftools';
+import {AnimatePresence} from 'framer-motion';
 
 import {type MediaEventHandler} from './VisualAsset.types';
 import {Loader} from './Loader';
@@ -99,8 +100,6 @@ function VisualAssetComponent(
     />
   );
 
-  // TODO: `children` need to be wrapped by something like
-  // AnimatePresence / ReactTransitionGroup.
   return (
     <div
       className={clx(styles.VisualAsset, {
@@ -113,7 +112,8 @@ function VisualAssetComponent(
     >
       {videoMarkup}
       {imageMarkup}
-      {children}
+
+      <AnimatePresence initial={false}>{children}</AnimatePresence>
     </div>
   );
 }
