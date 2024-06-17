@@ -18,13 +18,13 @@ export class ErrorBoundary extends Component<
     return {error};
   }
 
-  // TODO: Should this really be `async/await`?
-  async render() {
+  // eslint-disable-next-line @typescript-eslint/promise-function-async
+  render() {
     if ('error' in this.state) {
-      return await this.props.fallback(this.state.error);
+      return this.props.fallback(this.state.error);
     }
 
-    return await this.props.children;
+    return this.props.children;
   }
 }
 
