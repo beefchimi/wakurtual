@@ -18,12 +18,13 @@ export class ErrorBoundary extends Component<
     return {error};
   }
 
-  render() {
+  // TODO: Should this really be `async/await`?
+  async render() {
     if ('error' in this.state) {
-      return this.props.fallback(this.state.error);
+      return await this.props.fallback(this.state.error);
     }
 
-    return this.props.children;
+    return await this.props.children;
   }
 }
 
