@@ -1,7 +1,6 @@
 import {arrayOfLength, clamp} from 'beeftools';
 
 import {CardSkeleton, CardList} from '../../components';
-// @ts-expect-error no types
 import styles from './PokedexResults.module.css';
 
 export interface PokedexResultsSkeletonProps {

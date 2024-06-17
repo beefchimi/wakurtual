@@ -4,7 +4,6 @@ import {fetchPokemonBySlug, type Pokemon} from '../../../data';
 import {CommonAction} from '../../../primitives';
 import {PokemonHero} from '../../../sections';
 
-// @ts-expect-error no types
 import styles from './PokemonPage.module.css';
 
 export interface PokemonPageProps {

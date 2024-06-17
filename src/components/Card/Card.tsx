@@ -2,7 +2,6 @@ import {Link} from 'waku';
 import {clx} from 'beeftools';
 
 import {Thumbnail, type ThumbnailProps} from '../Thumbnail';
-// @ts-expect-error no types
 import styles from './Card.module.css';
 
 export interface CardProps

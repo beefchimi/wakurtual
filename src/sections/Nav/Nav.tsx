@@ -9,7 +9,6 @@ import {useIsoEffect} from 'vurtis';
 // import {useDumbContent} from '../../packages/contentious';
 import {TextLink} from '../../components';
 
-// @ts-expect-error no types
 import styles from './Nav.module.css';
 
 export interface NavItemDescriptor {
@@ -49,7 +48,9 @@ export function Nav({items = []}: NavProps) {
   const shouldBeSticky =
     assertNumber(entry?.intersectionRatio) && entry.intersectionRatio < 1;
 
-  useIsoEffect(() => setSticky(shouldBeSticky), [shouldBeSticky]);
+  useIsoEffect(() => {
+    setSticky(shouldBeSticky);
+  }, [shouldBeSticky]);
 
   const itemsMarkup = items.map(({label, url}) => (
     <li key={`Nav-${label}`} className={styles.Item}>
@@ -66,7 +67,7 @@ export function Nav({items = []}: NavProps) {
   );
 
   return (
-    <nav ref={ref} className={clx(styles.Nav, {[styles.sticky]: sticky})}>
+    <nav ref={ref} className={clx(styles.Nav, {[`${styles.sticky}`]: sticky})}>
       <div className={styles.Container}>
         <ul className={styles.List}>{listChildren}</ul>
       </div>

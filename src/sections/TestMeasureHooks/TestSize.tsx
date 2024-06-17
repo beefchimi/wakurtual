@@ -4,8 +4,6 @@ import {useState} from 'react';
 import {useWindowSize} from 'vurtis';
 
 import {Button} from '../../components';
-
-// @ts-expect-error no types
 import styles from './TestMeasureHooks.module.css';
 
 export function TestSize() {

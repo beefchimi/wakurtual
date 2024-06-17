@@ -1,5 +1,4 @@
 import {TextLink} from '../../components';
-// @ts-expect-error no types
 import styles from './AboutPage.module.css';
 
 async function getPageData() {

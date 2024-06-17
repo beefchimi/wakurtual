@@ -19,8 +19,8 @@ export interface ScrollLockOptions {
   target?: HTMLElement | null;
   scrollAxis?: ScrollAxis;
   scrollbarOffset?: ScrollbarWidth;
-  onLock?(captured: ScrollLockCapturedProperties): void;
-  onUnlock?(): void;
+  onLock?: (captured: ScrollLockCapturedProperties) => void;
+  onUnlock?: () => void;
 }
 
 export interface DefaultScrollLockOptions extends ScrollLockOptions {

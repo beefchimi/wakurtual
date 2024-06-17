@@ -13,7 +13,6 @@ import {
 import {useBreakpoint} from '../../../hooks';
 import type {Vurticies} from '../VurtisPage.types';
 
-// @ts-expect-error no types
 import styles from './Grid.module.css';
 
 export interface VurtisGridProps {
@@ -59,8 +58,8 @@ export function VurtisGrid({items = [], reversed = false}: VurtisGridProps) {
   */
 
   const itemsMarkup = virtualItems.map(({order, top, left, width}, index) => {
-    const originalOrder = items[order]?.order || 0;
-    const label = items[order]?.label || 'zero';
+    const originalOrder = items[order]?.order ?? 0;
+    const label = items[order]?.label ?? 'zero';
     const passRef = aggressiveMeasure && index === 0;
 
     // Not passing `{height}` from `item` as it is computed natively.
@@ -68,6 +67,7 @@ export function VurtisGrid({items = [], reversed = false}: VurtisGridProps) {
       <motion.li
         ref={passRef ? updateItemHeight : undefined}
         key={`Vurtis-Item-${originalOrder}`}
+        // @ts-expect-error no types
         className={styles.GridItem}
         style={altLayout ? undefined : {top, left, width}}
         // data-index={index}
@@ -81,6 +81,7 @@ export function VurtisGrid({items = [], reversed = false}: VurtisGridProps) {
         exit="hide"
       >
         <motion.div
+          // @ts-expect-error no types
           className={styles.GridCard}
           variants={{
             hide: {scale: 0},
@@ -102,8 +103,8 @@ export function VurtisGrid({items = [], reversed = false}: VurtisGridProps) {
         <ul
           ref={listRef}
           className={clx(styles.GridList, {
-            [styles.reversed]: reversed,
-            [styles.static]: altLayout,
+            [`${styles.reversed}`]: reversed,
+            [`${styles.static}`]: altLayout,
           })}
           style={
             altLayout

@@ -1,6 +1,5 @@
 import type {ReactNode} from 'react';
 
-// @ts-expect-error no types
 import styles from './Main.module.css';
 
 export interface MainProps {

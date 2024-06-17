@@ -1,7 +1,6 @@
 import {useAtomValue} from 'jotai';
 
 import {virtualAtom} from '../../../store';
-// @ts-expect-error no types
 import styles from './Stats.module.css';
 
 export function VirtualStats() {
@@ -29,7 +28,7 @@ export function VirtualStats() {
     <div className={styles.Stats}>
       <p className={styles.Title}>Virtual</p>
 
-      <ul className={styles.List}>{emptyItem || stateItems}</ul>
+      <ul className={styles.List}>{emptyItem ?? stateItems}</ul>
     </div>
   );
 }

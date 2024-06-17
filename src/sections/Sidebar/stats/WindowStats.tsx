@@ -1,7 +1,6 @@
 import {useAtomValue} from 'jotai';
 
 import {windowAtom} from '../../../store';
-// @ts-expect-error no types
 import styles from './Stats.module.css';
 
 export function WindowStats() {
@@ -29,7 +28,7 @@ export function WindowStats() {
     <div className={styles.Stats}>
       <p className={styles.Title}>Window</p>
 
-      <ul className={styles.List}>{emptyItem || stateItems}</ul>
+      <ul className={styles.List}>{emptyItem ?? stateItems}</ul>
     </div>
   );
 }

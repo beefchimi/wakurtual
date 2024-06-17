@@ -4,8 +4,6 @@ import {useState} from 'react';
 import {useWindowScroll} from 'vurtis';
 
 import {Button} from '../../components';
-
-// @ts-expect-error no types
 import styles from './TestMeasureHooks.module.css';
 
 export function TestScroll() {

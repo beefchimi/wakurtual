@@ -15,7 +15,6 @@ import {CommonAction} from '../../primitives';
 import {useBreakpoint} from '../../hooks';
 
 import {TestMeasureHooks} from '../TestMeasureHooks';
-// @ts-expect-error no types
 import styles from './Sidebar.module.css';
 
 export function Sidebar() {
@@ -51,13 +50,15 @@ export function Sidebar() {
   */
 
   return (
-    <aside className={clx(styles.Sidebar, {[styles.open]: sidebarOpen})}>
+    <aside className={clx(styles.Sidebar, {[`${styles.open}`]: sidebarOpen})}>
       <div className={styles.Primary}>
         <CommonAction
           className={styles.MenuAction}
           pressed={sidebarOpen}
           // onClick={() => toggleSidebar(true)}
-          onClick={() => toggleSidebar()}
+          onClick={() => {
+            toggleSidebar();
+          }}
         >
           <div className={styles.MenuActionIcon}>🍔</div>
         </CommonAction>
@@ -65,7 +66,9 @@ export function Sidebar() {
         <CommonAction
           className={styles.MenuAction}
           pressed={animation}
-          onClick={() => toggleAnimation()}
+          onClick={() => {
+            toggleAnimation();
+          }}
         >
           <div className={styles.MenuActionIcon}>💫</div>
         </CommonAction>
@@ -73,7 +76,9 @@ export function Sidebar() {
         <CommonAction
           className={styles.MenuAction}
           pressed={virtualization}
-          onClick={() => toggleVirtualization()}
+          onClick={() => {
+            toggleVirtualization();
+          }}
         >
           <div className={styles.MenuActionIcon}>✨</div>
         </CommonAction>
@@ -81,7 +86,9 @@ export function Sidebar() {
         <CommonAction
           className={styles.MenuAction}
           pressed={altLayout}
-          onClick={() => toggleAltLayout()}
+          onClick={() => {
+            toggleAltLayout();
+          }}
         >
           <div className={styles.MenuActionIcon}>📐</div>
         </CommonAction>
@@ -89,7 +96,9 @@ export function Sidebar() {
         <CommonAction
           className={styles.MenuAction}
           pressed={aggressiveMeasure}
-          onClick={() => toggleAggressiveMeasure()}
+          onClick={() => {
+            toggleAggressiveMeasure();
+          }}
         >
           <div className={styles.MenuActionIcon}>😤</div>
         </CommonAction>
@@ -98,7 +107,9 @@ export function Sidebar() {
       <div className={styles.Secondary} hidden={!sidebarOpen}>
         <CommonAction
           className={styles.CloseAction}
-          onClick={() => toggleSidebar(false)}
+          onClick={() => {
+            toggleSidebar(false);
+          }}
         >
           <p className={styles.CloseActionLabel}>Close</p>
         </CommonAction>

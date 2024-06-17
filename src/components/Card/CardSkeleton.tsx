@@ -1,7 +1,6 @@
 import {clx} from 'beeftools';
 
 import {Thumbnail} from '../Thumbnail';
-// @ts-expect-error no types
 import styles from './Card.module.css';
 
 export function CardSkeleton() {

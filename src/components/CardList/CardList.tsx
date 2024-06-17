@@ -2,7 +2,6 @@ import {forwardRef, type ForwardedRef, type ReactNode} from 'react';
 import {clx} from 'beeftools';
 
 import {CardItem} from './CardItem';
-// @ts-expect-error no types
 import styles from './CardList.module.css';
 
 interface CardListHeight {
@@ -27,7 +26,7 @@ function ListComponent(
     <ul
       ref={ref}
       className={clx(styles.CardList, {
-        [styles.virtualList]: Boolean(virtualStyle),
+        [`${styles.virtualList}`]: Boolean(virtualStyle),
       })}
       style={virtualStyle}
     >

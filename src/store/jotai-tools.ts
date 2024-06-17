@@ -7,9 +7,11 @@ export function atomStorageToggle(
   initialValue?: boolean,
   storage?: any,
 ): WritableAtom<boolean, [boolean?], void> {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   const thisAtom = atomWithStorage(key, initialValue, storage);
 
   const derivedAtom = atom(
+    // eslint-disable-next-line @typescript-eslint/promise-function-async
     (get) => get(thisAtom),
     (get, set, nextValue?: boolean) => {
       const update = nextValue ?? !get(thisAtom);

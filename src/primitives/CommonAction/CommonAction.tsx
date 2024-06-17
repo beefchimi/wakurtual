@@ -10,7 +10,6 @@ import {
 import {clx} from 'beeftools';
 import {Link} from 'waku';
 
-// @ts-expect-error no types
 import styles from './CommonAction.module.css';
 
 type EitherElement = HTMLAnchorElement | HTMLButtonElement;
@@ -116,7 +115,7 @@ function CommonActionComponent(
 
   // Used to provide a unique state on the <button /> that is
   // separate from `disabled` but otherwise non-interactive.
-  const hasInteraction = Boolean(onBlur || onFocus || onClick || onPointerDown);
+  const hasInteraction = Boolean(onBlur ?? onFocus ?? onClick ?? onPointerDown);
 
   return (
     <button

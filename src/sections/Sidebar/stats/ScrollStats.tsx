@@ -1,7 +1,6 @@
 import {useAtomValue} from 'jotai';
 
 import {scrollAtom} from '../../../store';
-// @ts-expect-error no types
 import styles from './Stats.module.css';
 
 export function ScrollStats() {
@@ -29,7 +28,7 @@ export function ScrollStats() {
     <div className={styles.Stats}>
       <p className={styles.Title}>Scroll</p>
 
-      <ul className={styles.List}>{emptyItem || stateItems}</ul>
+      <ul className={styles.List}>{emptyItem ?? stateItems}</ul>
     </div>
   );
 }

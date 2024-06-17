@@ -2,7 +2,6 @@ import {clx} from 'beeftools';
 import {AnimatePresence} from 'framer-motion';
 
 import {imgSkull} from '../../../assets';
-// @ts-expect-error no types
 import styles from './Loader.module.css';
 
 export interface LoaderProps {
@@ -23,7 +22,7 @@ export function Loader({failed = false}: LoaderProps) {
   ) : null;
 
   return (
-    <div className={clx(styles.Loader, {[styles.failed]: failed})}>
+    <div className={clx(styles.Loader, {[`${styles.failed}`]: failed})}>
       <AnimatePresence>
         {skeletonMarkup}
         {failedMarkup}

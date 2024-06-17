@@ -5,7 +5,6 @@ import {motion} from 'framer-motion';
 import {clx} from 'beeftools';
 import type {VurtisItemPosition} from 'vurtis';
 
-// @ts-expect-error no types
 import styles from './CardList.module.css';
 
 export interface CardItemProps {
@@ -22,10 +21,11 @@ function ItemComponent(
   return (
     <motion.li
       ref={ref}
+      // @ts-expect-error no types
       id={id}
       data-index={debugIndex}
       className={clx(styles.CardItem, {
-        [styles.virtualItem]: Boolean(virtualPosition),
+        [`${styles.virtualItem}`]: Boolean(virtualPosition),
       })}
       style={virtualPosition}
       variants={{

@@ -24,6 +24,7 @@ function getDumbContent(key = '', replace?: ParsedContent) {
   const source = rawContent[key];
 
   if (!source) {
+    // eslint-disable-next-line no-console
     console.warn(`Content for “${key}” could not be found.`);
     return '';
   }

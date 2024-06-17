@@ -1,7 +1,6 @@
 import {clx} from 'beeftools';
 
 import {TextLink} from '../../components';
-// @ts-expect-error no types
 import styles from './Footer.module.css';
 
 const LARGE_FOOTER = false;

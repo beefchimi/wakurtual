@@ -3,7 +3,6 @@
 import {clx} from 'beeftools';
 
 import type {Vurticies} from '../VurtisPage.types';
-// @ts-expect-error no types
 import styles from './Grid.module.css';
 
 export interface CssGridProps {
@@ -47,7 +46,7 @@ export function CssGrid({items = [], reversed = false}: CssGridProps) {
     <div className={styles.Grid}>
       <ul
         className={clx(styles.GridList, styles.static, {
-          [styles.reversed]: reversed,
+          [`${styles.reversed}`]: reversed,
         })}
       >
         {itemsMarkup}

@@ -4,7 +4,6 @@ import {clx} from 'beeftools';
 import {CommonAction, type CommonActionProps} from '../../primitives';
 import {SimpleSpinner} from '../SimpleSpinner';
 
-// @ts-expect-error no types
 import styles from './Button.module.css';
 
 export interface ButtonProps
@@ -30,7 +29,7 @@ function ButtonComponent(
     <CommonAction
       ref={ref}
       className={clx('button-basic', styles.Button, {
-        [styles.loading]: loading,
+        [`${styles.loading}`]: loading,
       })}
       {...buttonProps}
     >

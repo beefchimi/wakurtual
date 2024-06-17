@@ -7,7 +7,6 @@ import {AnimatePresence} from 'framer-motion';
 import {type MediaEventHandler} from './VisualAsset.types';
 import {Loader} from './Loader';
 
-// @ts-expect-error no types
 import styles from './VisualAsset.module.css';
 
 export interface VisualAssetProps {
@@ -103,10 +102,10 @@ function VisualAssetComponent(
   return (
     <div
       className={clx(styles.VisualAsset, {
-        [styles.bgPoster]: posterAsBg,
-        [styles.contain]: contain,
-        [styles.hideAsset]: hideAsset,
-        [styles.pixelated]: pixelated,
+        [`${styles.bgPoster}`]: posterAsBg,
+        [`${styles.contain}`]: contain,
+        [`${styles.hideAsset}`]: hideAsset,
+        [`${styles.pixelated}`]: pixelated,
       })}
       style={posterAsBg ? {backgroundImage: safeImage} : undefined}
     >

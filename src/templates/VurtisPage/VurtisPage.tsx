@@ -7,7 +7,6 @@ import type {Vurticies} from './VurtisPage.types';
 import {SkeletonGrid} from './grid';
 import {VurtisDemo} from './sections';
 
-// @ts-expect-error no types
 import styles from './VurtisPage.module.css';
 
 async function getPageData() {

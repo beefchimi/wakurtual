@@ -54,14 +54,14 @@ const STAT_ORDER: Array<keyof PokemonStats> = [
 ];
 
 export function assertPokemon(data?: Pokemon | null): data is Pokemon {
-  return Boolean(data && data.id && data.slug.length);
+  return Boolean(data?.id && data.slug.length);
 }
 
 ///
 /// Data parsing
 
 export function parsePokemonStats(stats: PokemonStats) {
-  const parsed = Object.entries(stats) as [keyof PokemonStats, number][];
+  const parsed = Object.entries(stats) as Array<[keyof PokemonStats, number]>;
 
   return parsed.sort(
     ([key1], [key2]) => STAT_ORDER.indexOf(key1) - STAT_ORDER.indexOf(key2),
@@ -123,6 +123,7 @@ export async function fetchPokedexPage(page = 0) {
   await sleep(1234);
 
   if (data === null) {
+    // eslint-disable-next-line @typescript-eslint/return-await, @typescript-eslint/prefer-promise-reject-errors
     return Promise.reject(data);
   }
 
@@ -146,7 +147,8 @@ export async function fetchPokemonBySlug(slug: Pokemon['slug']) {
   await sleep(1234);
 
   if (result === null) {
-    return Promise.reject(result);
+    // eslint-disable-next-line @typescript-eslint/return-await, @typescript-eslint/prefer-promise-reject-errors
+    return await Promise.reject(result);
   }
 
   return result;

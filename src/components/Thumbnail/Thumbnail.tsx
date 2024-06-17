@@ -7,7 +7,6 @@ import {
   type VisualAssetStateOptions,
 } from '../../primitives';
 
-// @ts-expect-error no types
 import styles from './Thumbnail.module.css';
 
 export interface ThumbnailProps

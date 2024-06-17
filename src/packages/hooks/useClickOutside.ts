@@ -2,7 +2,7 @@ import {useCallback, useRef} from 'react';
 import {useIsoEffect} from 'vurtis';
 
 export type ClickOutsideCallback = (event: PointerEvent) => void;
-export type ClickOutsideExclusion = (HTMLElement | null | undefined)[];
+export type ClickOutsideExclusion = Array<HTMLElement | null | undefined>;
 
 export interface ClickOutsideOptions {
   disabled?: boolean;

@@ -105,7 +105,7 @@ export function Virtual({items}: VirtualProps) {
               : {height: listHeight}
         }
       >
-        {emptyItemMarkup || itemsMarkup}
+        {emptyItemMarkup ?? itemsMarkup}
       </CardList>
     </MotionConfig>
   );

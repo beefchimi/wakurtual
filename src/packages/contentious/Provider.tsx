@@ -55,6 +55,7 @@ export function useContent(namespace = 'TODO') {
       const source = content[key];
 
       if (!source) {
+        // eslint-disable-next-line no-console
         console.warn(`Content for “${namespace}: ${key}” could not be found.`);
         return '';
       }

@@ -47,5 +47,5 @@ export function Static({items = []}: StaticProps) {
       </CardList.Item>
     ) : null;
 
-  return <CardList>{emptyItemMarkup || itemsMarkup}</CardList>;
+  return <CardList>{emptyItemMarkup ?? itemsMarkup}</CardList>;
 }

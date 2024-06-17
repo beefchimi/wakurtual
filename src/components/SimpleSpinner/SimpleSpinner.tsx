@@ -1,6 +1,5 @@
 import {clamp} from 'beeftools';
 
-// @ts-expect-error no types
 import styles from './SimpleSpinner.module.css';
 
 export interface SimpleSpinnerProps {
