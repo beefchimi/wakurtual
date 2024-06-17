@@ -39,6 +39,8 @@ export default [
     },
     rules: {
       'no-console': 'warn',
+      '@typescript-eslint/explicit-function-return-type': 'off',
+      '@typescript-eslint/strict-boolean-expressions': 'off',
     },
   },
 ];
