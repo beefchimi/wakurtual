@@ -15,7 +15,7 @@
     "format:fix": "prettier --write ."
   },
   "dependencies": {
-    "beeftools": "^0.1.3",
+    "beeftools": "^0.1.4",
     "framer-motion": "10.18.0",
     "jotai": "^2.8.3",
     "react": "19.0.0-rc.0",
@@ -30,12 +30,12 @@
     "@types/react-dom": "npm:types-react-dom@beta",
     "autoprefixer": "^10.4.19",
     "eslint": "^8.57.0",
-    "eslint-config-love": "^51.0.1",
+    "eslint-config-love": "^53.0.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
     "eslint-plugin-react": "^7.34.2",
     "eslint-plugin-react-hooks": "^4.6.2",
-    "globals": "^15.3.0",
+    "globals": "^15.6.0",
     "prettier": "^3.3.2",
     "typescript": "^5.4.5"
   },
