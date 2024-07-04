@@ -17,13 +17,13 @@
   "dependencies": {
     "beeftools": "^0.1.4",
     "framer-motion": "10.18.0",
-    "jotai": "^2.8.3",
+    "jotai": "^2.8.4",
     "react": "19.0.0-rc.0",
     "react-dom": "19.0.0-rc.0",
     "react-intersection-observer": "^9.10.3",
     "react-server-dom-webpack": "19.0.0-rc.0",
     "vurtis": "^0.0.12",
-    "waku": "0.21.0-alpha.2"
+    "waku": "0.21.0-beta.0"
   },
   "devDependencies": {
     "@types/react": "npm:types-react@beta",
@@ -33,9 +33,9 @@
     "eslint-config-love": "^53.0.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
-    "eslint-plugin-react": "^7.34.2",
+    "eslint-plugin-react": "^7.34.3",
     "eslint-plugin-react-hooks": "^4.6.2",
-    "globals": "^15.6.0",
+    "globals": "^15.8.0",
     "prettier": "^3.3.2",
     "typescript": "^5.4.5"
   },
