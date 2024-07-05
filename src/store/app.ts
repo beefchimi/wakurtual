@@ -2,8 +2,8 @@ import {atomStorageToggle} from './jotai-tools';
 
 export const sidebarAtom = atomStorageToggle('sidebar', false);
 
-export const animationAtom = atomStorageToggle('animation', false);
-export const virtualizationAtom = atomStorageToggle('virtualization', false);
+export const animationAtom = atomStorageToggle('animation', true);
+export const virtualizationAtom = atomStorageToggle('virtualization', true);
 
 export const altLayoutAtom = atomStorageToggle('altLayout', false);
 export const aggressiveMeasureAtom = atomStorageToggle(

@@ -1,3 +1,3 @@
-# Wakurtual
+# Vurtis
 
-This project is an experiment to push `@tanstack/react-virtual` to infinity and beyond.
+This is the demo app for the `vurtis` package.

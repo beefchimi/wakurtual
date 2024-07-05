@@ -20,6 +20,7 @@ type ButtonClick = MouseEventHandler<HTMLButtonElement>;
 export interface CommonActionBaseProps {
   children: ReactNode;
   id?: string;
+  title?: string;
   className?: string;
   disabled?: boolean;
   pressed?: boolean;
@@ -54,6 +55,7 @@ function CommonActionComponent(
   {
     children,
     id,
+    title,
     className = '',
     disabled = false,
     pressed = false,
@@ -78,6 +80,7 @@ function CommonActionComponent(
 
   const globalProps = {
     id,
+    title,
     onPointerEnter,
     onPointerLeave,
     onPointerDown,

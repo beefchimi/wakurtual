@@ -3,7 +3,7 @@ import styles from './AboutPage.module.css';
 
 async function getPageData() {
   const data = {
-    htmlTitle: 'About | Wakurtual',
+    htmlTitle: 'About | Vurtis',
     pageTitle: 'About page',
   };
 
@@ -26,7 +26,7 @@ export async function AboutPage() {
         </blockquote>
 
         <p>
-          The virtualization tool chosen is{' '}
+          Originally, I had hoped to achieve this layout with{' '}
           <code>
             <TextLink
               label="@tanstack/react-virtual"
@@ -39,7 +39,7 @@ export async function AboutPage() {
         </p>
 
         <p>
-          <strong>The main challenges I am predicting are:</strong>
+          <strong>The main challenges I was facing were:</strong>
         </p>
 
         <ul>
@@ -49,12 +49,16 @@ export async function AboutPage() {
               properties to reflect the layout of the CSS grid across various
               viewport / container widths.
             </p>
-            <p>
-              Ideally, I want this to be as automatic as possible, and avoid
-              hardcoding different values for specific breakpoints. We will have
-              a <code>Sidebar</code> that can open/close, which will influence
-              the width of the items grid.
-            </p>
+            <ul>
+              <li>
+                <p>
+                  Ideally, I want this to be as automatic as possible, and avoid
+                  hardcoding different values for specific breakpoints. We will
+                  have a <code>Sidebar</code> that can open/close, which will
+                  influence the width of the items grid.
+                </p>
+              </li>
+            </ul>
           </li>
           <li>
             <p>

@@ -106,8 +106,8 @@ export function Footer() {
         Built using <TextLink label="Waku" url="https://waku.gg/" external />{' '}
         and{' '}
         <TextLink
-          label="React Virtual"
-          url="https://tanstack.com/virtual/latest"
+          label="Vurtis"
+          url="https://github.com/beefchimi/vurtis"
           external
         />
         … among other awesome tools.

@@ -2,7 +2,7 @@ import {TextLink} from '../../components';
 
 async function getPageData() {
   const data = {
-    htmlTitle: 'Error 404 | Wakurtual',
+    htmlTitle: 'Error 404 | Vurtis',
     pageTitle: '404 page',
   };
 

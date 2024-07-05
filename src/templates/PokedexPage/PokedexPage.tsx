@@ -5,7 +5,7 @@ import {fetchPokedexFlatPaged} from '../../data';
 
 async function getPageData() {
   const data = {
-    htmlTitle: 'Pokedex | Wakurtual',
+    htmlTitle: 'Pokedex | Vurtis',
     pageTitle: 'Pokedex page',
   };
 

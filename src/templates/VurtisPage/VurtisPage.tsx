@@ -11,7 +11,7 @@ import styles from './VurtisPage.module.css';
 
 async function getPageData() {
   const data = {
-    htmlTitle: 'Vurtis | Wakurtual',
+    htmlTitle: 'Vurtis | Vurtis',
     pageTitle: 'Vurtis page',
   };
 

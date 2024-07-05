@@ -14,7 +14,7 @@ export interface PokemonHeroProps {
 export function PokemonHero({pokemon, children}: PokemonHeroProps) {
   const {id, slug, name, type, base} = use(pokemon);
 
-  const titleValue = `${name.english} | Wakurtual`;
+  const titleValue = `${name.english} | Vurtis`;
   const stats = parsePokemonStats(base);
 
   const typeItems = type.map((current) => (

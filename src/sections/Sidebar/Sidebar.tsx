@@ -53,6 +53,7 @@ export function Sidebar() {
     <aside className={clx(styles.Sidebar, {[`${styles.open}`]: sidebarOpen})}>
       <div className={styles.Primary}>
         <CommonAction
+          title="Toggle Sidebar"
           className={styles.MenuAction}
           pressed={sidebarOpen}
           // onClick={() => toggleSidebar(true)}
@@ -64,6 +65,7 @@ export function Sidebar() {
         </CommonAction>
 
         <CommonAction
+          title="Toggle Animations"
           className={styles.MenuAction}
           pressed={animation}
           onClick={() => {
@@ -74,6 +76,7 @@ export function Sidebar() {
         </CommonAction>
 
         <CommonAction
+          title="Toggle Virtualization"
           className={styles.MenuAction}
           pressed={virtualization}
           onClick={() => {
@@ -84,6 +87,7 @@ export function Sidebar() {
         </CommonAction>
 
         <CommonAction
+          title="Toggle Alternative Layout"
           className={styles.MenuAction}
           pressed={altLayout}
           onClick={() => {
@@ -94,6 +98,7 @@ export function Sidebar() {
         </CommonAction>
 
         <CommonAction
+          title="Toggle Aggressive Measurements"
           className={styles.MenuAction}
           pressed={aggressiveMeasure}
           onClick={() => {

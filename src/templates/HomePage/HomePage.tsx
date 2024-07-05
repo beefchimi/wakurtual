@@ -5,7 +5,7 @@ import {fetchPokedex} from '../../data';
 
 async function getPageData() {
   const data = {
-    htmlTitle: 'Home | Wakurtual',
+    htmlTitle: 'Home | Vurtis',
     pageTitle: 'Home page',
   };
 

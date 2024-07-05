@@ -17,7 +17,7 @@ interface RootLayoutProps {
 
 async function getPageData() {
   const data = {
-    description: 'Experimenting with Waku and React Virtual.',
+    description: 'Experimenting with Waku and Vurtis.',
     icon: '/images/favicon.png',
   };
 

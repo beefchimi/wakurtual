@@ -23,11 +23,11 @@ export function CardSkeleton() {
             )}
           />
         </div>
-      </div>
 
-      <div
-        className={clx(styles.Order, 'skeleton-base', styles.orderSkeleton)}
-      />
+        <div
+          className={clx(styles.Order, 'skeleton-base', styles.orderSkeleton)}
+        />
+      </div>
     </article>
   );
 }
