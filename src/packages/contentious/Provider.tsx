@@ -7,6 +7,7 @@ import {
   useMemo,
   type ReactNode,
 } from 'react';
+// @ts-expect-error "Importing from node"
 import fs from 'node:fs';
 
 type ParsedContent = Record<string, string>;
@@ -31,7 +32,10 @@ export function ContentProvider({path = '', children}: ContentProviderProps) {
   const content = useMemo(() => {
     // TODO: We will need to capture multiple JSON files and
     // merge them into single object, organized by slugified file name.
-    const contentRaw: ParsedContent = JSON.parse(fs.readFileSync(path, 'utf8'));
+    const contentRaw: ParsedContent = JSON.parse(
+      // TODO: Remove typecast once we are properly importing `fs`.
+      fs.readFileSync(path, 'utf8') as string,
+    );
 
     // console.log('ContentProvider > useMemo > contentRaw', contentRaw);
 
